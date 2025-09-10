@@ -2,6 +2,10 @@
 
 Use [BepInEx](https://github.com/BepInEx/BepInEx) to load this mod.
 
+## Build
+
+Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the `GamePath` to your game path.
+
 ## Features
 
 ### Player - Health
