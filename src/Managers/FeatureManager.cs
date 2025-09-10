@@ -21,5 +21,6 @@ public static class FeatureManager
     {
         AddFeature<PlayerFeatures>();
         AddFeature<CurrencyFeatures>();
+        AddFeature<EnemyFeatures>();
     }
 }

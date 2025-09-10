@@ -1,4 +1,5 @@
-﻿using BepInEx;
+﻿using System;
+using BepInEx;
 using HarmonyLib;
 using HKSC.Managers;
 using HKSC.Ui;
@@ -15,6 +16,11 @@ public class Plugin : BaseUnityPlugin
     private void OnEnable()
     {
         Harmony.PatchAll();
+    }
+
+    private void Update()
+    {
+        EnemyManager.OnUpdate();
     }
 
     private void Start()

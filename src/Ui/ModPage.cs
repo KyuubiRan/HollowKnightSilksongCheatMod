@@ -3,7 +3,7 @@
 public enum ModPage
 {
     Player,
-    Enemies,
+    Enemy,
     Currency,
     Menu,
     Game,

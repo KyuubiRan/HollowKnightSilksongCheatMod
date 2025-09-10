@@ -29,6 +29,10 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] Infinity Air Jump
 - [x] No Attack CD
 
+### Enemy - Info
+
+- [x] Show Enemy Hp
+
 ### Currency
 
 - [x] Add/Remove Geo

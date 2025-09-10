@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using HKSC.Features;
 using HKSC.Managers;
+using UnityEngine;
 
 namespace HKSC.Patches;
 
@@ -8,6 +9,10 @@ namespace HKSC.Patches;
 public class HealthManagerPatcher
 {
     private static readonly PlayerFeatures Feature = FeatureManager.GetFeature<PlayerFeatures>();
+
+    private static readonly AccessTools.FieldRef<HealthManager, int> InitHpField =
+        AccessTools.FieldRefAccess<HealthManager, int>("initHp");
+
 
     [HarmonyPatch("TakeDamage")]
     [HarmonyPrefix]
@@ -30,5 +35,23 @@ public class HealthManagerPatcher
         }
 
         return true;
+    }
+
+    [HarmonyPatch("OnStart")]
+    [HarmonyPostfix]
+    static void OnStart_Postfix(HealthManager __instance)
+    {
+        // Ignore 1 hp enetites
+        if (InitHpField(__instance) <= 1)
+            return;
+
+        var enemyInfo = new EnemyManager.EnemyInfo
+        {
+            GameObject = __instance.gameObject,
+            HealthManager = __instance
+        };
+        
+        Debug.Log("Added enemy: " + __instance.gameObject.name);
+        EnemyManager.Enemies.Add(enemyInfo);
     }
 }

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿#nullable enable
+
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace HKSC.Managers;
 
@@ -9,15 +11,23 @@ public static class EnemyManager
 {
     private static GameManager Gm => GameManager.instance;
 
-    public static List<EnemyInfo> Enemies { get; private set; } = [];
-    private static readonly HashSet<int> EnemyLayers = [11, 17];
+    public static readonly HashSet<EnemyInfo> Enemies = [];
 
-    public struct EnemyInfo
+    public delegate void OnEnemiesLoaded(IReadOnlyCollection<EnemyInfo> info);
+
+    public static event OnEnemiesLoaded? OnEnemiesLoadedEvent;
+
+    public static void OnUpdate()
     {
-        public GameObject GameObject;
-        public HealthManager HealthManager;
+        Enemies.RemoveWhere(x => x.GameObject == null);
+    }
 
-        public bool IsDead => HealthManager.isDead;
+    public class EnemyInfo
+    {
+        public GameObject? GameObject;
+        public HealthManager? HealthManager;
+
+        public Text HpTextComp = null!;
     }
 
     public static void OnSceneChanged(Scene scene)
@@ -25,14 +35,7 @@ public static class EnemyManager
         if (Gm == null)
             return;
 
-        var rootGameObjects = scene.GetRootGameObjects();
-
-        Enemies = rootGameObjects.Where(x => EnemyLayers.Contains(x.layer) || x.tag == "Boss")
-            .Select(x => new EnemyInfo
-            {
-                GameObject = x,
-                HealthManager = x.GetComponent<HealthManager>()
-            })
-            .ToList();
+        Enemies.Clear();
+        OnEnemiesLoadedEvent?.Invoke(Enemies);
     }
 }
