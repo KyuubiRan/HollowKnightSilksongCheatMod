@@ -41,7 +41,7 @@ public class HealthManagerPatcher
     [HarmonyPostfix]
     static void OnStart_Postfix(HealthManager __instance)
     {
-        // Ignore 1 hp enetites
+        // Ignore 1 hp entities
         if (InitHpField(__instance) <= 1)
             return;
 
