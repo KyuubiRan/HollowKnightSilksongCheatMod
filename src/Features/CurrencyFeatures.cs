@@ -21,10 +21,12 @@ public class CurrencyFeatures : FeatureBase
 
         _shellShardsValueStr = UiUtils.InputInt(ref _shellShardsValue, _shellShardsValueStr,"Value");
 
+        GUILayout.BeginHorizontal();
         if (GUILayout.Button("Add"))
             Hc?.AddShards(_shellShardsValue);
         if (GUILayout.Button("Remove"))
             Hc?.TakeShards(_shellShardsValue);
+        GUILayout.EndHorizontal();
 
         UiUtils.EndCategory();        
         
@@ -32,11 +34,13 @@ public class CurrencyFeatures : FeatureBase
 
         _geoShardsValueStr = UiUtils.InputInt(ref _geoShardsValue, _geoShardsValueStr,"Value");
 
+        GUILayout.BeginHorizontal();
         if (GUILayout.Button("Add"))
             Hc?.AddGeo(_shellShardsValue);
         if (GUILayout.Button("Remove"))
             Hc?.TakeGeo(_shellShardsValue);
-
+        GUILayout.EndHorizontal();
+        
         UiUtils.EndCategory();
     }
 
