@@ -37,3 +37,12 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 
 - [x] Add/Remove Geo
 - [x] Add/Remove Shell Shards
+
+### Game
+TODO
+
+### Menu
+TODO
+
+### Teleport
+TODO
