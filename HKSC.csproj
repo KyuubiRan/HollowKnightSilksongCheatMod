@@ -1,0 +1,92 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <!-- Edit this!-->
+        <ModName>HKC</ModName>
+
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Description>Hollow knight cheat</Description>
+        <Version>1.0.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <OutputType>Library</OutputType>
+        <!-- Base paths -->
+        <!-- You should modify the Directory.Build.props.template -> Directory.Build.props and put a custom path there if needed. -->
+        <GamePath Condition="'$(GamePath)' == '' AND '$(OS)' == 'Windows_NT'">C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight Silksong</GamePath>
+        <GamePath Condition="'$(GamePath)' == '' AND '$(OS)' != 'Windows_NT'">/home/$(USERNAME)/.steam/steam/steamapps/common/Hollow Knight Silksong</GamePath>
+
+        <!-- derived paths -->
+        <ManagedPath>$(GamePath)/Hollow Knight Silksong_Data/Managed</ManagedPath>
+        <BepInExPath>$(GamePath)/BepInEx</BepInExPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(ManagedPath)/Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="BepInEx.Core">
+            <HintPath>$(BepInExPath)/core/BepInEx.dll</HintPath>
+        </Reference>
+        <Reference Include="Harmony">
+            <HintPath>$(BepInExPath)/core/0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="PlayMaker">
+            <HintPath>$(ManagedPath)/PlayMaker.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(ManagedPath)/UnityEngine.Ui.dll</HintPath>
+        </Reference>       
+        <Reference Include="UnityEngine.IMGUI">
+            <HintPath>$(ManagedPath)/UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <PackageReference Include="UnityEngine.Modules" Version="2020.2.2" IncludeAssets="compile"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Assets\" />
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <PropertyGroup>
+            <ModFolder>$(GamePath)/BepInEx/plugins/$(ModName)</ModFolder>
+        </PropertyGroup>
+
+        <!-- Create the mod directory if it doesn't exist -->
+        <MakeDir Directories="$(ModFolder)"/>
+
+        <!-- Copy the compiled DLL to the mod folder -->
+        <Copy
+                SourceFiles="$(TargetPath)"
+                DestinationFolder="$(ModFolder)"
+                SkipUnchangedFiles="true"
+        />
+
+        <!-- Optional: You can add a message to confirm the copy -->
+        <Message Text="Copied $(TargetFileName) to $(ModFolder)" Importance="high"/>
+    </Target>
+
+    <!-- Copying the important .dll file to build/, useful if you want to copy it yourself but don't want to dig through bin/...-->
+    <!-- <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <PropertyGroup>
+        <BuildOutputFolder>./build/</BuildOutputFolder>
+      </PropertyGroup>
+      
+      <MakeDir Directories="$(BuildOutputFolder)" />
+      
+      <Copy 
+        SourceFiles="$(TargetPath)"
+        DestinationFolder="$(ModFolder)"
+        SkipUnchangedFiles="true"
+      />
+      
+      <Message Text="Copied $(TargetFileName) to $(BuildOutputFolder)" Importance="high" />
+    </Target> -->
+</Project>

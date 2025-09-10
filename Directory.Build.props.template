@@ -1,0 +1,6 @@
+<Project>
+  <!-- Modify this and remove the .template from the filename to change the game path just for yourself -->
+  <PropertyGroup>
+    <GamePath>/path/to/game/steamapps/Hollow Knight Silksong</GamePath>
+  </PropertyGroup>
+</Project>
