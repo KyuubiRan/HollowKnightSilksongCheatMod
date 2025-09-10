@@ -1,5 +1,7 @@
 ﻿# Hollow Knight: Silksong Cheat Mod
 
+Use [BepInEx](https://github.com/BepInEx/BepInEx) to load this mod.
+
 ## Features
 
 ### Player - Health
