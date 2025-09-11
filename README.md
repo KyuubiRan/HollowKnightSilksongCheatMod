@@ -47,7 +47,8 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 
 ### Game
 
-TODO
+- [x] Game Speed(Time Scale)
+- [x] FPS Limiter
 
 ### Menu - Map
 
