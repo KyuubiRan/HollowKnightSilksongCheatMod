@@ -14,6 +14,11 @@ public class AboutFeature : FeatureBase
         GUILayout.Label("Mod Version: " + ModConstants.Version);
         GUILayout.Label("Author: " + ModConstants.Author);
         GUILayout.Label("GitHub: " + ModConstants.ProjectSource);
+        if (GUILayout.Button("View project on GitHub"))
+        {
+            Application.OpenURL(ModConstants.ProjectSource);
+        }
+
         UiUtils.EndCategory();
     }
 }
