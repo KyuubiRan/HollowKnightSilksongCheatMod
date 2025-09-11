@@ -7,6 +7,7 @@ using HKSC.Features.Game;
 using HKSC.Features.Menu;
 using HKSC.Features.Misc;
 using HKSC.Features.Player;
+using HKSC.Features.Teleport;
 using JetBrains.Annotations;
 
 namespace HKSC.Managers;
@@ -44,6 +45,9 @@ public static class FeatureManager
         // Game
         AddFeature<TimeScaleFeature>();
         AddFeature<FpsLimiterFeature>();
+        
+        // Teleport
+        AddFeature<CurrentSceneDetails>();
         
         // About
         AddFeature<AboutPage>();

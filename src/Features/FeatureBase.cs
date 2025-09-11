@@ -9,16 +9,21 @@ public abstract class FeatureBase
     public FeatureBase()
     {
         ModMainUi.Instance.OnUpdate += OnUpdate;
-        ModMainUi.Instance.OnInitialize += OnStart;
+        ModMainUi.Instance.OnInitialize += Start;
     }
 
     protected virtual void OnGui()
     {
     }
 
-    protected virtual void OnStart()
+    private void Start()
     {
         ModMainUi.Instance.AddRender(Page, OnGui);
+        OnStart();
+    }
+    
+    protected virtual void OnStart()
+    {
     }
 
     protected virtual void OnUpdate()
