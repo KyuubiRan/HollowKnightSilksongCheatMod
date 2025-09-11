@@ -7,8 +7,7 @@ namespace HKSC.Features.Player;
 
 public class HealthFeature : FeatureBase
 {
-    private static HeroController Hc => HeroController.instance;
-    private static GameManager Gm => GameManager.instance;
+    private static HeroController Hc => HeroController.UnsafeInstance;
     
     public bool EnableGodMode { private set; get; }
     public bool EnableLockMaxHealth { private set; get; }

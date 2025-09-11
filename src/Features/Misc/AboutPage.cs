@@ -2,9 +2,9 @@ using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
 
-namespace HKSC.Features.About;
+namespace HKSC.Features.Misc;
 
-public class AboutFeature : FeatureBase
+public class AboutPage : FeatureBase
 {
     public override ModPage Page => ModPage.About;
 

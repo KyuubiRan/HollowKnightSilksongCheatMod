@@ -7,7 +7,6 @@ namespace HKSC.Features.Player;
 public class SilkFeature : FeatureBase
 {
     private static HeroController Hc => HeroController.UnsafeInstance;
-    private static GameManager Gm => GameManager.UnsafeInstance;
     public override ModPage Page => ModPage.Player;
     
     public bool EnableLockMaxSilk { private set; get; }

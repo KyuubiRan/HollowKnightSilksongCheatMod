@@ -9,7 +9,7 @@ namespace HKSC.Managers;
 
 public static class EnemyManager
 {
-    private static GameManager Gm => GameManager.instance;
+    private static GameManager Gm => GameManager.UnsafeInstance;
 
     public static readonly HashSet<EnemyInfo> Enemies = [];
 

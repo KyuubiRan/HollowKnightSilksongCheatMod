@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using HKSC.Features;
-using HKSC.Features.About;
 using HKSC.Features.Currency;
 using HKSC.Features.Enemy;
+using HKSC.Features.Misc;
 using HKSC.Features.Player;
 using JetBrains.Annotations;
 
@@ -37,6 +37,9 @@ public static class FeatureManager
         AddFeature<ShowEnemyHpFeature>();
         
         // About
-        AddFeature<AboutFeature>();
+        AddFeature<AboutPage>();
+        
+        // Hotkey
+        AddFeature<HotkeySettingPage>();
     }
 }
