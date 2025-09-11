@@ -8,5 +8,6 @@ public enum ModPage
     Menu,
     Game,
     Teleport,
+    Hotkey,
     About,
 }

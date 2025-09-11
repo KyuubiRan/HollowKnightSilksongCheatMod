@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using HKSC.Features;
+using HKSC.Features.About;
+using HKSC.Features.Currency;
+using HKSC.Features.Enemy;
+using HKSC.Features.Player;
 using JetBrains.Annotations;
 
 namespace HKSC.Managers;
@@ -19,8 +23,20 @@ public static class FeatureManager
 
     public static void Init()
     {
-        AddFeature<PlayerFeatures>();
-        AddFeature<CurrencyFeatures>();
-        AddFeature<EnemyFeatures>();
+        // Player
+        AddFeature<HealthFeature>();
+        AddFeature<SilkFeature>();
+        AddFeature<DamageFeature>();
+        AddFeature<ActionFeature>();
+
+        // Currency
+        AddFeature<ShellShardsFeature>();
+        AddFeature<GeoFeature>();
+
+        // Enemy
+        AddFeature<ShowEnemyHpFeature>();
+        
+        // About
+        AddFeature<AboutFeature>();
     }
 }

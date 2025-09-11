@@ -6,9 +6,9 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HKSC.Features;
+namespace HKSC.Features.Enemy;
 
-public class EnemyFeatures : FeatureBase
+public class ShowEnemyHpFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Enemy;
 

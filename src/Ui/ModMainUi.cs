@@ -1,12 +1,26 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace HKSC.Ui;
 
 public class ModMainUi : MonoBehaviour
 {
+    public class PageRender(ModPage page)
+    {
+        public ModPage RenderPage = page;
+
+        public delegate void OnRender();
+
+        public event OnRender? RenderEvent;
+        public Vector2 ScrollPosition = Vector2.zero;
+
+        public void Invoke() => RenderEvent?.Invoke();
+    }
+
     public static ModMainUi Instance { get; private set; } = null!;
 
     public delegate void EventHandler();
@@ -15,20 +29,19 @@ public class ModMainUi : MonoBehaviour
 
     public event OnToggleShowEventHandler? OnToggleShow;
 
-    public event EventHandler? OnGui;
-
     public event EventHandler? OnInitialize;
 
     public event EventHandler? OnUpdate;
 
     public ModPage CurrentPage { get; private set; } = ModPage.Player;
     private static readonly ModPage[] ModPages = (ModPage[])Enum.GetValues(typeof(ModPage));
+    private static readonly Dictionary<ModPage, PageRender> PageRenders = ModPages.ToDictionary(x => x, x => new PageRender(x));
 
     private bool _isVisible = true;
     private bool _resizing;
     private Vector2 _resizeStartMouse;
     private Vector2 _resizeStartSize;
-    private Rect _windowRect = new(100, 100, 450, 600);
+    private Rect _windowRect = new(100, 100, 450, 500);
 
     private const float ResizableSize = 28f;
 
@@ -54,6 +67,13 @@ public class ModMainUi : MonoBehaviour
         OnUpdate?.Invoke();
     }
 
+    public void AddRender(ModPage page, PageRender.OnRender render)
+    {
+        if (PageRenders.TryGetValue(page, out var pageRender))
+        {
+            pageRender.RenderEvent += render;
+        }
+    }
 
     private void SetFontSize()
     {
@@ -89,17 +109,23 @@ public class ModMainUi : MonoBehaviour
             var elem = ModPages[i];
             if (GUILayout.Button(elem.ToString()))
                 CurrentPage = elem;
-            
+
             if ((i + 1) % buttonsPerRow != 0 || i + 1 == total) continue;
-            
+
             GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();
         }
-        
 
         GUILayout.EndHorizontal();
 
-        OnGui?.Invoke();
+        foreach (var (page, renderer) in PageRenders)
+        {
+            if (page != CurrentPage) continue;
+            renderer.ScrollPosition = GUILayout.BeginScrollView(renderer.ScrollPosition);
+            renderer.Invoke();
+            GUILayout.EndScrollView();
+            break;
+        }
 
         DrawResizable(ResizableSize);
         GUI.DragWindow();
@@ -108,7 +134,7 @@ public class ModMainUi : MonoBehaviour
     private void DrawResizable(float handleSize)
     {
         var resizeRect = new Rect(_windowRect.width - handleSize, _windowRect.height - handleSize, handleSize,
-            handleSize);
+                                  handleSize);
 
         var e = Event.current;
         if (e.type == EventType.MouseDown && resizeRect.Contains(e.mousePosition))

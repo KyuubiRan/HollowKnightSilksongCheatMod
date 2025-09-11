@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
-using HKSC.Features;
+using HKSC.Accessor;
+using HKSC.Features.Player;
 using HKSC.Managers;
 using UnityEngine;
 
@@ -8,10 +9,8 @@ namespace HKSC.Patches;
 [HarmonyPatch(typeof(HealthManager))]
 public class HealthManagerPatcher
 {
-    private static readonly PlayerFeatures Feature = FeatureManager.GetFeature<PlayerFeatures>();
-
-    private static readonly AccessTools.FieldRef<HealthManager, int> InitHpField =
-        AccessTools.FieldRefAccess<HealthManager, int>("initHp");
+    private static readonly HealthFeature HealthFeature = FeatureManager.GetFeature<HealthFeature>();
+    private static readonly DamageFeature DamageFeature = FeatureManager.GetFeature<DamageFeature>();
 
 
     [HarmonyPatch("TakeDamage")]
@@ -22,15 +21,15 @@ public class HealthManagerPatcher
         if (!hitInstance.IsHeroDamage)
             return true;
 
-        if (Feature.EnableOneHitKill)
+        if (DamageFeature.EnableOneHitKill)
         {
             hitInstance.DamageDealt = 99999;
             return true;
         }
 
-        if (Feature.EnableMultiDamage)
+        if (DamageFeature.EnableMultiDamage)
         {
-            hitInstance.DamageDealt = (int)(hitInstance.DamageDealt * Feature.MultiDamageValue);
+            hitInstance.DamageDealt = (int)(hitInstance.DamageDealt * DamageFeature.MultiDamageValue);
             return true;
         }
 
@@ -42,7 +41,7 @@ public class HealthManagerPatcher
     static void OnStart_Postfix(HealthManager __instance)
     {
         // Ignore 1 hp entities
-        if (InitHpField(__instance) <= 1)
+        if (HealthManagerAccessor.InitHpField(__instance) <= 1)
             return;
 
         var enemyInfo = new EnemyManager.EnemyInfo
@@ -50,7 +49,7 @@ public class HealthManagerPatcher
             GameObject = __instance.gameObject,
             HealthManager = __instance
         };
-        
+
         Debug.Log("Added enemy: " + __instance.gameObject.name);
         EnemyManager.Enemies.Add(enemyInfo);
     }

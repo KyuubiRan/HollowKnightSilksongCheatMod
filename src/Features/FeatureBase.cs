@@ -8,15 +8,8 @@ public abstract class FeatureBase
 
     public FeatureBase()
     {
-        ModMainUi.Instance.OnGui += OnGuiRender;
         ModMainUi.Instance.OnUpdate += OnUpdate;
         ModMainUi.Instance.OnInitialize += OnStart;
-    }
-
-    private void OnGuiRender()
-    {
-        if (ModMainUi.Instance.CurrentPage == Page)
-            OnGui();
     }
 
     protected virtual void OnGui()
@@ -25,6 +18,7 @@ public abstract class FeatureBase
 
     protected virtual void OnStart()
     {
+        ModMainUi.Instance.AddRender(Page, OnGui);
     }
 
     protected virtual void OnUpdate()

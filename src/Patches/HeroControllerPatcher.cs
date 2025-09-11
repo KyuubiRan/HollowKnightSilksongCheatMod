@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
+using HKSC.Accessor;
 using HKSC.Features;
+using HKSC.Features.Player;
 using HKSC.Managers;
 
 namespace HKSC.Patches;
@@ -7,15 +9,15 @@ namespace HKSC.Patches;
 [HarmonyPatch(typeof(HeroController))]
 public class HeroControllerPatcher
 {
-    private static readonly PlayerFeatures Feature = FeatureManager.GetFeature<PlayerFeatures>();
+    private static readonly HealthFeature HealthFeature = FeatureManager.GetFeature<HealthFeature>();
+    private static readonly ActionFeature ActionFeature = FeatureManager.GetFeature<ActionFeature>();
     
-    private static readonly AccessTools.FieldRef<HeroController, float> AttackCdField = AccessTools.FieldRefAccess<HeroController, float>("attack_cooldown");
     
     [HarmonyPatch("CanInfiniteAirJump")]
     [HarmonyPrefix]
     static bool CanInfiniteAirJump_Prefix(ref bool __result)
     {
-        if (Feature.EnableInfinityJump)
+        if (ActionFeature.EnableInfinityJump)
         {
             __result = true;
             return false;
@@ -28,9 +30,9 @@ public class HeroControllerPatcher
     [HarmonyPrefix]
     static void CanAttack_Prefix(HeroController __instance)
     {
-        if (Feature.EnableNoAttackCd)
+        if (ActionFeature.EnableNoAttackCd)
         {
-            AttackCdField(__instance) = 0f;
+            HeroControllerAccessor.AttackCdField(__instance) = 0f;
         }
     }
 }

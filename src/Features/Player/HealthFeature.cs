@@ -1,0 +1,39 @@
+﻿using GlobalEnums;
+using HKSC.Ui;
+using HKSC.Utils;
+using UnityEngine;
+
+namespace HKSC.Features.Player;
+
+public class HealthFeature : FeatureBase
+{
+    private static HeroController Hc => HeroController.instance;
+    private static GameManager Gm => GameManager.instance;
+    
+    public bool EnableGodMode { private set; get; }
+    public bool EnableLockMaxHealth { private set; get; }
+
+    public override ModPage Page => ModPage.Player;
+
+    protected override void OnGui()
+    {
+        UiUtils.BeginCategory("Health");
+        EnableGodMode = GUILayout.Toggle(EnableGodMode, "God Mode");
+        EnableLockMaxHealth = GUILayout.Toggle(EnableLockMaxHealth, "Lock Max Health");
+        if (GUILayout.Button("Heal"))
+            Hc?.AddHealth(999);
+        UiUtils.EndCategory();
+    }
+
+    protected override void OnUpdate()
+    {
+        if (Hc == null)
+            return;
+
+        if (!Hc.exitedQuake)
+            Hc.SetDamageMode(EnableGodMode ? DamageMode.NO_DAMAGE : DamageMode.FULL_DAMAGE);
+
+        if (EnableLockMaxHealth)
+            Hc.playerData.health = Hc.playerData.maxHealth;
+    }
+}
