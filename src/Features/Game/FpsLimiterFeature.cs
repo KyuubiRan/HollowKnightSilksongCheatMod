@@ -18,7 +18,7 @@ public class FpsLimiterFeature : FeatureBase
     {
         UiUtils.BeginCategory("FPS Limiter");
         EnableFpsLimit = GUILayout.Toggle(EnableFpsLimit, "Enable FPS Limiter");
-        if (EnableFpsLimit && !Unlimited) FpsLimit = (int)UiUtils.Slider(FpsLimit, 30f, 360f, 1f);
+        if (EnableFpsLimit && !Unlimited) FpsLimit = UiUtils.SliderInt(FpsLimit, 30, 360, 10);
         if (EnableFpsLimit) Unlimited = GUILayout.Toggle(Unlimited, "Unlimited FPS");
         UiUtils.EndCategory();
     }

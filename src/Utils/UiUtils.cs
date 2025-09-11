@@ -86,5 +86,28 @@ public static class UiUtils
         GUILayout.EndHorizontal();
         GUILayout.Label(string.Format(valueFormat, value), CenterSliderValueStyle);
         return value;
+    }    
+    
+    public static int SliderInt(int value, int min, int max, int step = 1, string valueFormat = "{0:0}")
+    {
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("<", SliderButtonArrowStyle))
+        {
+            value -= step;
+            if (value < min) value = min;
+        }
+
+        var after = GUILayout.HorizontalSlider(value, min, max);
+        value = (int)after;
+        
+        if (GUILayout.Button(">", SliderButtonArrowStyle))
+        {
+            value += step;
+            if (value > max) value = max;
+        }
+
+        GUILayout.EndHorizontal();
+        GUILayout.Label(string.Format(valueFormat, value), CenterSliderValueStyle);
+        return value;
     }
 }

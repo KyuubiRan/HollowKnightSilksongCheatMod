@@ -31,6 +31,7 @@ public static class FeatureManager
         AddFeature<SilkFeature>();
         AddFeature<DamageFeature>();
         AddFeature<ActionFeature>();
+        AddFeature<KillAuraFeature>();
 
         // Currency
         AddFeature<ShellShardFeature>();

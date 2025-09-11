@@ -34,6 +34,12 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] Infinity Air Jump
 - [x] No Attack CD
 
+### Player - Kill Aura
+
+- [x] Range Filter
+- [x] Custom Damage
+- [x] Custom Trigger Interval
+
 ### Enemy - Info
 
 - [x] Show Enemy Hp
