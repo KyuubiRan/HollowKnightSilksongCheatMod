@@ -25,7 +25,7 @@
         <ManagedPath Condition="$([MSBuild]::IsOSPlatform('Windows'))">$(GamePath)/Hollow Knight Silksong_Data/Managed</ManagedPath>
         <!-- linux -->
         <ManagedPath Condition="$([MSBuild]::IsOSPlatform('Linux'))">$(GamePath)/Hollow Knight Silksong_Data/Managed</ManagedPath>
-        <!-- macOs -->
+        <!-- macOS -->
         <ManagedPath Condition="$([MSBuild]::IsOSPlatform('OSX'))">$(GamePath)/Hollow Knight Silksong.app/Contents/Resources/Data/Managed</ManagedPath>
         <BepInExPath>$(GamePath)/BepInEx</BepInExPath>
     </PropertyGroup>

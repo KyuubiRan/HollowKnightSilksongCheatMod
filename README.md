@@ -2,6 +2,11 @@
 
 Use [BepInEx](https://github.com/BepInEx/BepInEx) to load this mod.
 
+### For OSX Apple Silicon
+
+Add this to your Steam launch options:  
+`/usr/bin/arch -x86_64 /bin/bash "/full/path/to/run_bepinex.sh" %command%`
+
 ## Build
 
 Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the `GamePath` to your game path.
@@ -39,10 +44,13 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] Add/Remove Shell Shards
 
 ### Game
+
 TODO
 
 ### Menu
+
 TODO
 
 ### Teleport
+
 TODO
