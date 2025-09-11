@@ -16,9 +16,7 @@ public class GeoFeature : FeatureBase
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Shell Shards");
-
-        UiUtils.BeginCategory("Geo");
+        UiUtils.BeginCategory("Rosaries");
 
         EnableAutoCollect = GUILayout.Toggle(EnableAutoCollect, "Auto Collect");
         _geoValueStr = UiUtils.InputInt(ref _geoValue, _geoValueStr, "Value");
