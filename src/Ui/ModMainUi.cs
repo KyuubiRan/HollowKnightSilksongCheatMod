@@ -78,7 +78,7 @@ public class ModMainUi : MonoBehaviour
     private void SetFontSize()
     {
         GUI.skin.label.fontSize = 16;
-        
+
         GUI.skin.window.fontSize = 16;
 
         GUI.skin.toggle.fontSize = 16;

@@ -2,16 +2,13 @@
 using HKSC.Accessor;
 using HKSC.Features.Player;
 using HKSC.Managers;
-using UnityEngine;
 
 namespace HKSC.Patches;
 
 [HarmonyPatch(typeof(HealthManager))]
 public class HealthManagerPatcher
 {
-    private static readonly HealthFeature HealthFeature = FeatureManager.GetFeature<HealthFeature>();
     private static readonly DamageFeature DamageFeature = FeatureManager.GetFeature<DamageFeature>();
-
 
     [HarmonyPatch("TakeDamage")]
     [HarmonyPrefix]
@@ -50,7 +47,7 @@ public class HealthManagerPatcher
             HealthManager = __instance
         };
 
-        Debug.Log("Added enemy: " + __instance.gameObject.name);
+        // Debug.Log("Added enemy: " + __instance.gameObject.name);
         EnemyManager.Enemies.Add(enemyInfo);
     }
 }

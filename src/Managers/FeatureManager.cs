@@ -38,20 +38,22 @@ public static class FeatureManager
 
         // Enemy
         AddFeature<ShowEnemyHpFeature>();
-        
+
         // Menu
         AddFeature<MapFeature>();
-        
+
         // Game
         AddFeature<TimeScaleFeature>();
         AddFeature<FpsLimiterFeature>();
-        
+
         // Teleport
         AddFeature<CurrentSceneDetails>();
-        
+        // AddFeature<DeathTeleport>();
+        // AddFeature<CustomTeleport>();
+
         // About
         AddFeature<AboutPage>();
-        
+
         // Hotkey
         AddFeature<HotkeySettingPage>();
     }
