@@ -4,6 +4,7 @@ using HKSC.Features;
 using HKSC.Features.Currency;
 using HKSC.Features.Enemy;
 using HKSC.Features.Game;
+using HKSC.Features.Menu;
 using HKSC.Features.Misc;
 using HKSC.Features.Player;
 using JetBrains.Annotations;
@@ -36,6 +37,9 @@ public static class FeatureManager
 
         // Enemy
         AddFeature<ShowEnemyHpFeature>();
+        
+        // Menu
+        AddFeature<MapFeature>();
         
         // Game
         AddFeature<TimeScaleFeature>();
