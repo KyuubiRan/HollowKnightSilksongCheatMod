@@ -7,6 +7,11 @@ public class CustomTeleport : TeleportFeatureBase
 {
     public override int MaxLogCount => int.MaxValue;
 
+    protected override void OnStart()
+    {
+        EnableLog = true;
+    }
+
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Custom Teleport");

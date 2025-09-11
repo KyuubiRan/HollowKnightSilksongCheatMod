@@ -48,8 +48,8 @@ public static class FeatureManager
 
         // Teleport
         AddFeature<CurrentSceneDetails>();
-        // AddFeature<DeathTeleport>();
-        // AddFeature<CustomTeleport>();
+        AddFeature<DeathTeleport>();
+        AddFeature<CustomTeleport>();
 
         // About
         AddFeature<AboutPage>();

@@ -8,21 +8,15 @@ public abstract class TeleportFeatureBase : FeatureBase
 {
     public override ModPage Page => ModPage.Teleport;
 
-    private static readonly GUIStyle ButtonStyle = new(GUI.skin.button)
-    {
-        alignment = TextAnchor.MiddleRight,
-        fontSize = 16,
-        fixedWidth = 30,
-    };
-
     public virtual int MaxLogCount => 10;
-    public bool EnableLog { protected set; get; }
+    public bool EnableLog { set; get; }
 
     protected readonly List<TeleportPoint> Queue = [];
 
     public void LogTeleport(TeleportPoint teleport)
     {
         if (!EnableLog) return;
+        if (!teleport.Valid) return;
 
         while (Queue.Count >= MaxLogCount)
             Queue.RemoveAt(Queue.Count - 1);
@@ -34,10 +28,10 @@ public abstract class TeleportFeatureBase : FeatureBase
     {
         GUILayout.BeginHorizontal();
         GUILayout.Label($"#{index} {point.SceneName} {point.Position}");
-        if (GUILayout.Button("Teleport", ButtonStyle))
+        if (GUILayout.Button("Teleport"))
             point.Teleport();
 
-        var delete = GUILayout.Button("Delete", ButtonStyle);
+        var delete = GUILayout.Button("Delete");
         GUILayout.EndHorizontal();
         return delete;
     }
@@ -48,7 +42,7 @@ public abstract class TeleportFeatureBase : FeatureBase
     {
         if (Queue.Count == 0)
             return;
-        
+
         var i = 1;
         foreach (var point in Queue)
         {
