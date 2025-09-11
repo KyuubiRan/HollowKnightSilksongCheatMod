@@ -1,5 +1,7 @@
+using System.Collections;
 using GlobalEnums;
 using HKSC.Accessor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Vector2 = UnityEngine.Vector2;
 
@@ -22,6 +24,17 @@ public class TeleportPoint
     public Vector2 Position { get; set; }
     public bool Valid { get; private set; }
 
+    private IEnumerator LoadScene(string sceneName)
+    {
+        Gm.LoadScene(sceneName);
+        Hc.EnterSceneDreamGate();
+        if (GameManager.IsWaitingForSceneReady)
+            yield return new WaitForSeconds(0.5f);
+        Hc.transform.position = Position;
+        Hc.ResetState();
+        Hc.AcceptInput();
+    }
+
     public bool Teleport()
     {
         if (!Valid) return false;
@@ -30,18 +43,17 @@ public class TeleportPoint
         if (!Gm.IsGameplayScene()) return false;
 
         Hc.EnterWithoutInput(false);
-
         var curScene = SceneManager.GetActiveScene();
         if (curScene.name != SceneName)
         {
             Gm.NoLongerFirstGame();
             Gm.SaveLevelState();
+            Hc.proxyFSM.SendEvent("HeroCtrl-LeavingScene");
             Hc.LeaveScene();
-
             Gm.SetState(GameState.EXITING_LEVEL);
 
-            Hc.ResetState();
-            Gm.LoadScene(SceneName);
+            Gm.cameraCtrl.FreezeInPlace();
+            Hc.StartCoroutine(LoadScene(SceneName));
         }
 
         Hc.transform.position = Position;
