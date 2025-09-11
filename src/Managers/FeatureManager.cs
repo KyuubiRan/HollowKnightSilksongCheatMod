@@ -3,6 +3,7 @@ using System.Linq;
 using HKSC.Features;
 using HKSC.Features.Currency;
 using HKSC.Features.Enemy;
+using HKSC.Features.Game;
 using HKSC.Features.Misc;
 using HKSC.Features.Player;
 using JetBrains.Annotations;
@@ -35,6 +36,10 @@ public static class FeatureManager
 
         // Enemy
         AddFeature<ShowEnemyHpFeature>();
+        
+        // Game
+        AddFeature<TimeScaleFeature>();
+        AddFeature<FpsLimiterFeature>();
         
         // About
         AddFeature<AboutPage>();

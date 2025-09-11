@@ -23,6 +23,12 @@ public static class UiUtils
         fixedWidth = 100,
     };
 
+    private static readonly GUIStyle SliderButtonArrowStyle = new(GUI.skin.button)
+    {
+        fontSize = 16,
+        fixedWidth = 30,
+    };    
+
     public static void BeginCategory(string title)
     {
         GUILayout.Label($"· {title} ·", CenterTitleStyle);
@@ -59,11 +65,26 @@ public static class UiUtils
         return int.TryParse(after, out value) ? after : text;
     }
 
-    public static float Slider(float value, float min, float max, string valueFormat = "{0:0.00}")
+    public static float Slider(float value, float min, float max, float step = 1f, string valueFormat = "{0:0.00}")
     {
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("<", SliderButtonArrowStyle))
+        {
+            value -= step;
+            if (value < min) value = min;
+        }
+
         var after = GUILayout.HorizontalSlider(value, min, max);
         value = after;
-        GUILayout.Label(string.Format(valueFormat, after), CenterSliderValueStyle);
+        
+        if (GUILayout.Button(">", SliderButtonArrowStyle))
+        {
+            value += step;
+            if (value > max) value = max;
+        }
+
+        GUILayout.EndHorizontal();
+        GUILayout.Label(string.Format(valueFormat, value), CenterSliderValueStyle);
         return value;
     }
 }
