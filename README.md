@@ -57,4 +57,5 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 
 ### Teleport
 
-TODO
+- [x] Custom Teleport
+- [x] Death Point Log & Teleport
