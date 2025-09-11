@@ -1,4 +1,5 @@
-﻿using HKSC.Ui;
+﻿using GlobalSettings;
+using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
 
@@ -8,17 +9,19 @@ public class GeoFeature : FeatureBase
 {
     private static HeroController Hc => HeroController.instance;
     public override ModPage Page => ModPage.Currency;
-    
+
     private int _geoValue = 100;
     private string _geoValueStr = "100";
+    public bool EnableAutoCollect { private set; get; }
 
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Shell Shards");
-        
+
         UiUtils.BeginCategory("Geo");
 
-        _geoValueStr = UiUtils.InputInt(ref _geoValue, _geoValueStr,"Value");
+        EnableAutoCollect = GUILayout.Toggle(EnableAutoCollect, "Auto Collect");
+        _geoValueStr = UiUtils.InputInt(ref _geoValue, _geoValueStr, "Value");
 
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Add"))
@@ -26,7 +29,7 @@ public class GeoFeature : FeatureBase
         if (GUILayout.Button("Remove"))
             Hc?.TakeGeo(_geoValue);
         GUILayout.EndHorizontal();
-        
+
         UiUtils.EndCategory();
     }
 }

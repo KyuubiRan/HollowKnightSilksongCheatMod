@@ -40,7 +40,9 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 
 ### Currency
 
+- [x] Auto Collect Geo
 - [x] Add/Remove Geo
+- [x] Auto Collect Shell Shards
 - [x] Add/Remove Shell Shards
 
 ### Game

@@ -33,7 +33,7 @@ public static class FeatureManager
         AddFeature<ActionFeature>();
 
         // Currency
-        AddFeature<ShellShardsFeature>();
+        AddFeature<ShellShardFeature>();
         AddFeature<GeoFeature>();
 
         // Enemy
