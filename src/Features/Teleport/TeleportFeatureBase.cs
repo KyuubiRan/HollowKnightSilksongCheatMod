@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using HKSC.Ui;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace HKSC.Features.Teleport;
 
@@ -28,7 +29,7 @@ public abstract class TeleportFeatureBase : FeatureBase
     {
         GUILayout.BeginHorizontal();
         GUILayout.Label($"#{index} {point.SceneName} {point.Position}");
-        if (GUILayout.Button("Teleport"))
+        if (GUILayout.Button(SceneManager.GetActiveScene().name == point.SceneName ? "Teleport" : "To Scene"))
             point.Teleport();
 
         var delete = GUILayout.Button("Delete");

@@ -1,7 +1,5 @@
-using System.Collections;
 using GlobalEnums;
 using HKSC.Accessor;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using Vector2 = UnityEngine.Vector2;
 
@@ -24,23 +22,13 @@ public class TeleportPoint
     public Vector2 Position { get; set; }
     public bool Valid { get; private set; }
 
-    private IEnumerator LoadScene(string sceneName)
-    {
-        Gm.LoadScene(sceneName);
-        Hc.EnterSceneDreamGate();
-        if (GameManager.IsWaitingForSceneReady)
-            yield return new WaitForSeconds(0.5f);
-        Hc.transform.position = Position;
-        Hc.ResetState();
-        Hc.AcceptInput();
-    }
-
     public bool Teleport()
     {
         if (!Valid) return false;
         if (Gm == null) return false;
         if (Hc == null) return false;
         if (!Gm.IsGameplayScene()) return false;
+        if (GameManager.IsWaitingForSceneReady) return false;
 
         Hc.EnterWithoutInput(false);
         var curScene = SceneManager.GetActiveScene();
@@ -51,15 +39,19 @@ public class TeleportPoint
             Hc.proxyFSM.SendEvent("HeroCtrl-LeavingScene");
             Hc.LeaveScene();
             Gm.SetState(GameState.EXITING_LEVEL);
-
             Gm.cameraCtrl.FreezeInPlace();
-            Hc.StartCoroutine(LoadScene(SceneName));
+            Gm.LoadScene(SceneName);
+            Hc.EnterSceneDreamGate();
+   
+            Hc.transform.position = Position;
         }
 
         Hc.transform.position = Position;
-
+        Hc.ResetState();
+        Hc.AcceptInput();
+        
         // After teleport
-        HeroControllerAccessor.StartInvulnerableMethod.Invoke(Hc, [TeleportInvulnerableTime]);
+        Hc.CrossStitchInvuln();
         return true;
     }
 }
