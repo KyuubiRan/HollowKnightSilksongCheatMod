@@ -15,8 +15,9 @@ public class DeathTeleport : TeleportFeatureBase
         UiUtils.BeginCategory("Death Teleport");
 
         EnableLog = GUILayout.Toggle(EnableLog, "Enable Death Log");
+        
         RenderItems();
 
-        // UiUtils.EndCategory();
+        UiUtils.EndCategory();
     }
 }
