@@ -1,4 +1,6 @@
-﻿using HKSC.Ui;
+﻿using HKSC.Managers;
+using HKSC.Misc;
+using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
 
@@ -11,14 +13,14 @@ public class ShellShardFeature : FeatureBase
 
     private int _shellShardsValue = 100;
     private string _shellShardsValueStr = "100";
-    public bool EnableAutoCollect { private set; get; }
+    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("ShellShard::EnableAutoCollect", false);
 
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Shell Shards");
 
-        EnableAutoCollect = GUILayout.Toggle(EnableAutoCollect, "Auto Collect");
-        _shellShardsValueStr = UiUtils.InputInt(ref _shellShardsValue, _shellShardsValueStr,"Value");
+        EnableAutoCollect.Value = GUILayout.Toggle(EnableAutoCollect, "Auto Collect");
+        _shellShardsValueStr = UiUtils.InputInt(ref _shellShardsValue, _shellShardsValueStr, "Value");
 
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Add"))
@@ -27,6 +29,6 @@ public class ShellShardFeature : FeatureBase
             Hc?.TakeShards(_shellShardsValue);
         GUILayout.EndHorizontal();
 
-        UiUtils.EndCategory();        
+        UiUtils.EndCategory();
     }
 }

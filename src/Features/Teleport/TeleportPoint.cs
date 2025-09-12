@@ -42,14 +42,14 @@ public class TeleportPoint
             Gm.cameraCtrl.FreezeInPlace();
             Gm.LoadScene(SceneName);
             Hc.EnterSceneDreamGate();
-   
+
             Hc.transform.position = Position;
         }
 
         Hc.transform.position = Position;
         Hc.ResetState();
         Hc.AcceptInput();
-        
+
         // After teleport
         Hc.CrossStitchInvuln();
         return true;

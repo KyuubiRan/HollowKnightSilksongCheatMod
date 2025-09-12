@@ -1,3 +1,5 @@
+using HKSC.Managers;
+using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
@@ -8,13 +10,13 @@ public class SilkFeature : FeatureBase
 {
     private static HeroController Hc => HeroController.UnsafeInstance;
     public override ModPage Page => ModPage.Player;
-    
-    public bool EnableLockMaxSilk { private set; get; }
+
+    public readonly ConfigObject<bool> EnableLockMaxSilk = CfgManager.Create("PlayerSilk::EnableLockMaxSilk", false);
 
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Silk");
-        EnableLockMaxSilk = GUILayout.Toggle(EnableLockMaxSilk, "Lock Max Silk");
+        EnableLockMaxSilk.Value = GUILayout.Toggle(EnableLockMaxSilk, "Lock Max Silk");
         if (GUILayout.Button("Refill To Max"))
             Hc?.RefillSilkToMax();
         UiUtils.EndCategory();

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using HKSC.Managers;
+using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
 using JetBrains.Annotations;
@@ -12,15 +13,16 @@ public class ShowEnemyHpFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Enemy;
 
-    public bool ShowHp { get; private set; }
+    public readonly ConfigObject<bool> ShowHp = CfgManager.Create("ShowEnemyHp::Enable", false);
+
     [CanBeNull] private Camera _mainCamera;
-    private GameObject _hpCanvesGo;
+    private GameObject _hpCanvasGo;
     private Canvas _canvas;
 
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Info");
-        ShowHp = GUILayout.Toggle(ShowHp, "Show Enemy HP");
+        ShowHp.Value = GUILayout.Toggle(ShowHp, "Show Enemy HP");
         UiUtils.EndCategory();
     }
 
@@ -28,11 +30,11 @@ public class ShowEnemyHpFeature : FeatureBase
     {
         if (_canvas == null)
         {
-            _hpCanvesGo = new GameObject("EnemyHpCanvas");
-            _canvas = _hpCanvesGo.AddComponent<Canvas>();
+            _hpCanvasGo = new GameObject("EnemyHpCanvas");
+            _canvas = _hpCanvasGo.AddComponent<Canvas>();
             _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            _hpCanvesGo.AddComponent<CanvasScaler>();
-            _hpCanvesGo.AddComponent<GraphicRaycaster>();
+            _hpCanvasGo.AddComponent<CanvasScaler>();
+            _hpCanvasGo.AddComponent<GraphicRaycaster>();
         }
 
         var hpGo = new GameObject("HP");

@@ -21,12 +21,15 @@ public class Plugin : BaseUnityPlugin
     {
         EnemyManager.OnUpdate();
         HotkeyManager.OnUpdate();
+        CfgManager.OnUpdate();
     }
 
     private void Start()
     {
+        CfgManager.Load();
+        
         var go = new GameObject("HKSC Main UI Controller");
-        DontDestroyOnLoad(go); 
+        DontDestroyOnLoad(go);
         go.AddComponent<ModMainUi>();
 
         FeatureManager.Init();

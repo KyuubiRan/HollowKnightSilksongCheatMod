@@ -42,6 +42,9 @@
         </Reference>
         <Reference Include="Harmony">
             <HintPath>$(BepInExPath)/core/0Harmony.dll</HintPath>
+        </Reference>       
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>$(ManagedPath)/Newtonsoft.Json.dll</HintPath>
         </Reference>
         <Reference Include="PlayMaker">
             <HintPath>$(ManagedPath)/PlayMaker.dll</HintPath>

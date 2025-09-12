@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using HKSC.Accessor;
 using HKSC.Managers;
+using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
@@ -11,20 +11,22 @@ public class KillAuraFeature : FeatureBase
 {
     private static HeroController Hc => HeroController.UnsafeInstance;
     public override ModPage Page => ModPage.Player;
-    public bool IsEnabled { get; set; }
-    public int Damage { get; set; } = 10;
-    public float Range { get; set; } = 8f;
-    public float AttackInterval { get; set; } = 1f;
+
+    public readonly ConfigObject<bool> IsEnabled = CfgManager.Create("KillAura::Enable", false);
+    public readonly ConfigObject<int> Damage = CfgManager.Create("KillAura::Damage", 10);
+    public readonly ConfigObject<float> Range = CfgManager.Create("KillAura::Range", 10f);
+    public readonly ConfigObject<float> AttackInterval = CfgManager.Create("KillAura::AttackInterval", 1f);
+
 
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Kill Aura");
-        IsEnabled = GUILayout.Toggle(IsEnabled, "Enable");
+        IsEnabled.Value = GUILayout.Toggle(IsEnabled, "Enable");
         if (IsEnabled)
         {
-            Damage = UiUtils.SliderInt(Damage, 1, 1000, 10, valueFormat: "Damage: {0:0}");
-            Range = UiUtils.Slider(Range, 3f, 30f, .5f, valueFormat: "Range: {0:0.0}");
-            AttackInterval = UiUtils.Slider(AttackInterval, 0.1f, 5f, 0.1f, valueFormat: "Attack Interval: {0:0.0}");
+            Damage.Value = UiUtils.SliderInt(Damage, 1, 1000, 10, valueFormat: "Damage: {0:0}");
+            Range.Value = UiUtils.Slider(Range, 3f, 30f, .5f, valueFormat: "Range: {0:0.0}");
+            AttackInterval.Value = UiUtils.Slider(AttackInterval, 0.1f, 5f, 0.1f, valueFormat: "Attack Interval: {0:0.0}");
         }
 
         UiUtils.EndCategory();
@@ -36,18 +38,18 @@ public class KillAuraFeature : FeatureBase
     {
         if (!IsEnabled) return;
         if (Hc == null) return;
-        
+
         _lastAttackTime += Time.deltaTime;
         if (_lastAttackTime < AttackInterval) return;
 
         var hcPos = Hc.transform.position;
         var attacked = false;
         foreach (var enemy in from enemy in EnemyManager.Enemies
-                 where enemy.HealthManager != null
-                 where enemy.GameObject != null
-                 let enemyPos = enemy.GameObject.transform.position
-                 where !(Vector2.Distance(hcPos, enemyPos) > Range)
-                 select enemy)
+                              where enemy.HealthManager != null
+                              where enemy.GameObject != null
+                              let enemyPos = enemy.GameObject.transform.position
+                              where !(Vector2.Distance(hcPos, enemyPos) > Range)
+                              select enemy)
         {
             enemy.HealthManager.Hit(
                 new HitInstance

@@ -17,7 +17,7 @@ public class CurrentSceneDetails : FeatureBase
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Scene Info");
-        
+
         GUILayout.Label($"Name: {_sceneName}");
         GUILayout.Label($"Player Pos: {_playerPos}");
 
@@ -31,7 +31,7 @@ public class CurrentSceneDetails : FeatureBase
             _playerPos = Vector2.zero;
             return;
         }
-        
+
         _playerPos = Hc.transform.position;
     }
 

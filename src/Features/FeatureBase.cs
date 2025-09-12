@@ -21,7 +21,7 @@ public abstract class FeatureBase
         ModMainUi.Instance.AddRender(Page, OnGui);
         OnStart();
     }
-    
+
     protected virtual void OnStart()
     {
     }

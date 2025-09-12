@@ -10,9 +10,9 @@ public abstract class TeleportFeatureBase : FeatureBase
     public override ModPage Page => ModPage.Teleport;
 
     public virtual int MaxLogCount => 10;
-    public bool EnableLog { set; get; }
+    public abstract bool EnableLog { get; }
 
-    protected readonly List<TeleportPoint> Queue = [];
+    protected abstract List<TeleportPoint> Queue { get; }
 
     public void LogTeleport(TeleportPoint teleport)
     {
@@ -23,6 +23,11 @@ public abstract class TeleportFeatureBase : FeatureBase
             Queue.RemoveAt(Queue.Count - 1);
 
         Queue.Insert(0, teleport);
+        OnLogTeleport(teleport);
+    }
+
+    protected virtual void OnLogTeleport(TeleportPoint point)
+    {
     }
 
     private static bool RenderTeleportItem(int index, TeleportPoint point)

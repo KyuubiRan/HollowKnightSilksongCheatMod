@@ -1,3 +1,5 @@
+using HKSC.Managers;
+using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
@@ -8,17 +10,17 @@ public class DamageFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Player;
 
-    public bool EnableMultiDamage { private set; get; }
-    public float MultiDamageValue { private set; get; } = 2f;
-    public bool EnableOneHitKill { private set; get; }
+    public readonly ConfigObject<bool> EnableMultiDamage = CfgManager.Create("PlayerDamage::EnableMultiDamage", false);
+    public readonly ConfigObject<float> MultiDamageValue = CfgManager.Create("PlayerDamage::MultiDamageValue", 2f);
+    public readonly ConfigObject<bool> EnableOneHitKill = CfgManager.Create("PlayerDamage::EnableOneHitKill", false);
 
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Damage");
-        EnableOneHitKill = GUILayout.Toggle(EnableOneHitKill, "One Hit Kill");
-        EnableMultiDamage = GUILayout.Toggle(EnableMultiDamage, "Multi Damage");
+        EnableOneHitKill.Value = GUILayout.Toggle(EnableOneHitKill, "One Hit Kill");
+        EnableMultiDamage.Value = GUILayout.Toggle(EnableMultiDamage, "Multi Damage");
         if (EnableMultiDamage)
-            MultiDamageValue = UiUtils.Slider(MultiDamageValue, 0.0f, 10.0f, 0.25f);
+            MultiDamageValue.Value = UiUtils.Slider(MultiDamageValue, 0.0f, 10.0f, 0.25f);
 
         UiUtils.EndCategory();
     }

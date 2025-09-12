@@ -12,7 +12,7 @@ public class HeroControllerPatcher
 {
     private static readonly ActionFeature ActionFeature = FeatureManager.GetFeature<ActionFeature>();
     private static readonly DeathTeleport DeathTeleport = FeatureManager.GetFeature<DeathTeleport>();
-    
+
     [CanBeNull] public static TeleportPoint CurrentTeleportPoint { get; set; }
 
     [HarmonyPatch("CanInfiniteAirJump")]

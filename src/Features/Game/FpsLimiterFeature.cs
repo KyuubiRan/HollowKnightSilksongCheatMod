@@ -1,3 +1,5 @@
+using HKSC.Managers;
+using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
@@ -8,18 +10,18 @@ public class FpsLimiterFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Game;
 
-    public bool EnableFpsLimit { private set; get; }
-    public int FpsLimit { private set; get; } = 60;
-    public bool Unlimited { private set; get; }
+    public readonly ConfigObject<bool> EnableFpsLimit = CfgManager.Create("FpsLimiter::Enable", false);
+    public readonly ConfigObject<int> FpsLimit = CfgManager.Create("FpsLimiter::FpsLimit", 60);
+    public readonly ConfigObject<bool> Unlimited = CfgManager.Create("FpsLimiter::Unlimited", false);
 
     private int? _lastFpsLimit;
 
     protected override void OnGui()
     {
         UiUtils.BeginCategory("FPS Limiter");
-        EnableFpsLimit = GUILayout.Toggle(EnableFpsLimit, "Enable FPS Limiter");
-        if (EnableFpsLimit && !Unlimited) FpsLimit = UiUtils.SliderInt(FpsLimit, 30, 360, 10);
-        if (EnableFpsLimit) Unlimited = GUILayout.Toggle(Unlimited, "Unlimited FPS");
+        EnableFpsLimit.Value = GUILayout.Toggle(EnableFpsLimit, "Enable FPS Limiter");
+        if (EnableFpsLimit && !Unlimited) FpsLimit.Value = UiUtils.SliderInt(FpsLimit, 30, 360, 10);
+        if (EnableFpsLimit) Unlimited.Value = GUILayout.Toggle(Unlimited, "Unlimited FPS");
         UiUtils.EndCategory();
     }
 

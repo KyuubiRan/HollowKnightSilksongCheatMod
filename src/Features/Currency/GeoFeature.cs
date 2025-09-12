@@ -1,4 +1,5 @@
-﻿using GlobalSettings;
+﻿using HKSC.Managers;
+using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
@@ -12,13 +13,13 @@ public class GeoFeature : FeatureBase
 
     private int _geoValue = 100;
     private string _geoValueStr = "100";
-    public bool EnableAutoCollect { private set; get; }
+    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("Rosaries::EnableAutoCollect", false);
 
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Rosaries");
 
-        EnableAutoCollect = GUILayout.Toggle(EnableAutoCollect, "Auto Collect");
+        EnableAutoCollect.Value = GUILayout.Toggle(EnableAutoCollect, "Auto Collect");
         _geoValueStr = UiUtils.InputInt(ref _geoValue, _geoValueStr, "Value");
 
         GUILayout.BeginHorizontal();

@@ -1,3 +1,5 @@
+using HKSC.Managers;
+using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
@@ -8,14 +10,14 @@ public class TimeScaleFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Game;
 
-    public bool EnableTimeScale { private set; get; }
-    public float TimeScale { private set; get; } = 1f;
+    public readonly ConfigObject<bool> EnableTimeScale = CfgManager.Create("TimeScale::Enable", false);
+    public readonly ConfigObject<float> TimeScale = CfgManager.Create("TimeScale::TimeScale", 1f);
 
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Time Scale");
-        EnableTimeScale = GUILayout.Toggle(EnableTimeScale, "Enable Time Scale");
-        if (EnableTimeScale) TimeScale = UiUtils.Slider(TimeScale, 0f, 5f, 0.1f);
+        EnableTimeScale.Value = GUILayout.Toggle(EnableTimeScale, "Enable Time Scale");
+        if (EnableTimeScale) TimeScale.Value = UiUtils.Slider(TimeScale, 0f, 5f, 0.1f);
         UiUtils.EndCategory();
     }
 

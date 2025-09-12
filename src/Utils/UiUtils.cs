@@ -27,7 +27,7 @@ public static class UiUtils
     {
         fontSize = 16,
         fixedWidth = 30,
-    };    
+    };
 
     public static void BeginCategory(string title)
     {
@@ -76,7 +76,7 @@ public static class UiUtils
 
         var after = GUILayout.HorizontalSlider(value, min, max);
         value = after;
-        
+
         if (GUILayout.Button(">", SliderButtonArrowStyle))
         {
             value += step;
@@ -86,8 +86,8 @@ public static class UiUtils
         GUILayout.EndHorizontal();
         GUILayout.Label(string.Format(valueFormat, value), CenterSliderValueStyle);
         return value;
-    }    
-    
+    }
+
     public static int SliderInt(int value, int min, int max, int step = 1, string valueFormat = "{0:0}")
     {
         GUILayout.BeginHorizontal();
@@ -99,7 +99,7 @@ public static class UiUtils
 
         var after = GUILayout.HorizontalSlider(value, min, max);
         value = (int)after;
-        
+
         if (GUILayout.Button(">", SliderButtonArrowStyle))
         {
             value += step;
