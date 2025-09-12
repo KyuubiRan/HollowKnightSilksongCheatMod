@@ -136,7 +136,7 @@ public class ModMainUi : MonoBehaviour
     private void DrawResizable(float handleSize)
     {
         var resizeRect = new Rect(_windowRect.width - handleSize, _windowRect.height - handleSize, handleSize,
-                                  handleSize);
+            handleSize);
 
         var e = Event.current;
         if (e.type == EventType.MouseDown && resizeRect.Contains(e.mousePosition))
