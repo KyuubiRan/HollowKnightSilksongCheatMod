@@ -1,0 +1,1 @@
+global using Log = HKSC.Misc.Logger;

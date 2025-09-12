@@ -17,15 +17,14 @@ public class KillAuraFeature : FeatureBase
     public readonly ConfigObject<float> Range = CfgManager.Create("KillAura::Range", 10f);
     public readonly ConfigObject<float> AttackInterval = CfgManager.Create("KillAura::AttackInterval", 1f);
 
-
     protected override void OnGui()
     {
         UiUtils.BeginCategory("Kill Aura");
         IsEnabled.Value = GUILayout.Toggle(IsEnabled, "Enable");
         if (IsEnabled)
         {
-            Damage.Value = UiUtils.SliderInt(Damage, 1, 1000, 10, valueFormat: "Damage: {0:0}");
-            Range.Value = UiUtils.Slider(Range, 3f, 30f, .5f, valueFormat: "Range: {0:0.0}");
+            Damage.Value = UiUtils.SliderInt(Damage, 0, 500, 5, valueFormat: "Damage: {0:0}");
+            Range.Value = UiUtils.Slider(Range, 5f, 30f, .5f, valueFormat: "Range: {0:0.0}");
             AttackInterval.Value = UiUtils.Slider(AttackInterval, 0.1f, 5f, 0.1f, valueFormat: "Attack Interval: {0:0.0}");
         }
 

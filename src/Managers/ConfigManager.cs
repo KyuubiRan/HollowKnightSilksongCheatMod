@@ -24,17 +24,17 @@ public static class CfgManager
             _configDataPath = configPath;
             if (!File.Exists(configPath))
             {
-                Debug.Log("[HKSC] Config file not found, creating a new one.");
+                Log.LogInfo("Config file not found, creating a new one.");
                 File.WriteAllText(configPath, "{}");
             }
 
             var json = File.ReadAllText(configPath);
             _configData = JObject.Parse(json);
-            Debug.Log("[HKSC] Config loaded successfully.");
+            Log.LogInfo("Config loaded successfully.");
         }
         catch (Exception e)
         {
-            Debug.LogError($"[HKSC] Failed to load config: {e}");
+            Log.LogError($"Failed to load config: {e}");
         }
     }
 
@@ -59,17 +59,17 @@ public static class CfgManager
         {
             if (string.IsNullOrEmpty(_configDataPath))
             {
-                Debug.LogError("[HKSC] Config path is not set. Cannot save config.");
+                Log.LogError("[HKSC] Config path is not set. Cannot save config.");
                 return;
             }
 
             var json = _configData.ToString();
             File.WriteAllText(_configDataPath, json);
-            // Debug.Log("[HKSC] Config saved successfully.");
+            // Log.LogInfo("Config saved successfully.");
         }
         catch (Exception e)
         {
-            Debug.LogError($"[HKSC] Failed to save config: {e}");
+            Log.LogError($"Failed to save config: {e}");
         }
     }
 
@@ -90,16 +90,23 @@ public static class CfgManager
 
     public static ConfigObject<T> Create<T>(string key, T defValue = default)
     {
-        ConfigObject<T> obj = new(key, defValue);
-        if (!_configData.TryGetValue(key, out var token)) return obj;
+        var obj = new ConfigObject<T>(key);
+        
+        if (!_configData.TryGetValue(key, out var token))
+        {
+            Log.LogDebug($"Config key '{key}' not found, using default: '{defValue}'");
+            return obj;
+        }
+
         try
         {
-            obj.Value = token.ToObject<T>();
+            obj._value = token.ToObject<T>();
         }
         catch (Exception e)
         {
-            Debug.LogError($"[HKSC] Failed to parse config key '{key}': {e}");
+            Log.LogError($"[HKSC] Failed to parse config key '{key}': {e}");
         }
+
         return obj;
     }
 }

@@ -47,7 +47,7 @@ public class HealthManagerPatcher
             HealthManager = __instance
         };
 
-        // Debug.Log("Added enemy: " + __instance.gameObject.name);
+        // Log.LogDebug("Added enemy: " + __instance.gameObject.name);
         EnemyManager.Enemies.Add(enemyInfo);
     }
 }

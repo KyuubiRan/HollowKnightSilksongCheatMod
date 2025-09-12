@@ -4,6 +4,7 @@ using HKSC.Managers;
 using HKSC.Ui;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MyLogger = HKSC.Misc.Logger;
 
 namespace HKSC;
 
@@ -26,8 +27,9 @@ public class Plugin : BaseUnityPlugin
 
     private void Start()
     {
+        MyLogger.PluginLogger = Logger;
         CfgManager.Load();
-        
+
         var go = new GameObject("HKSC Main UI Controller");
         DontDestroyOnLoad(go);
         go.AddComponent<ModMainUi>();
