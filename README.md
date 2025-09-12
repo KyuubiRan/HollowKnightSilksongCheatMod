@@ -33,6 +33,8 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 
 - [x] Infinity air jump
 - [x] No attack CD
+- [x] No dash cooldown
+- [x] Can infinity dash on air
 
 ### Player - Kill Aura
 

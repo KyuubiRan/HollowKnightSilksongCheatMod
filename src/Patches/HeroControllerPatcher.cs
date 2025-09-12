@@ -33,9 +33,26 @@ public class HeroControllerPatcher
     static void CanAttack_Prefix(HeroController __instance)
     {
         if (ActionFeature.EnableNoAttackCd)
-        {
             HeroControllerAccessor.AttackCdField(__instance) = 0f;
-        }
+    }
+
+    [HarmonyPatch("CanDash")]
+    [HarmonyPrefix]
+    static void CanDash_Prefix(HeroController __instance)
+    {
+        if (ActionFeature.EnableNoDashCd)
+            HeroControllerAccessor.DashCooldownTimerField(__instance) = 0f;
+
+        if (ActionFeature.EnableCanInfinityDashOnAir)
+            HeroControllerAccessor.AirDashedField(__instance) = false;
+    }
+
+    [HarmonyPatch("CanHarpoonDash")]
+    [HarmonyPrefix]
+    static void CanHarpoonDash_Prefix(HeroController __instance)
+    {
+        if (ActionFeature.EnableNoDashCd)
+            HeroControllerAccessor.HarpoonDashCooldownField(__instance) = 0f;
     }
 
     [HarmonyPatch("Awake")]
