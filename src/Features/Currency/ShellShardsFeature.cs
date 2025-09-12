@@ -9,7 +9,7 @@ namespace HKSC.Features.Currency;
 
 public class ShellShardFeature : FeatureBase
 {
-    private static HeroController Hc => HeroController.instance;
+    private static HeroController Hc => HeroController.UnsafeInstance;
     public override ModPage Page => ModPage.Currency;
 
     private int _shellShardsValue = 100;
