@@ -6,7 +6,7 @@ using HKSC.Managers;
 namespace HKSC.Patches;
 
 [HarmonyPatch(typeof(CurrencyObjectBase))]
-public class CurrencyObjectBasePatch
+public class CurrencyObjectBasePatcher
 {
     private static readonly GeoFeature GeoFeature = FeatureManager.GetFeature<GeoFeature>();
     private static readonly ShellShardFeature ShellShardFeature = FeatureManager.GetFeature<ShellShardFeature>();

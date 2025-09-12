@@ -41,6 +41,7 @@ public static class FeatureManager
         AddFeature<ShowEnemyHpFeature>();
 
         // Menu
+        AddFeature<InventoryFeature>();
         AddFeature<MapFeature>();
 
         // Game

@@ -56,6 +56,10 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] Game Speed(Time Scale)
 - [x] FPS Limiter
 
+### Menu - Inventory
+
+- [x] Equip Anywhere
+
 ### Menu - Map
 
 - [x] Always show player's position on the map
