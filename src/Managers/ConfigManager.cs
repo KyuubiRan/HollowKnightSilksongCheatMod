@@ -90,7 +90,7 @@ public static class CfgManager
 
     public static ConfigObject<T> Create<T>(string key, T defValue = default)
     {
-        var obj = new ConfigObject<T>(key);
+        var obj = new ConfigObject<T>(key, defValue);
 
         if (!_configData.TryGetValue(key, out var token))
         {

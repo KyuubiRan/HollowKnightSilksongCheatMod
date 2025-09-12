@@ -46,7 +46,7 @@ public abstract class TeleportFeatureBase : FeatureBase
 
     protected void RenderItems()
     {
-        if (Queue.Count == 0)
+        if (Queue is null or { Count: 0 })
             return;
 
         var i = 1;

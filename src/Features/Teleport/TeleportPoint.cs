@@ -14,7 +14,7 @@ public class TeleportPoint
     {
         SceneName = SceneManager.GetActiveScene().name,
         Position = Hc?.transform.position ?? Vector2.zero,
-        Valid = Gm.IsGameplayScene()
+        Valid = Gm?.IsGameplayScene() == true
     };
 
     public string SceneName { get; set; }
