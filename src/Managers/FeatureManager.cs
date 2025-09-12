@@ -29,6 +29,7 @@ public static class FeatureManager
         // Player
         AddFeature<HealthFeature>();
         AddFeature<SilkFeature>();
+        AddFeature<NoclipFeature>();
         AddFeature<DamageFeature>();
         AddFeature<ActionFeature>();
         AddFeature<KillAuraFeature>();

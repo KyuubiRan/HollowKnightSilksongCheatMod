@@ -24,6 +24,11 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] Lock max silk
 - [x] Refill to max
 
+### Player - Noclip
+
+- [x] Toggle noclip
+- [x] Custom noclip speed
+
 ### Player - Damage
 
 - [x] Multi damage
