@@ -1,4 +1,5 @@
-﻿using HKSC.Ui;
+﻿using HKSC.Managers;
+using HKSC.Ui;
 
 namespace HKSC.Features;
 
@@ -29,4 +30,6 @@ public abstract class FeatureBase
     protected virtual void OnUpdate()
     {
     }
+    
+    public static T Instance<T>() where T : FeatureBase => FeatureManager.GetFeature<T>();
 }

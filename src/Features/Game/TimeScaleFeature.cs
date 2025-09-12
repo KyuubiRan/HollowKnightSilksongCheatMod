@@ -1,3 +1,4 @@
+using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
@@ -10,7 +11,7 @@ public class TimeScaleFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Game;
 
-    public readonly ConfigObject<bool> EnableTimeScale = CfgManager.Create("TimeScale::Enable", false);
+    public readonly ConfigObject<bool> EnableTimeScale = CfgManager.Create("TimeScale::Enable", false).CreateToggleHotkey();
     public readonly ConfigObject<float> TimeScale = CfgManager.Create("TimeScale::TimeScale", 1f);
 
     protected override void OnGui()

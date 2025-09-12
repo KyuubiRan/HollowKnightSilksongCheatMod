@@ -1,3 +1,4 @@
+using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
@@ -13,7 +14,7 @@ public class MapFeature : FeatureBase
 
     public override ModPage Page => ModPage.Menu;
 
-    public readonly ConfigObject<bool> EnableAlwaysShowPosition = CfgManager.Create("Map::EnableAlwaysShowPosition", false);
+    public readonly ConfigObject<bool> EnableAlwaysShowPosition = CfgManager.Create("Map::EnableAlwaysShowPosition", false).CreateToggleHotkey();
 
     protected override void OnGui()
     {

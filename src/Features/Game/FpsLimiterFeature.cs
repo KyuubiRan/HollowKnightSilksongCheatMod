@@ -1,3 +1,4 @@
+using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
@@ -10,7 +11,7 @@ public class FpsLimiterFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Game;
 
-    public readonly ConfigObject<bool> EnableFpsLimit = CfgManager.Create("FpsLimiter::Enable", false);
+    public readonly ConfigObject<bool> EnableFpsLimit = CfgManager.Create("FpsLimiter::Enable", false).CreateToggleHotkey();
     public readonly ConfigObject<int> FpsLimit = CfgManager.Create("FpsLimiter::FpsLimit", 60);
     public readonly ConfigObject<bool> Unlimited = CfgManager.Create("FpsLimiter::Unlimited", false);
 

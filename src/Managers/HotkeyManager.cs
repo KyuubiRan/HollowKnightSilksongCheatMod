@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using HKSC.Misc;
+using HKSC.Ui;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -8,11 +9,30 @@ namespace HKSC.Managers;
 public static class HotkeyManager
 {
     private static readonly HashSet<Hotkey> Hotkeys = [];
+
+    private static readonly Dictionary<string, List<Hotkey>> HotkeyDict = new()
+    {
+        {
+            "Main", [
+                new Hotkey("ToggleMainUi", "Toggle Main Ui", KeyCode.F1, down =>
+                {
+                    if (down) ModMainUi.Instance.ToggleShow();
+                })
+            ]
+        },
+    };
+
+    public static IReadOnlyCollection<Hotkey> AllHotkeys => Hotkeys;
+    public static IReadOnlyDictionary<string, List<Hotkey>> HotkeysByCategory => HotkeyDict;
+
     [CanBeNull] public static Hotkey EditingHotkey { get; private set; }
 
     public static void RegisterHotkey(Hotkey hotkey)
     {
         Hotkeys.Add(hotkey);
+        if (!HotkeyDict.ContainsKey(hotkey.Id))
+            HotkeyDict[hotkey.Id] = [];
+        HotkeyDict[hotkey.Id].Add(hotkey);
     }
 
     public static void UnregisterHotkey(Hotkey hotkey)
@@ -46,7 +66,7 @@ public static class HotkeyManager
                     e.Use();
                     break;
                 default:
-                    EditingHotkey.Key = e.keyCode;
+                    EditingHotkey.Key.Value = e.keyCode;
                     EditingHotkey = null;
                     e.Use();
                     break;

@@ -1,3 +1,4 @@
+using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
@@ -10,8 +11,8 @@ public class ActionFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Player;
 
-    public readonly ConfigObject<bool> EnableInfinityJump = CfgManager.Create("PlayerAction::EnableInfinityJump", false);
-    public readonly ConfigObject<bool> EnableNoAttackCd = CfgManager.Create("PlayerAction::EnableNoAttackCd", false);
+    public readonly ConfigObject<bool> EnableInfinityJump = CfgManager.Create("PlayerAction::EnableInfinityJump", false).CreateToggleHotkey();
+    public readonly ConfigObject<bool> EnableNoAttackCd = CfgManager.Create("PlayerAction::EnableNoAttackCd", false).CreateToggleHotkey();
 
     protected override void OnGui()
     {

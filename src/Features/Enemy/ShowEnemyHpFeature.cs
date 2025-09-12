@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
@@ -13,7 +14,7 @@ public class ShowEnemyHpFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Enemy;
 
-    public readonly ConfigObject<bool> ShowHp = CfgManager.Create("ShowEnemyHp::Enable", false);
+    public readonly ConfigObject<bool> ShowHp = CfgManager.Create("ShowEnemyHp::Enable", false).CreateToggleHotkey();
 
     [CanBeNull] private Camera _mainCamera;
     private GameObject _hpCanvasGo;

@@ -10,12 +10,7 @@ public class HotkeySettingPage : FeatureBase
 {
     public override ModPage Page => ModPage.Hotkey;
 
-    private readonly Hotkey _toggleModMenuHotkey = new("Toggle Main Ui", KeyCode.F1, down =>
-    {
-        if (down) ModMainUi.Instance.ToggleShow();
-    });
-
-    private void HotkeyItem(Hotkey hotkey)
+    private static void HotkeyItem(Hotkey hotkey)
     {
         GUILayout.BeginHorizontal();
 
@@ -33,8 +28,11 @@ public class HotkeySettingPage : FeatureBase
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Main");
-        HotkeyItem(_toggleModMenuHotkey);
-        UiUtils.EndCategory();
+        foreach (var (category, hotkeys) in HotkeyManager.HotkeysByCategory)
+        {
+            UiUtils.BeginCategory(category);
+            foreach (var hotkey in hotkeys) HotkeyItem(hotkey);
+            UiUtils.EndCategory();
+        }
     }
 }

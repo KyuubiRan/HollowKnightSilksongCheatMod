@@ -11,11 +11,13 @@ public class Hotkey
     public event HotkeyEvent KeyEvent;
 
     public string Name { get; private set; }
-    public KeyCode Key;
+    public string Id { get; private set; }
+    public readonly ConfigObject<KeyCode> Key;
 
-    public Hotkey(string name, KeyCode key, [CanBeNull] HotkeyEvent @event = null)
+    public Hotkey(string id, string name, KeyCode key, [CanBeNull] HotkeyEvent @event = null)
     {
-        Key = key;
+        Id = id;
+        Key = new ConfigObject<KeyCode>($"Hotkey::{id}", key);
         Name = name;
         if (@event != null) KeyEvent += @event;
         HotkeyManager.RegisterHotkey(this);

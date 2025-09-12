@@ -1,4 +1,5 @@
 ﻿using GlobalEnums;
+using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
@@ -11,8 +12,8 @@ public class HealthFeature : FeatureBase
 {
     private static HeroController Hc => HeroController.UnsafeInstance;
 
-    public readonly ConfigObject<bool> EnableGodMode = CfgManager.Create("PlayerHealth::EnableGodMode", false);
-    public readonly ConfigObject<bool> EnableLockMaxHealth = CfgManager.Create("PlayerHealth::EnableGodMode", false);
+    public readonly ConfigObject<bool> EnableGodMode = CfgManager.Create("PlayerHealth::EnableGodMode", false).CreateToggleHotkey();
+    public readonly ConfigObject<bool> EnableLockMaxHealth = CfgManager.Create("PlayerHealth::EnableGodMode", false).CreateToggleHotkey();
     public override ModPage Page => ModPage.Player;
 
     protected override void OnGui()
@@ -21,7 +22,7 @@ public class HealthFeature : FeatureBase
         EnableGodMode.Value = GUILayout.Toggle(EnableGodMode, "God Mode");
         EnableLockMaxHealth.Value = GUILayout.Toggle(EnableLockMaxHealth, "Lock Max Health");
         if (GUILayout.Button("Heal"))
-            Hc?.AddHealth(999);
+            Hc?.RefillHealthToMax();
         UiUtils.EndCategory();
     }
 

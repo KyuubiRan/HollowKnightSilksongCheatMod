@@ -1,4 +1,5 @@
-﻿using HKSC.Managers;
+﻿using HKSC.Extensions;
+using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
@@ -13,7 +14,7 @@ public class GeoFeature : FeatureBase
 
     private int _geoValue = 100;
     private string _geoValueStr = "100";
-    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("Rosaries::EnableAutoCollect", false);
+    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("Rosaries::EnableAutoCollect", false).CreateToggleHotkey();
 
     protected override void OnGui()
     {

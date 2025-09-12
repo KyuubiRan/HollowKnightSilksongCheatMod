@@ -1,4 +1,5 @@
-﻿using HKSC.Managers;
+﻿using HKSC.Extensions;
+using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
@@ -13,7 +14,7 @@ public class ShellShardFeature : FeatureBase
 
     private int _shellShardsValue = 100;
     private string _shellShardsValueStr = "100";
-    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("ShellShard::EnableAutoCollect", false);
+    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("ShellShard::EnableAutoCollect", false).CreateToggleHotkey();
 
     protected override void OnGui()
     {

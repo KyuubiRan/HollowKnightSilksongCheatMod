@@ -1,3 +1,4 @@
+using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
@@ -10,9 +11,9 @@ public class DamageFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Player;
 
-    public readonly ConfigObject<bool> EnableMultiDamage = CfgManager.Create("PlayerDamage::EnableMultiDamage", false);
+    public readonly ConfigObject<bool> EnableMultiDamage = CfgManager.Create("PlayerDamage::EnableMultiDamage", false).CreateToggleHotkey();
     public readonly ConfigObject<float> MultiDamageValue = CfgManager.Create("PlayerDamage::MultiDamageValue", 2f);
-    public readonly ConfigObject<bool> EnableOneHitKill = CfgManager.Create("PlayerDamage::EnableOneHitKill", false);
+    public readonly ConfigObject<bool> EnableOneHitKill = CfgManager.Create("PlayerDamage::EnableOneHitKill", false).CreateToggleHotkey();
 
     protected override void OnGui()
     {
