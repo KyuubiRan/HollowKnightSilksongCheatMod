@@ -15,46 +15,46 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 
 ### Player - Health
 
-- [x] God Mode
-- [x] Lock Max HP
+- [x] God mode
+- [x] Lock max HP
 - [x] Heal
 
 ### Player - Silk
 
-- [x] Lock Max Silk
-- [x] Set Silk To Max
+- [x] Lock max silk
+- [x] Refill to max
 
 ### Player - Damage
 
-- [x] Multi Damage
-- [x] One Hit Kill
+- [x] Multi damage
+- [x] One hit kill
 
 ### Player - Action
 
-- [x] Infinity Air Jump
-- [x] No Attack CD
+- [x] Infinity air jump
+- [x] No attack CD
 
 ### Player - Kill Aura
 
-- [x] Range Filter
-- [x] Custom Damage
-- [x] Custom Trigger Interval
+- [x] Range filter
+- [x] Custom damage
+- [x] Custom trigger interval
 
 ### Enemy - Info
 
-- [x] Show Enemy Hp
+- [x] Show enemy HP
 
 ### Currency
 
-- [x] Auto Collect Rosaries
-- [x] Add/Remove Rosaries
-- [x] Auto Collect Shell Shards
-- [x] Add/Remove Shell Shards
+- [x] Auto collect rosaries
+- [x] Add/Remove rosaries
+- [x] Auto collect shell shards
+- [x] Add/Remove shell shards
 
 ### Game
 
-- [x] Game Speed(Time Scale)
-- [x] FPS Limiter
+- [x] Change game speed
+- [x] FPS limiter(Should VSync off)
 
 ### Menu - Inventory
 
@@ -67,5 +67,5 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 
 ### Teleport
 
-- [x] Custom Teleport
-- [x] Death Point Log & Teleport
+- [x] Custom teleport
+- [x] Death point log & teleport

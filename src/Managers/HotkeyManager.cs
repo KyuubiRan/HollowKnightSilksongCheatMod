@@ -54,6 +54,8 @@ public static class HotkeyManager
                 case KeyCode.None:
                     break;
                 case KeyCode.Escape:
+                    EditingHotkey.Key.Value = KeyCode.None;
+                    EditingHotkey.Key.FireChanged();
                     EditingHotkey = null;
                     e.Use();
                     break;

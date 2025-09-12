@@ -18,6 +18,12 @@ public class HealthFeature : FeatureBase
     public readonly ConfigObject<bool> EnableLockMaxHealth =
         CfgManager.Create("PlayerHealth::EnableLockMaxHealth", false).CreateToggleHotkey("Toggle Lock Max Health");
 
+    private readonly Hotkey _healHotkey =
+        Hotkey.Create("PlayerHealth::Heal", "Heal", KeyCode.None, down =>
+        {
+            if (down) Hc?.RefillHealthToMax();
+        });
+
     public override ModPage Page => ModPage.Player;
 
     protected override void OnGui()
