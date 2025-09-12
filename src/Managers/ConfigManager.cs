@@ -10,7 +10,7 @@ public static class CfgManager
 {
     private static bool _changed;
     private static float _delta;
-    private const float SaveInterval = 3.0f;
+    private const float SaveInterval = 2.0f;
     private static JObject _configData = new();
     private static string _configDataPath;
 
@@ -91,7 +91,7 @@ public static class CfgManager
     public static ConfigObject<T> Create<T>(string key, T defValue = default)
     {
         var obj = new ConfigObject<T>(key);
-        
+
         if (!_configData.TryGetValue(key, out var token))
         {
             Log.LogDebug($"Config key '{key}' not found, using default: '{defValue}'");
@@ -104,7 +104,7 @@ public static class CfgManager
         }
         catch (Exception e)
         {
-            Log.LogError($"[HKSC] Failed to parse config key '{key}': {e}");
+            Log.LogError($"Failed to parse config key '{key}': {e}");
         }
 
         return obj;

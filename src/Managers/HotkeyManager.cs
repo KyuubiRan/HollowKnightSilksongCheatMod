@@ -10,17 +10,7 @@ public static class HotkeyManager
 {
     private static readonly HashSet<Hotkey> Hotkeys = [];
 
-    private static readonly Dictionary<string, List<Hotkey>> HotkeyDict = new()
-    {
-        {
-            "Main", [
-                new Hotkey("ToggleMainUi", "Toggle Main Ui", KeyCode.F1, down =>
-                {
-                    if (down) ModMainUi.Instance.ToggleShow();
-                })
-            ]
-        },
-    };
+    private static readonly Dictionary<string, List<Hotkey>> HotkeyDict = new();
 
     public static IReadOnlyCollection<Hotkey> AllHotkeys => Hotkeys;
     public static IReadOnlyDictionary<string, List<Hotkey>> HotkeysByCategory => HotkeyDict;
@@ -29,10 +19,12 @@ public static class HotkeyManager
 
     public static void RegisterHotkey(Hotkey hotkey)
     {
-        Hotkeys.Add(hotkey);
-        if (!HotkeyDict.ContainsKey(hotkey.Id))
-            HotkeyDict[hotkey.Id] = [];
-        HotkeyDict[hotkey.Id].Add(hotkey);
+        if (!Hotkeys.Add(hotkey))
+            return;
+
+        if (!HotkeyDict.ContainsKey(hotkey.Namespace))
+            HotkeyDict[hotkey.Namespace] = [];
+        HotkeyDict[hotkey.Namespace].Add(hotkey);
     }
 
     public static void UnregisterHotkey(Hotkey hotkey)
@@ -67,6 +59,7 @@ public static class HotkeyManager
                     break;
                 default:
                     EditingHotkey.Key.Value = e.keyCode;
+                    EditingHotkey.Key.FireChanged();
                     EditingHotkey = null;
                     e.Use();
                     break;
@@ -80,5 +73,17 @@ public static class HotkeyManager
             hotkey.OnDown();
             hotkey.OnUp();
         }
+    }
+
+    public static void Init()
+    {
+        Hotkeys.Clear();
+        HotkeyDict.Clear();
+        EditingHotkey = null;
+
+        RegisterHotkey(Hotkey.Create("General::ToggleMainUi", "Toggle Main Ui", KeyCode.F1, down =>
+        {
+            if (down) ModMainUi.Instance.ToggleShow();
+        }));
     }
 }

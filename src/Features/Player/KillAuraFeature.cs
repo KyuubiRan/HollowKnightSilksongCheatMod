@@ -13,7 +13,7 @@ public class KillAuraFeature : FeatureBase
     private static HeroController Hc => HeroController.UnsafeInstance;
     public override ModPage Page => ModPage.Player;
 
-    public readonly ConfigObject<bool> IsEnabled = CfgManager.Create("KillAura::Enable", false).CreateToggleHotkey();
+    public readonly ConfigObject<bool> IsEnabled = CfgManager.Create("KillAura::Enable", false).CreateToggleHotkey("Toggle Enable");
     public readonly ConfigObject<int> Damage = CfgManager.Create("KillAura::Damage", 10);
     public readonly ConfigObject<float> Range = CfgManager.Create("KillAura::Range", 10f);
     public readonly ConfigObject<float> AttackInterval = CfgManager.Create("KillAura::AttackInterval", 1f);

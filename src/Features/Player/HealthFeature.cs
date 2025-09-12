@@ -12,8 +12,12 @@ public class HealthFeature : FeatureBase
 {
     private static HeroController Hc => HeroController.UnsafeInstance;
 
-    public readonly ConfigObject<bool> EnableGodMode = CfgManager.Create("PlayerHealth::EnableGodMode", false).CreateToggleHotkey();
-    public readonly ConfigObject<bool> EnableLockMaxHealth = CfgManager.Create("PlayerHealth::EnableGodMode", false).CreateToggleHotkey();
+    public readonly ConfigObject<bool> EnableGodMode =
+        CfgManager.Create("PlayerHealth::EnableGodMode", false).CreateToggleHotkey("Toggle God Mode");
+
+    public readonly ConfigObject<bool> EnableLockMaxHealth =
+        CfgManager.Create("PlayerHealth::EnableLockMaxHealth", false).CreateToggleHotkey("Toggle Lock Max Health");
+
     public override ModPage Page => ModPage.Player;
 
     protected override void OnGui()
@@ -34,7 +38,7 @@ public class HealthFeature : FeatureBase
         if (!Hc.exitedQuake)
             Hc.SetDamageMode(EnableGodMode ? DamageMode.NO_DAMAGE : DamageMode.FULL_DAMAGE);
 
-        if (EnableLockMaxHealth)
+        if (EnableLockMaxHealth || EnableGodMode)
             Hc.playerData.health = Hc.playerData.maxHealth;
     }
 }

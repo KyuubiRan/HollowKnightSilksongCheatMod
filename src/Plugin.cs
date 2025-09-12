@@ -29,6 +29,7 @@ public class Plugin : BaseUnityPlugin
     {
         MyLogger.PluginLogger = Logger;
         CfgManager.Load();
+        HotkeyManager.Init();
 
         var go = new GameObject("HKSC Main UI Controller");
         DontDestroyOnLoad(go);

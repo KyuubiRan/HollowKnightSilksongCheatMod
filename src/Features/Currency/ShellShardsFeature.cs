@@ -14,7 +14,7 @@ public class ShellShardFeature : FeatureBase
 
     private int _shellShardsValue = 100;
     private string _shellShardsValueStr = "100";
-    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("ShellShard::EnableAutoCollect", false).CreateToggleHotkey();
+    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("ShellShard::EnableAutoCollect", false).CreateToggleHotkey("Toggle Auto Collect");
 
     protected override void OnGui()
     {

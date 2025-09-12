@@ -11,7 +11,7 @@ public class TimeScaleFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Game;
 
-    public readonly ConfigObject<bool> EnableTimeScale = CfgManager.Create("TimeScale::Enable", false).CreateToggleHotkey();
+    public readonly ConfigObject<bool> EnableTimeScale = CfgManager.Create("TimeScale::Enable", false).CreateToggleHotkey("Toggle Enable");
     public readonly ConfigObject<float> TimeScale = CfgManager.Create("TimeScale::TimeScale", 1f);
 
     protected override void OnGui()

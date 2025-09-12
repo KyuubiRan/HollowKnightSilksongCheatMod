@@ -14,7 +14,7 @@ public class ShowEnemyHpFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Enemy;
 
-    public readonly ConfigObject<bool> ShowHp = CfgManager.Create("ShowEnemyHp::Enable", false).CreateToggleHotkey();
+    public readonly ConfigObject<bool> ShowHp = CfgManager.Create("EnemyInfo::Enable", false).CreateToggleHotkey("Toggle Show Enemy HP");
 
     [CanBeNull] private Camera _mainCamera;
     private GameObject _hpCanvasGo;

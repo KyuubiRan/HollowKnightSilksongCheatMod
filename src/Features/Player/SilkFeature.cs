@@ -12,7 +12,7 @@ public class SilkFeature : FeatureBase
     private static HeroController Hc => HeroController.UnsafeInstance;
     public override ModPage Page => ModPage.Player;
 
-    public readonly ConfigObject<bool> EnableLockMaxSilk = CfgManager.Create("PlayerSilk::EnableLockMaxSilk", false).CreateToggleHotkey();
+    public readonly ConfigObject<bool> EnableLockMaxSilk = CfgManager.Create("PlayerSilk::EnableLockMaxSilk", false).CreateToggleHotkey("Toggle Lock Max Silk");
 
     protected override void OnGui()
     {

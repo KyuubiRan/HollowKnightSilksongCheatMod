@@ -15,7 +15,7 @@ public class HotkeySettingPage : FeatureBase
         GUILayout.BeginHorizontal();
 
         GUILayout.Label(hotkey.Name);
-        if (GUILayout.Button(HotkeyManager.EditingHotkey == hotkey ? "..." : hotkey.Key.ToString(), GUILayout.Width(100)))
+        if (GUILayout.Button(HotkeyManager.EditingHotkey == hotkey ? "..." : hotkey.Key.Value.ToString(), GUILayout.Width(120)))
         {
             if (HotkeyManager.EditingHotkey == hotkey)
                 HotkeyManager.StopEditHotkey();

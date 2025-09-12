@@ -11,8 +11,8 @@ public class ActionFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Player;
 
-    public readonly ConfigObject<bool> EnableInfinityJump = CfgManager.Create("PlayerAction::EnableInfinityJump", false).CreateToggleHotkey();
-    public readonly ConfigObject<bool> EnableNoAttackCd = CfgManager.Create("PlayerAction::EnableNoAttackCd", false).CreateToggleHotkey();
+    public readonly ConfigObject<bool> EnableInfinityJump = CfgManager.Create("PlayerAction::EnableInfinityJump", false).CreateToggleHotkey("Toggle Infinity Jump");
+    public readonly ConfigObject<bool> EnableNoAttackCd = CfgManager.Create("PlayerAction::EnableNoAttackCd", false).CreateToggleHotkey("Toggle No Attack Cooldown");
 
     protected override void OnGui()
     {

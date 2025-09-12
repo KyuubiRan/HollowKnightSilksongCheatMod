@@ -1,16 +1,15 @@
 using System.Linq;
 using HKSC.Misc;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace HKSC.Extensions;
 
 public static class ConfigObjectExtensions
 {
-    public static ConfigObject<bool> CreateToggleHotkey(this ConfigObject<bool> configObject, KeyCode key = KeyCode.None)
+    public static ConfigObject<bool> CreateToggleHotkey(this ConfigObject<bool> configObject, [CanBeNull] string name = null, KeyCode key = KeyCode.None)
     {
-        var split = configObject.Key.Split("::");
-        // FIXME: cause exception
-        _ = new Hotkey(split.First(), split.Last(), key, down =>
+        Hotkey.Create(configObject.Key, string.IsNullOrWhiteSpace(name) ?  configObject.Key : name, key, down =>
         {
             if (down) configObject.Value = !configObject.Value;
         });

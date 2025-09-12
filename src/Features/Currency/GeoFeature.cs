@@ -14,7 +14,7 @@ public class GeoFeature : FeatureBase
 
     private int _geoValue = 100;
     private string _geoValueStr = "100";
-    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("Rosaries::EnableAutoCollect", false).CreateToggleHotkey();
+    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("Rosaries::EnableAutoCollect", false).CreateToggleHotkey("Toggle Auto Collect");
 
     protected override void OnGui()
     {
