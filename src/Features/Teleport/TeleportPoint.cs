@@ -14,12 +14,14 @@ public class TeleportPoint
     {
         SceneName = SceneManager.GetActiveScene().name,
         Position = Hc?.transform.position ?? Vector2.zero,
-        Valid = Gm?.IsGameplayScene() == true
+        Valid = Gm?.IsGameplayScene() == true,
+        GateName = Gm?.entryGateName ?? "dreamGate"
     };
 
     public string SceneName { get; set; }
     public Vector2 Position { get; set; }
-    public bool Valid { get; private set; }
+    public bool Valid { get; set; }
+    public string GateName { get; set; }
 
     public bool Teleport()
     {
@@ -33,14 +35,15 @@ public class TeleportPoint
         var curScene = SceneManager.GetActiveScene();
         if (curScene.name != SceneName)
         {
-            Gm.NoLongerFirstGame();
-            Gm.SaveLevelState();
-            Hc.proxyFSM.SendEvent("HeroCtrl-LeavingScene");
-            Hc.LeaveScene();
-            Gm.SetState(GameState.EXITING_LEVEL);
-            Gm.cameraCtrl.FreezeInPlace();
-            Gm.LoadScene(SceneName);
-            Hc.EnterSceneDreamGate();
+            Gm.BeginSceneTransition(new GameManager.SceneLoadInfo
+            {
+                SceneName = SceneName,
+                EntryGateName = GateName,
+                PreventCameraFadeOut = true,
+                WaitForSceneTransitionCameraFade = false,
+                AlwaysUnloadUnusedAssets = true,
+                Visualization = GameManager.SceneLoadVisualizations.Default,
+            });
         }
 
         Hc.transform.position = Position;
