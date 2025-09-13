@@ -14,19 +14,19 @@ public class ShellShardFeature : FeatureBase
 
     private int _shellShardsValue = 100;
     private string _shellShardsValueStr = "100";
-    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("ShellShard::EnableAutoCollect", false).CreateToggleHotkey("Toggle Auto Collect");
+    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("ShellShard::EnableAutoCollect", false).CreateToggleHotkey("hotkey.namespace.currency","hotkey.currency.toggleAutoCollectShards");
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Shell Shards");
+        UiUtils.BeginCategory("feature.currency.shards.title".Translate());
 
-        EnableAutoCollect.Value = GUILayout.Toggle(EnableAutoCollect, "Auto Collect");
-        _shellShardsValueStr = UiUtils.InputInt(ref _shellShardsValue, _shellShardsValueStr, "Value");
+        EnableAutoCollect.Value = GUILayout.Toggle(EnableAutoCollect, "feature.currency.autoCollect".Translate());
+        _shellShardsValueStr = UiUtils.InputInt(ref _shellShardsValue, _shellShardsValueStr, "feature.generic.value".Translate());
 
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Add"))
+        if (GUILayout.Button("feature.generic.add".Translate()))
             Hc?.AddShards(_shellShardsValue);
-        if (GUILayout.Button("Remove"))
+        if (GUILayout.Button("feature.generic.reduce".Translate()))
             Hc?.TakeShards(_shellShardsValue);
         GUILayout.EndHorizontal();
 

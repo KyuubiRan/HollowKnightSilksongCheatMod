@@ -11,7 +11,6 @@ public class CustomTeleport : TeleportFeatureBase
     public override int MaxLogCount => int.MaxValue;
     public override bool EnableLog => true;
     private readonly ConfigObject<List<TeleportPoint>> _queue = CfgManager.Create("CustomTeleport::TeleportPoints", new List<TeleportPoint>());
-
     protected override List<TeleportPoint> Queue => _queue.Value;
 
     protected override void OnLogTeleport(TeleportPoint point)
@@ -21,8 +20,8 @@ public class CustomTeleport : TeleportFeatureBase
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Custom Teleport");
-        if (GUILayout.Button("Log")) LogTeleport(TeleportPoint.Current);
+        UiUtils.BeginCategory("feature.teleport.custom.title".Translate());
+        if (GUILayout.Button("feature.teleport.custom.log".Translate())) LogTeleport(TeleportPoint.Current);
 
         RenderItems();
 

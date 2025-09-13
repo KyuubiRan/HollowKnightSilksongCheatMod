@@ -66,7 +66,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Assets\" />
+      <None Update="Assets\language.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -80,6 +82,11 @@
         <!-- Copy the compiled DLL to the mod folder -->
         <Copy
                 SourceFiles="$(TargetPath)"
+                DestinationFolder="$(ModFolder)"
+                SkipUnchangedFiles="true"
+        />
+        <Copy
+                SourceFiles="Assets\language.json"
                 DestinationFolder="$(ModFolder)"
                 SkipUnchangedFiles="true"
         />

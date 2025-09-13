@@ -14,7 +14,7 @@ public class HotkeySettingPage : FeatureBase
     {
         GUILayout.BeginHorizontal();
 
-        GUILayout.Label(hotkey.Name);
+        GUILayout.Label(hotkey.Name.Translate());
         if (GUILayout.Button(HotkeyManager.EditingHotkey == hotkey ? "..." : hotkey.Key.Value.ToString(), GUILayout.Width(120)))
         {
             if (HotkeyManager.EditingHotkey == hotkey)
@@ -30,7 +30,7 @@ public class HotkeySettingPage : FeatureBase
     {
         foreach (var (category, hotkeys) in HotkeyManager.HotkeysByCategory)
         {
-            UiUtils.BeginCategory(category);
+            UiUtils.BeginCategory(category.Translate());
             foreach (var hotkey in hotkeys) HotkeyItem(hotkey);
             UiUtils.EndCategory();
         }

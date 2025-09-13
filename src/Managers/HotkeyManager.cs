@@ -83,7 +83,7 @@ public static class HotkeyManager
         HotkeyDict.Clear();
         EditingHotkey = null;
 
-        RegisterHotkey(Hotkey.Create("General::ToggleMainUi", "Toggle Main Ui", KeyCode.F1, down =>
+        RegisterHotkey(Hotkey.Create("General::ToggleMainUi", "hotkey.namespace.generic", "hotkey.generic.toggleMainUi", KeyCode.F1, down =>
         {
             if (down) ModMainUi.Instance.ToggleShow();
         }));

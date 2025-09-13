@@ -1,3 +1,4 @@
+using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
@@ -16,10 +17,10 @@ public class CurrentSceneDetails : FeatureBase
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Scene Info");
+        UiUtils.BeginCategory("feature.teleport.sceneInfo.title".Translate());
 
-        GUILayout.Label($"Name: {_sceneName}");
-        GUILayout.Label($"Player Pos: {_playerPos}");
+        GUILayout.Label("feature.teleport.sceneInfo.sceneName".Translate(_sceneName));
+        GUILayout.Label("feature.teleport.sceneInfo.playerPos".Translate(_playerPos));
 
         UiUtils.EndCategory();
     }

@@ -1,3 +1,4 @@
+using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
 using UnityEngine;
@@ -10,15 +11,41 @@ public class AboutPage : FeatureBase
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("About");
-        GUILayout.Label("Mod Version: " + ModConstants.Version);
-        GUILayout.Label("Author: " + ModConstants.Author);
+        UiUtils.BeginCategory("feature.about.title".Translate());
+        GUILayout.Label("feature.about.modVersion".Translate(ModConstants.Version));
+        GUILayout.Label("feature.about.author".Translate(ModConstants.Author));
         GUILayout.Label("GitHub: " + ModConstants.ProjectSource);
-        if (GUILayout.Button("View project on GitHub"))
+        if (GUILayout.Button("feature.about.viewOnGithub".Translate()))
         {
             Application.OpenURL(ModConstants.ProjectSource);
         }
 
+        UiUtils.EndCategory();
+        
+        UiUtils.BeginCategory("generic.language".Translate());
+        GUILayout.Label("generic.language.current".Translate());
+        
+        var langs = LanguageManager.AvailableLanguages;
+        const int langPerRow = 5;
+        var total = langs.Count;
+        var i = 0;
+        GUILayout.BeginHorizontal();
+        
+        foreach (var lang in langs)
+        {
+            i++;
+            if (GUILayout.Button(lang))
+                LanguageManager.CurrentLang.Value = lang;
+
+            if (i % langPerRow != 0 || i == total) continue;
+
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+        }
+     
+        GUILayout.EndHorizontal();
+        
+        
         UiUtils.EndCategory();
     }
 }

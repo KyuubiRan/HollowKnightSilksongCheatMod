@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using HarmonyLib;
 using HKSC.Managers;
+using HKSC.Misc;
 using HKSC.Ui;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,6 +30,7 @@ public class Plugin : BaseUnityPlugin
     {
         MyLogger.PluginLogger = Logger;
         CfgManager.Load();
+        LanguageManager.Init();
         HotkeyManager.Init();
 
         var go = new GameObject("HKSC Main UI Controller");

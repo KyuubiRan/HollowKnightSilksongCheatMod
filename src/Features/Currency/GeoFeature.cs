@@ -14,19 +14,19 @@ public class GeoFeature : FeatureBase
 
     private int _geoValue = 100;
     private string _geoValueStr = "100";
-    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("Rosaries::EnableAutoCollect", false).CreateToggleHotkey("Toggle Auto Collect");
+    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("Rosaries::EnableAutoCollect", false).CreateToggleHotkey("hotkey.namespace.currency","hotkey.currency.toggleAutoCollectGeo");
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Rosaries");
+        UiUtils.BeginCategory("feature.currency.rosaries.title".Translate());
 
-        EnableAutoCollect.Value = GUILayout.Toggle(EnableAutoCollect, "Auto Collect");
-        _geoValueStr = UiUtils.InputInt(ref _geoValue, _geoValueStr, "Value");
+        EnableAutoCollect.Value = GUILayout.Toggle(EnableAutoCollect, "feature.currency.autoCollect".Translate());
+        _geoValueStr = UiUtils.InputInt(ref _geoValue, _geoValueStr, "feature.generic.value".Translate());
 
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Add"))
+        if (GUILayout.Button("feature.generic.add".Translate()))
             Hc?.AddGeo(_geoValue);
-        if (GUILayout.Button("Remove"))
+        if (GUILayout.Button("feature.generic.reduce".Translate()))
             Hc?.TakeGeo(_geoValue);
         GUILayout.EndHorizontal();
 

@@ -11,7 +11,7 @@ public class FpsLimiterFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Game;
 
-    public readonly ConfigObject<bool> EnableFpsLimit = CfgManager.Create("FpsLimiter::Enable", false).CreateToggleHotkey("Toggle Enable");
+    public readonly ConfigObject<bool> EnableFpsLimit = CfgManager.Create("FpsLimiter::Enable", false);
     public readonly ConfigObject<int> FpsLimit = CfgManager.Create("FpsLimiter::FpsLimit", 60);
     public readonly ConfigObject<bool> Unlimited = CfgManager.Create("FpsLimiter::Unlimited", false);
 
@@ -19,10 +19,10 @@ public class FpsLimiterFeature : FeatureBase
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("FPS Limiter");
-        EnableFpsLimit.Value = GUILayout.Toggle(EnableFpsLimit, "Enable FPS Limiter");
+        UiUtils.BeginCategory("feature.game.fpsLimiter.title".Translate());
+        EnableFpsLimit.Value = GUILayout.Toggle(EnableFpsLimit, "feature.generic.enable".Translate());
         if (EnableFpsLimit && !Unlimited) FpsLimit.Value = UiUtils.SliderInt(FpsLimit, 30, 360, 10);
-        if (EnableFpsLimit) Unlimited.Value = GUILayout.Toggle(Unlimited, "Unlimited FPS");
+        if (EnableFpsLimit) Unlimited.Value = GUILayout.Toggle(Unlimited, "feature.game.fpsLimiter.unlimited".Translate());
         UiUtils.EndCategory();
     }
 

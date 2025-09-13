@@ -15,17 +15,18 @@ public class Hotkey
     public string Namespace { get; private set; }
     public readonly ConfigObject<KeyCode> Key;
 
-    public Hotkey(string id, string name, KeyCode key, [CanBeNull] HotkeyEvent @event = null)
+    public Hotkey(string id, string @namespace, string name, KeyCode key, [CanBeNull] HotkeyEvent @event = null)
     {
         Id = id;
-        Namespace = id.Contains("::") ? id.Split("::")[0] : "General";
-        Key = CfgManager.Create($"Hotkey::{id}", key);
+        Namespace = @namespace;
         Name = name;
+        Key = CfgManager.Create($"Hotkey::{id}", key);
         if (@event != null) KeyEvent += @event;
         HotkeyManager.RegisterHotkey(this);
     }
 
-    public static Hotkey Create(string id, string name, KeyCode key, [CanBeNull] HotkeyEvent @event = null) => new(id, name, key, @event);
+    public static Hotkey Create(string id, string @namespace, string name, KeyCode key, [CanBeNull] HotkeyEvent @event = null) =>
+        new(id, @namespace, name, key, @event);
 
     ~Hotkey()
     {

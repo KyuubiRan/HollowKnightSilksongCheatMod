@@ -7,9 +7,9 @@ namespace HKSC.Extensions;
 
 public static class ConfigObjectExtensions
 {
-    public static ConfigObject<bool> CreateToggleHotkey(this ConfigObject<bool> configObject, [CanBeNull] string name = null, KeyCode key = KeyCode.None)
+    public static ConfigObject<bool> CreateToggleHotkey(this ConfigObject<bool> configObject, string @namespace, string name, KeyCode key = KeyCode.None)
     {
-        Hotkey.Create(configObject.Key, string.IsNullOrWhiteSpace(name) ? configObject.Key : name, key, down =>
+        Hotkey.Create(configObject.Key, @namespace, name, key, down =>
         {
             if (down) configObject.Value = !configObject.Value;
         });

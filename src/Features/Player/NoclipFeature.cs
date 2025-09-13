@@ -16,18 +16,16 @@ public class NoclipFeature : FeatureBase
     public override ModPage Page => ModPage.Player;
 
     public readonly ConfigObject<bool> IsEnabled = CfgManager.Create("Noclip::Enable", false)
-        .CreateToggleHotkey("Toggle Noclip");
+        .CreateToggleHotkey("hotkey.namespace.noclip", "hotkey.generic.toggle");
 
     public readonly ConfigObject<float> Speed = CfgManager.Create("Noclip::Speed", 5f);
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Noclip");
-        IsEnabled.Value = GUILayout.Toggle(IsEnabled, "Enable");
+        UiUtils.BeginCategory("feature.player.noclip.title".Translate());
+        IsEnabled.Value = GUILayout.Toggle(IsEnabled, "feature.generic.enable".Translate());
         if (IsEnabled)
-        {
-            Speed.Value = UiUtils.Slider(Speed, 5f, 100f, 5f, valueFormat: "Speed: {0:0.0}");
-        }
+            Speed.Value = UiUtils.Slider(Speed, 5f, 100f, 5f, valueFormat: "feature.player.noclip.speed.format".Translate());
 
         UiUtils.EndCategory();
     }

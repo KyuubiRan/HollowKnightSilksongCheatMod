@@ -15,18 +15,18 @@ public class MapFeature : FeatureBase
     public override ModPage Page => ModPage.Menu;
 
     public readonly ConfigObject<bool> EnableAlwaysShowPosition =
-        CfgManager.Create("Map::EnableAlwaysShowPosition", false).CreateToggleHotkey("Toggle Always Show Player's Position");
+        CfgManager.Create("Map::EnableAlwaysShowPosition", false).CreateToggleHotkey("hotkey.namespace.menu","hotkey.menu.toggleAlwaysShowPosition");
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Map");
+        UiUtils.BeginCategory("feature.menu.map.title".Translate());
 
-        EnableAlwaysShowPosition.Value = GUILayout.Toggle(EnableAlwaysShowPosition, "Always Show Player's Position");
+        EnableAlwaysShowPosition.Value = GUILayout.Toggle(EnableAlwaysShowPosition, "feature.menu.map.alwaysShowPosition".Translate());
 
-        if (GUILayout.Button("Update Map"))
-        {
-            Map?.UpdateGameMap();
-        }
+        // if (GUILayout.Button("Update Map"))
+        // {
+        //     Map?.UpdateGameMap();
+        // }
 
         UiUtils.EndCategory();
     }

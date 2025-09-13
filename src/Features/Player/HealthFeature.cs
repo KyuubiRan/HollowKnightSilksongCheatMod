@@ -13,13 +13,13 @@ public class HealthFeature : FeatureBase
     private static HeroController Hc => HeroController.UnsafeInstance;
 
     public readonly ConfigObject<bool> EnableGodMode =
-        CfgManager.Create("PlayerHealth::EnableGodMode", false).CreateToggleHotkey("Toggle God Mode");
+        CfgManager.Create("PlayerHealth::EnableGodMode", false).CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleGodMode");
 
     public readonly ConfigObject<bool> EnableLockMaxHealth =
-        CfgManager.Create("PlayerHealth::EnableLockMaxHealth", false).CreateToggleHotkey("Toggle Lock Max Health");
+        CfgManager.Create("PlayerHealth::EnableLockMaxHealth", false).CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleLockMaxHealth");
 
     private readonly Hotkey _healHotkey =
-        Hotkey.Create("PlayerHealth::Heal", "Heal", KeyCode.None, down =>
+        Hotkey.Create("PlayerHealth::Heal", "hotkey.namespace.health", "hotkey.health.heal", KeyCode.None, down =>
         {
             if (down) Hc?.RefillHealthToMax();
         });
@@ -28,10 +28,10 @@ public class HealthFeature : FeatureBase
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Health");
-        EnableGodMode.Value = GUILayout.Toggle(EnableGodMode, "God Mode");
-        EnableLockMaxHealth.Value = GUILayout.Toggle(EnableLockMaxHealth, "Lock Max Health");
-        if (GUILayout.Button("Heal"))
+        UiUtils.BeginCategory("feature.player.health.title".Translate());
+        EnableGodMode.Value = GUILayout.Toggle(EnableGodMode, "feature.player.health.godMode".Translate());
+        EnableLockMaxHealth.Value = GUILayout.Toggle(EnableLockMaxHealth, "feature.player.health.lockMaxHealth".Translate());
+        if (GUILayout.Button("feature.player.health.heal".Translate()))
             Hc?.RefillHealthToMax();
         UiUtils.EndCategory();
     }

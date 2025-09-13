@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HKSC.Misc;
 using UnityEngine;
 
 namespace HKSC.Ui;
@@ -96,7 +97,7 @@ public class ModMainUi : MonoBehaviour
         if (!_isVisible)
             return;
 
-        _windowRect = GUI.Window(0, _windowRect, DrawWindow, "HKSC");
+        _windowRect = GUI.Window(0, _windowRect, DrawWindow, "ui.menu.title".Translate());
     }
 
     private void DrawWindow(int windowID)
@@ -109,7 +110,7 @@ public class ModMainUi : MonoBehaviour
         for (var i = 0; i < total; ++i)
         {
             var elem = ModPages[i];
-            if (GUILayout.Button(elem.ToString()))
+            if (GUILayout.Button($"feature.category.{elem}".Translate()))
                 CurrentPage = elem;
 
             if ((i + 1) % buttonsPerRow != 0 || i + 1 == total) continue;

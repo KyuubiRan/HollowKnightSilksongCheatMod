@@ -22,9 +22,9 @@ public class DeathTeleport : TeleportFeatureBase
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Death Teleport");
+        UiUtils.BeginCategory("feature.teleport.death.title".Translate());
 
-        _enableLog.Value = GUILayout.Toggle(_enableLog, "Enable Death Log");
+        _enableLog.Value = GUILayout.Toggle(_enableLog, "feature.teleport.death.enable".Translate());
 
         RenderItems();
 

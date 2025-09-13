@@ -12,16 +12,16 @@ public class DamageFeature : FeatureBase
     public override ModPage Page => ModPage.Player;
 
     public readonly ConfigObject<bool> EnableMultiDamage =
-        CfgManager.Create("PlayerDamage::EnableMultiDamage", false).CreateToggleHotkey("Toggle Multi Damage");
+        CfgManager.Create("PlayerDamage::EnableMultiDamage", false).CreateToggleHotkey("hotkey.namespace.damage", "hotkey.damage.toggleDamageMultiplier");
 
     public readonly ConfigObject<float> MultiDamageValue = CfgManager.Create("PlayerDamage::MultiDamageValue", 2f);
-    public readonly ConfigObject<bool> EnableOneHitKill = CfgManager.Create("PlayerDamage::EnableOneHitKill", false).CreateToggleHotkey("Toggle One Hit Kill");
+    public readonly ConfigObject<bool> EnableOneHitKill = CfgManager.Create("PlayerDamage::EnableOneHitKill", false).CreateToggleHotkey("hotkey.namespace.damage", "hotkey.damage.toggleOneHitKill");
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("Damage");
-        EnableOneHitKill.Value = GUILayout.Toggle(EnableOneHitKill, "One Hit Kill");
-        EnableMultiDamage.Value = GUILayout.Toggle(EnableMultiDamage, "Multi Damage");
+        UiUtils.BeginCategory("feature.player.damage.title".Translate());
+        EnableOneHitKill.Value = GUILayout.Toggle(EnableOneHitKill, "feature.player.damage.oneHitKill".Translate());
+        EnableMultiDamage.Value = GUILayout.Toggle(EnableMultiDamage, "feature.player.damage.multiplier".Translate());
         if (EnableMultiDamage)
             MultiDamageValue.Value = UiUtils.Slider(MultiDamageValue, 0.0f, 10.0f, 0.25f);
 
