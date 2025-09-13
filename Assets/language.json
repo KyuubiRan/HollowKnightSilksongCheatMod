@@ -26,7 +26,7 @@
     "feature.player.health.heal": "恢复生命值",
     // Feature - Silk
     "feature.player.silk.title": "灵丝",
-    "feature.player.silk.lockMaxSilk": "锁定最大生命值",
+    "feature.player.silk.lockMaxSilk": "锁定最大灵丝",
     "feature.player.silk.refill": "填充到最大",
     // Feature - Action
     "feature.player.action.title": "行动能力",
