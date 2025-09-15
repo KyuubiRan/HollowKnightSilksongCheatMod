@@ -56,6 +56,9 @@ public static class LanguageManager
         var json = File.ReadAllText(langFile);
 #else
         var langFileData = ModResources.Language;
+        if (langFileData[0] == 0xEF && langFileData[1] == 0xBB && langFileData[2] == 0xBF)
+            // Skip BOM
+            langFileData = langFileData[3..];
         var json = Encoding.UTF8.GetString(langFileData);
 #endif
         var jobj = JObject.Parse(json);
