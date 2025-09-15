@@ -21,7 +21,7 @@ public class HealthFeature : FeatureBase
     private readonly Hotkey _healHotkey =
         Hotkey.Create("PlayerHealth::Heal", "hotkey.namespace.health", "hotkey.health.heal", KeyCode.None, down =>
         {
-            if (down) Hc?.RefillHealthToMax();
+            if (down) Hc?.MaxHealth();
         });
 
     public override ModPage Page => ModPage.Player;
@@ -32,7 +32,7 @@ public class HealthFeature : FeatureBase
         EnableGodMode.Value = GUILayout.Toggle(EnableGodMode, "feature.player.health.godMode".Translate());
         EnableLockMaxHealth.Value = GUILayout.Toggle(EnableLockMaxHealth, "feature.player.health.lockMaxHealth".Translate());
         if (GUILayout.Button("feature.player.health.heal".Translate()))
-            Hc?.RefillHealthToMax();
+            Hc?.MaxHealth();
         UiUtils.EndCategory();
     }
 
