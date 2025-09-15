@@ -33,7 +33,7 @@
     <ItemGroup>
         <Reference Include="Assembly-CSharp">
             <HintPath>$(ManagedPath)/Assembly-CSharp.dll</HintPath>
-        </Reference>  
+        </Reference>
         <Reference Include="TeamCherry.TK2D">
             <HintPath>$(ManagedPath)/TeamCherry.TK2D.dll</HintPath>
         </Reference>
@@ -42,7 +42,7 @@
         </Reference>
         <Reference Include="Harmony">
             <HintPath>$(BepInExPath)/core/0Harmony.dll</HintPath>
-        </Reference>       
+        </Reference>
         <Reference Include="Newtonsoft.Json">
             <HintPath>$(ManagedPath)/Newtonsoft.Json.dll</HintPath>
         </Reference>
@@ -51,12 +51,15 @@
         </Reference>
         <Reference Include="UnityEngine.UI">
             <HintPath>$(ManagedPath)/UnityEngine.Ui.dll</HintPath>
-        </Reference>       
+        </Reference>
         <Reference Include="UnityEngine.IMGUI">
             <HintPath>$(ManagedPath)/UnityEngine.IMGUIModule.dll</HintPath>
-        </Reference>        
+        </Reference>
         <Reference Include="Unity.ResourceManager">
             <HintPath>$(ManagedPath)/Unity.ResourceManager.dll</HintPath>
+        </Reference>        
+        <Reference Include="System.Windows.Forms">
+            <HintPath>$(ManagedPath)/System.Windows.Forms.dll</HintPath>
         </Reference>
         <PackageReference Include="UnityEngine.Modules" Version="2020.2.2" IncludeAssets="compile"/>
     </ItemGroup>
@@ -66,9 +69,24 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Assets\language.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+        <Compile Update="ModResources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>ModResources.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="ModResources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>ModResources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Assets\language.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -80,16 +98,8 @@
         <MakeDir Directories="$(ModFolder)"/>
 
         <!-- Copy the compiled DLL to the mod folder -->
-        <Copy
-                SourceFiles="$(TargetPath)"
-                DestinationFolder="$(ModFolder)"
-                SkipUnchangedFiles="true"
-        />
-        <Copy
-                SourceFiles="Assets\language.json"
-                DestinationFolder="$(ModFolder)"
-                SkipUnchangedFiles="true"
-        />
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModFolder)" SkipUnchangedFiles="true"/>
+        <!--        <Copy SourceFiles="Assets\language.json" DestinationFolder="$(ModFolder)" SkipUnchangedFiles="true" />-->
 
         <!-- Optional: You can add a message to confirm the copy -->
         <Message Text="Copied $(TargetFileName) to $(ModFolder)" Importance="high"/>

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
 using UnityEngine;

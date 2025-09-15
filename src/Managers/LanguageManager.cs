@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using HKSC.Managers;
+using System.IO.MemoryMappedFiles;
+using System.Text;
+using HKSC.Misc;
 using Newtonsoft.Json.Linq;
 
-namespace HKSC.Misc;
+namespace HKSC.Managers;
 
 public static class LanguageManager
 {
     public static readonly ConfigObject<string> CurrentLang = CfgManager.Create("Generic::CurrentLang", "en_us");
 
     private static readonly Dictionary<string, Dictionary<string, string>> LangMap = new();
-    
+
     public static IReadOnlyCollection<string> AvailableLanguages => LangMap.Keys;
 
     public static string Get(string key)
@@ -47,10 +49,15 @@ public static class LanguageManager
 
     public static void Init()
     {
+#if USE_FILE_LANGUAGE
         var assemblyPath = typeof(CfgManager).Assembly.Location;
         var dir = Path.GetDirectoryName(assemblyPath);
         var langFile = Path.Combine(dir ?? throw new InvalidOperationException(), "language.json");
         var json = File.ReadAllText(langFile);
+#else
+        var langFileData = ModResources.Language;
+        var json = Encoding.UTF8.GetString(langFileData);
+#endif
         var jobj = JObject.Parse(json);
         foreach (var pair in jobj)
         {
