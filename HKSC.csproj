@@ -84,9 +84,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="Assets\language.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
+      <None Remove="Assets\language.json" />
+      <Resource Include="Assets\language.json">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">

@@ -41,6 +41,15 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] No dash cooldown
 - [x] Can infinity dash on air
 
+### Player - Enhanced Attack
+
+- [x] Attack forward
+- [x] Attack upward
+- [x] Attack downward
+- [x] Attack backward
+- [x] Attack Right
+- [x] Attack Left
+
 ### Player - Kill Aura
 
 - [x] Range filter

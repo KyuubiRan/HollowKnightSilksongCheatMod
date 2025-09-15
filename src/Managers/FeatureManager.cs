@@ -32,6 +32,7 @@ public static class FeatureManager
         AddFeature<NoclipFeature>();
         AddFeature<DamageFeature>();
         AddFeature<ActionFeature>();
+        AddFeature<EnhancedAttack>();
         AddFeature<KillAuraFeature>();
 
         // Currency

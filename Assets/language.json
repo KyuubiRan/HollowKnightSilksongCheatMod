@@ -34,6 +34,9 @@
     "feature.player.action.noAttackCd": "无攻击冷却",
     "feature.player.action.infinityAirDash": "无限空中冲刺",
     "feature.player.action.noDashCd": "无冲刺冷却",
+    // Feature - Enhanced Attack
+    "feat.player.enhancedAttack.title": "增强攻击",
+    "feat.player.enhancedAttack.desc": "请在快捷键页面为不同攻击方向设置快捷键。",
     // Feature - Noclip
     "feature.player.noclip.title": "无碰撞飞行",
     "feature.player.noclip.speed.format": "速度：{0:0.0}",
@@ -111,7 +114,14 @@
     "hotkey.menu.toggleEquipAnywhere": "开关随时调整装备",
     "hotkey.menu.toggleAlwaysShowPosition": "开关总是在地图上显示玩家位置",
     "hotkey.namespace.game": "游戏",
-    "hotkey.game.toggleTimeScale": "开关游戏速度"
+    "hotkey.game.toggleTimeScale": "开关游戏速度",
+    "hotkey.namespace.player.enhancedAttack": "玩家 - 增强攻击",
+    "hotkey.player.enhancedAttack.attackForward": "攻击前方",
+    "hotkey.player.enhancedAttack.attackUpward": "攻击上方",
+    "hotkey.player.enhancedAttack.attackDownward": "攻击下方",
+    "hotkey.player.enhancedAttack.attackBackward": "攻击后方",
+    "hotkey.player.enhancedAttack.attackLeft": "攻击左方",
+    "hotkey.player.enhancedAttack.attackRight": "攻击右方"
   },
   "en_us": {
     "generic.language": "Language",
@@ -160,6 +170,9 @@
     "feature.player.action.noAttackCd": "No Attack Cooldown",
     "feature.player.action.infinityAirDash": "Infinity Air Dash",
     "feature.player.action.noDashCd": "No Dash Cooldown",
+    // Feature - Enhanced Attack
+    "feat.player.enhancedAttack.title": "Enhanced Attack",
+    "feat.player.enhancedAttack.desc": "Please set hotkeys for different attack directions in the Hotkey settings page.",
     // Feature - Currency
     "feature.currency.rosaries.title": "Rosaries",
     "feature.currency.shards.title": "Shell Shards",
@@ -225,6 +238,13 @@
     "hotkey.menu.toggleEquipAnywhere": "Toggle Equip Anywhere",
     "hotkey.menu.toggleAlwaysShowPosition": "Toggle Always Show Player's Position",
     "hotkey.namespace.game": "Game",
-    "hotkey.game.toggleTimeScale": "Toggle Game Speed"
+    "hotkey.game.toggleTimeScale": "Toggle Game Speed",
+    "hotkey.namespace.player.enhancedAttack": "Player - Enhanced Attack",
+    "hotkey.player.enhancedAttack.attackForward": "Attack Forward",
+    "hotkey.player.enhancedAttack.attackUpward": "Attack Upward",
+    "hotkey.player.enhancedAttack.attackDownward": "Attack Downward",
+    "hotkey.player.enhancedAttack.attackBackward": "Attack Backward",
+    "hotkey.player.enhancedAttack.attackLeft": "Attack Left",
+    "hotkey.player.enhancedAttack.attackRight": "Attack Right"
   }
 }

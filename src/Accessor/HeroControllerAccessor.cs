@@ -1,4 +1,5 @@
 using System.Reflection;
+using GlobalEnums;
 using HarmonyLib;
 using UnityEngine;
 
@@ -23,4 +24,5 @@ public static class HeroControllerAccessor
         AccessTools.FieldRefAccess<HeroController, Collider2D>("col2d");
 
     public static readonly MethodInfo StartInvulnerableMethod = AccessTools.Method(typeof(HeroController), "StartInvulnerable", [typeof(float)]);
+    public static readonly MethodInfo AttackMethod = AccessTools.Method(typeof(HeroController), "Attack", [typeof(AttackDirection)]);
 }
