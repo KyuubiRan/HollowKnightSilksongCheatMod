@@ -47,6 +47,7 @@ public class TeleportPoint
         }
 
         Hc.transform.position = Position;
+        Hc.UnPause();
         Hc.ResetState();
         Hc.AcceptInput();
 
