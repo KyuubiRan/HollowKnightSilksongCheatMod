@@ -36,6 +36,7 @@ public static class EnemyManager
             return;
 
         Enemies.Clear();
+        // Log.LogInfo("Scene changed to " + scene.name + ", cleared enemies list.");
         OnEnemiesLoadedEvent?.Invoke(Enemies);
     }
 }

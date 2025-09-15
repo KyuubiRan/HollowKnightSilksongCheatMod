@@ -68,6 +68,7 @@
     // Feature - Map
     "feature.menu.map.title": "地图",
     "feature.menu.map.alwaysShowPosition": "总是在地图上显示玩家位置",
+    "feature.menu.map.unlockMap": "解锁地图",
     // Feature - Teleport
     "feature.teleport.sceneInfo.title": "地图信息",
     "feature.teleport.sceneInfo.sceneName": "地图名字：{0}",
@@ -113,6 +114,7 @@
     "hotkey.namespace.menu": "菜单",
     "hotkey.menu.toggleEquipAnywhere": "开关随时调整装备",
     "hotkey.menu.toggleAlwaysShowPosition": "开关总是在地图上显示玩家位置",
+    "hotkey.menu.toggleEnableUnlockMap": "开关解锁地图",
     "hotkey.namespace.game": "游戏",
     "hotkey.game.toggleTimeScale": "开关游戏速度",
     "hotkey.namespace.player.enhancedAttack": "玩家 - 增强攻击",
@@ -192,6 +194,7 @@
     // Feature - Map
     "feature.menu.map.title": "Map",
     "feature.menu.map.alwaysShowPosition": "Always Show Player's Position",
+    "feature.menu.map.unlockMap": "Unlock Map",
     // Feature - Teleport
     "feature.teleport.sceneInfo.title": "Scene Info",
     "feature.teleport.sceneInfo.sceneName": "Scene Name: {0}",
@@ -237,6 +240,7 @@
     "hotkey.namespace.menu": "Menu",
     "hotkey.menu.toggleEquipAnywhere": "Toggle Equip Anywhere",
     "hotkey.menu.toggleAlwaysShowPosition": "Toggle Always Show Player's Position",
+    "hotkey.menu.toggleEnableUnlockMap": "Toggle Unlock Map",
     "hotkey.namespace.game": "Game",
     "hotkey.game.toggleTimeScale": "Toggle Game Speed",
     "hotkey.namespace.player.enhancedAttack": "Player - Enhanced Attack",
