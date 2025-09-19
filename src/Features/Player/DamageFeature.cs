@@ -15,7 +15,9 @@ public class DamageFeature : FeatureBase
         CfgManager.Create("PlayerDamage::EnableMultiDamage", false).CreateToggleHotkey("hotkey.namespace.damage", "hotkey.damage.toggleDamageMultiplier");
 
     public readonly ConfigObject<float> MultiDamageValue = CfgManager.Create("PlayerDamage::MultiDamageValue", 2f);
-    public readonly ConfigObject<bool> EnableOneHitKill = CfgManager.Create("PlayerDamage::EnableOneHitKill", false).CreateToggleHotkey("hotkey.namespace.damage", "hotkey.damage.toggleOneHitKill");
+
+    public readonly ConfigObject<bool> EnableOneHitKill = CfgManager.Create("PlayerDamage::EnableOneHitKill", false)
+                                                                    .CreateToggleHotkey("hotkey.namespace.damage", "hotkey.damage.toggleOneHitKill");
 
     protected override void OnGui()
     {

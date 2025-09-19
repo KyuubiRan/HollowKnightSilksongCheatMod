@@ -1,5 +1,4 @@
-﻿using System.Buffers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using HKSC.Extensions;
 using HKSC.Managers;
@@ -78,7 +77,7 @@ public class ShowEnemyHpFeature : FeatureBase
                 continue;
             }
 
-            if (hm ==null)
+            if (hm == null)
             {
                 Object.Destroy(text.gameObject);
                 TextDict.Remove(hm);
@@ -91,12 +90,11 @@ public class ShowEnemyHpFeature : FeatureBase
                 _mainCamera.WorldToScreenPoint(hm.gameObject.transform.position - new Vector3(0, 1f, 0));
             text.transform.position = screenPos;
         }
-        
     }
 
     protected override void OnStart()
     {
-        SceneManager.activeSceneChanged += (old, newScene) => { TextDict.Clear(); };
+        SceneManager.activeSceneChanged += (_, _) => { TextDict.Clear(); };
     }
 
     protected override void OnUpdate()

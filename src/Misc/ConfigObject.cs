@@ -6,8 +6,9 @@ public class ConfigObject<T>(string key, T value = default)
 {
     public string Key { get; private set; } = key;
     public T _value = value;
-    
+
     public delegate void OnChangedHandler(ConfigObject<T> config);
+
     public event OnChangedHandler OnChanged;
 
     public T Value
@@ -21,7 +22,7 @@ public class ConfigObject<T>(string key, T value = default)
             CfgManager.FireChanged(this);
         }
     }
-    
+
     public ConfigObject<T> AddOnChangedListener(OnChangedHandler handler)
     {
         OnChanged += handler;

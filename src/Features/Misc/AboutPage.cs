@@ -21,16 +21,16 @@ public class AboutPage : FeatureBase
         }
 
         UiUtils.EndCategory();
-        
+
         UiUtils.BeginCategory("generic.language".Translate());
         GUILayout.Label("generic.language.current".Translate());
-        
+
         var langs = LanguageManager.AvailableLanguages;
         const int langPerRow = 5;
         var total = langs.Count;
         var i = 0;
         GUILayout.BeginHorizontal();
-        
+
         foreach (var lang in langs)
         {
             i++;
@@ -42,10 +42,10 @@ public class AboutPage : FeatureBase
             GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();
         }
-     
+
         GUILayout.EndHorizontal();
-        
-        
+
+
         UiUtils.EndCategory();
     }
 }

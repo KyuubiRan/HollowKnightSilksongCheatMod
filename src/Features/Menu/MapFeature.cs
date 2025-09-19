@@ -15,8 +15,8 @@ public class MapFeature : FeatureBase
     public override ModPage Page => ModPage.Menu;
 
     public readonly ConfigObject<bool> EnableAlwaysShowPosition =
-        CfgManager.Create("Map::EnableAlwaysShowPosition", false).CreateToggleHotkey("hotkey.namespace.menu","hotkey.menu.toggleAlwaysShowPosition");    
-    
+        CfgManager.Create("Map::EnableAlwaysShowPosition", false).CreateToggleHotkey("hotkey.namespace.menu", "hotkey.menu.toggleAlwaysShowPosition");
+
     // public readonly ConfigObject<bool> EnableUnlockMap =
     //     CfgManager.Create("Map::EnableUnlockMap", false).CreateToggleHotkey("hotkey.namespace.menu","hotkey.menu.toggleEnableUnlockMap");
 

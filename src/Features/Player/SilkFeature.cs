@@ -13,7 +13,7 @@ public class SilkFeature : FeatureBase
     public override ModPage Page => ModPage.Player;
 
     public readonly ConfigObject<bool> EnableLockMaxSilk = CfgManager.Create("PlayerSilk::EnableLockMaxSilk", false)
-        .CreateToggleHotkey("hotkey.namespace.silk", "hotkey.silk.toggleLockMaxSilk");
+                                                                     .CreateToggleHotkey("hotkey.namespace.silk", "hotkey.silk.toggleLockMaxSilk");
 
     private readonly Hotkey _refillHotkey =
         Hotkey.Create("PlayerSilk::SetToMax", "hotkey.namespace.silk", "hotkey.silk.refill", KeyCode.None, down =>

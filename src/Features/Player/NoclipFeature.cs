@@ -12,7 +12,7 @@ public class NoclipFeature : FeatureBase
 {
     private static HeroController Hc => HeroController.UnsafeInstance;
     private static InputHandler Ih => InputHandler.UnsafeInstance;
-    
+
     private static Rigidbody2D _rigidbody2D;
     private static Collider2D _collider2D;
 

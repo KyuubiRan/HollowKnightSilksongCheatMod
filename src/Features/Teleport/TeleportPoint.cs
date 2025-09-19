@@ -1,4 +1,3 @@
-using GlobalEnums;
 using UnityEngine.SceneManagement;
 using Vector2 = UnityEngine.Vector2;
 
