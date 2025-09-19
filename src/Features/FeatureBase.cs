@@ -1,4 +1,5 @@
-﻿using HKSC.Managers;
+﻿using System;
+using HKSC.Managers;
 using HKSC.Ui;
 
 namespace HKSC.Features;
@@ -32,4 +33,5 @@ public abstract class FeatureBase
     }
 
     public static T Instance<T>() where T : FeatureBase => FeatureManager.GetFeature<T>();
+    public static Lazy<T> LazyInstance<T>() where T : FeatureBase => FeatureManager.LazyFeature<T>();
 }

@@ -5,6 +5,7 @@ using HKSC.Features;
 using HKSC.Features.Currency;
 using HKSC.Features.Enemy;
 using HKSC.Features.Game;
+using HKSC.Features.Inventory;
 using HKSC.Features.Menu;
 using HKSC.Features.Misc;
 using HKSC.Features.Player;
@@ -37,6 +38,9 @@ public static class FeatureManager
         AddFeature<ActionFeature>();
         AddFeature<EnhancedAttack>();
         AddFeature<KillAuraFeature>();
+
+        // Inventory
+        AddFeature<ItemCountFeature>();
 
         // Currency
         AddFeature<ShellShardFeature>();

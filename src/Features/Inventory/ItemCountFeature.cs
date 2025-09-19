@@ -3,30 +3,21 @@ using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
+using UnityEngine;
 
 namespace HKSC.Features.Inventory;
 
 public class ItemCountFeature : FeatureBase
 {
-    private static HeroController Hc => HeroController.UnsafeInstance;
-
     public override ModPage Page => ModPage.Inventory;
 
-    private readonly ConfigObject<bool> _enableLockMaxItemUse = CfgManager.Create("PlayerItem::EnableLockMaxItemUse", false)
-                                                                          .CreateToggleHotkey("hotkey.namespace.item", "hotkey.item.toggleLockMaxItemUse");
+    public readonly ConfigObject<bool> EnableLockMaxItemUse = CfgManager.Create("PlayerItem::EnableLockMaxItemUse", false)
+                                                                        .CreateToggleHotkey("hotkey.namespace.inventory", "hotkey.inventory.toggleLockMaxItemUse");
 
     protected override void OnGui()
     {
-        UiUtils.BeginCategory("feat.inventory.item".Translate());
+        UiUtils.BeginCategory("feature.inventory.item.title".Translate());
+        EnableLockMaxItemUse.Value = GUILayout.Toggle(EnableLockMaxItemUse, "feat.inventory.item.lockMaxItemUse".Translate());
         UiUtils.EndCategory();
-    }
-
-    protected override void OnUpdate()
-    {
-        if (Hc == null) return;
-
-        if (_enableLockMaxItemUse)
-        {
-        }
     }
 }
