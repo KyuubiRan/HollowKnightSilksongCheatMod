@@ -12,11 +12,22 @@ public class NoclipFeature : FeatureBase
 {
     private static HeroController Hc => HeroController.UnsafeInstance;
     private static InputHandler Ih => InputHandler.UnsafeInstance;
+    
+    private static Rigidbody2D _rigidbody2D;
+    private static Collider2D _collider2D;
 
     public override ModPage Page => ModPage.Player;
 
     public readonly ConfigObject<bool> IsEnabled = CfgManager.Create("Noclip::Enable", false)
-        .CreateToggleHotkey("hotkey.namespace.noclip", "hotkey.generic.toggle");
+                                                             .CreateToggleHotkey("hotkey.namespace.noclip", "hotkey.generic.toggle")
+                                                             .AddOnChangedListener(x =>
+                                                             {
+                                                                 if (x)
+                                                                 {
+                                                                     _rigidbody2D ??= HeroControllerAccessor.Rb2dField(Hc);
+                                                                     _collider2D ??= HeroControllerAccessor.Col2dField(Hc);
+                                                                 }
+                                                             });
 
     public readonly ConfigObject<float> Speed = CfgManager.Create("Noclip::Speed", 5f);
 
@@ -30,8 +41,6 @@ public class NoclipFeature : FeatureBase
         UiUtils.EndCategory();
     }
 
-    private Rigidbody2D _rigidbody2D;
-    private Collider2D _collider2D;
 
     protected override void OnUpdate()
     {
