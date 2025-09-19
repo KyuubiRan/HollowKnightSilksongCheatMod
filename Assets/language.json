@@ -6,6 +6,7 @@
     "ui.menu.title": "丝之歌修改器",
     // Category Titles
     "feature.category.Player": "玩家",
+    "feature.category.Inventory": "物品栏",
     "feature.category.Enemy": "敌人",
     "feature.category.Currency": "货币",
     "feature.category.Menu": "菜单",
@@ -123,7 +124,9 @@
     "hotkey.player.enhancedAttack.attackDownward": "攻击下方",
     "hotkey.player.enhancedAttack.attackBackward": "攻击后方",
     "hotkey.player.enhancedAttack.attackLeft": "攻击左方",
-    "hotkey.player.enhancedAttack.attackRight": "攻击右方"
+    "hotkey.player.enhancedAttack.attackRight": "攻击右方",
+    "hotkey.namespace.item": "物品栏 - 物品",
+    "hotkey.item.toggleLockMaxItemUse" : "锁定最大可使用数"
   },
   "en_us": {
     "generic.language": "Language",
@@ -132,6 +135,7 @@
     "ui.menu.title": "HKSC",
     // Category Titles
     "feature.category.Player": "Player",
+    "feature.category.Inventory": "Inventory",
     "feature.category.Enemy": "Enemy",
     "feature.category.Currency": "Currency",
     "feature.category.Menu": "Menu",
@@ -249,6 +253,8 @@
     "hotkey.player.enhancedAttack.attackDownward": "Attack Downward",
     "hotkey.player.enhancedAttack.attackBackward": "Attack Backward",
     "hotkey.player.enhancedAttack.attackLeft": "Attack Left",
-    "hotkey.player.enhancedAttack.attackRight": "Attack Right"
+    "hotkey.player.enhancedAttack.attackRight": "Attack Right",
+    "hotkey.namespace.item": "Inventory - Item",
+    "hotkey.item.toggleLockMaxItemUse" : "Toggle Lock Max Item Use"
   }
 }

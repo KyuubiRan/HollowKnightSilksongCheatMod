@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HKSC.Features;
 using HKSC.Features.Currency;
@@ -23,6 +24,8 @@ public static class FeatureManager
 
     [CanBeNull]
     public static T GetFeature<T>() where T : FeatureBase => Features.FirstOrDefault(x => x is T) as T;
+
+    public static Lazy<T> LazyFeature<T>() where T : FeatureBase => new(() => Features.FirstOrDefault(x => x is T) as T);
 
     public static void Init()
     {

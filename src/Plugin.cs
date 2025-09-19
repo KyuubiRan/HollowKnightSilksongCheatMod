@@ -21,7 +21,6 @@ public class Plugin : BaseUnityPlugin
 
     private void Update()
     {
-        EnemyManager.OnUpdate();
         HotkeyManager.OnUpdate();
         CfgManager.OnUpdate();
     }
@@ -39,6 +38,5 @@ public class Plugin : BaseUnityPlugin
 
         FeatureManager.Init();
         ModMainUi.Instance.Initialize();
-        SceneManager.activeSceneChanged += (oldScene, newScene) => { EnemyManager.OnSceneChanged(newScene); };
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Buffers;
+using System.Collections.Generic;
+using System.Linq;
 using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
@@ -6,6 +8,7 @@ using HKSC.Ui;
 using HKSC.Utils;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace HKSC.Features.Enemy;
@@ -15,7 +18,9 @@ public class ShowEnemyHpFeature : FeatureBase
     public override ModPage Page => ModPage.Enemy;
 
     public readonly ConfigObject<bool> ShowHp = CfgManager.Create("EnemyInfo::Enable", false)
-        .CreateToggleHotkey("hotkey.namespace.enemy", "hotkey.enemy.info.toggleShowEnemyHp");
+                                                          .CreateToggleHotkey("hotkey.namespace.enemy", "hotkey.enemy.info.toggleShowEnemyHp");
+
+    private static readonly Dictionary<HealthManager, Text> TextDict = new();
 
     [CanBeNull] private Camera _mainCamera;
     private GameObject _hpCanvasGo;
@@ -28,7 +33,7 @@ public class ShowEnemyHpFeature : FeatureBase
         UiUtils.EndCategory();
     }
 
-    private void AttachHealthTextComponent(EnemyManager.EnemyInfo info)
+    private Text AttachHealthTextComponent(HealthManager hm)
     {
         if (_canvas == null)
         {
@@ -47,7 +52,9 @@ public class ShowEnemyHpFeature : FeatureBase
         textComp.fontStyle = FontStyle.Bold;
         textComp.color = Color.white;
         textComp.alignment = TextAnchor.MiddleCenter;
-        info.HpTextComp = textComp;
+        TextDict[hm] = textComp;
+
+        return textComp;
     }
 
     private void UpdateHpText()
@@ -58,29 +65,38 @@ public class ShowEnemyHpFeature : FeatureBase
         if (_mainCamera == null)
             return;
 
-        if (ShowHp)
+        foreach (var hm in HealthManager.EnumerateActiveEnemies().Where(x => !TextDict.ContainsKey(x)))
         {
-            foreach (var info in EnemyManager.Enemies.Where(info => info.GameObject != null && info.HealthManager != null))
-            {
-                if (info.HpTextComp == null)
-                {
-                    AttachHealthTextComponent(info);
-                }
+            AttachHealthTextComponent(hm);
+        }
 
-                info.HpTextComp.enabled = !info.HealthManager.isDead;
-                info.HpTextComp.text = $"HP: {info.HealthManager.hp} ";
-                var screenPos =
-                    _mainCamera.WorldToScreenPoint(info.GameObject.transform.position - new Vector3(0, 1f, 0));
-                info.HpTextComp.transform.position = screenPos;
-            }
-        }
-        else
+        foreach (var (hm, text) in TextDict)
         {
-            foreach (var info in EnemyManager.Enemies.Where(info => info.HpTextComp != null))
+            if (!ShowHp)
             {
-                info.HpTextComp.enabled = false;
+                text.enabled = false;
+                continue;
             }
+
+            if (hm ==null)
+            {
+                Object.Destroy(text.gameObject);
+                TextDict.Remove(hm);
+                continue;
+            }
+
+            text.enabled = !hm.isDead;
+            text.text = $"HP: {hm.hp}";
+            var screenPos =
+                _mainCamera.WorldToScreenPoint(hm.gameObject.transform.position - new Vector3(0, 1f, 0));
+            text.transform.position = screenPos;
         }
+        
+    }
+
+    protected override void OnStart()
+    {
+        SceneManager.activeSceneChanged += (old, newScene) => { TextDict.Clear(); };
     }
 
     protected override void OnUpdate()
