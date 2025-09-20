@@ -209,7 +209,7 @@
     "feature.inventory.title": "Inventory",
     "feature.inventory.equipAnywhere": "Equip Anywhere",
     "feature.inventory.item.title": "Item",
-    "feature.inventory.item..lockMaxItemUse": "Infinity Item Use",
+    "feature.inventory.item.lockMaxItemUse": "Infinity Item Use",
     "feature.inventory.item.autoReplenishCountItem": "Auto Replenish Item Use Count",
     // Feature - Map
     "feature.menu.map.title": "Map",
