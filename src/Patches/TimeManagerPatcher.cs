@@ -25,7 +25,9 @@ public class TimeManagerPatcher
         if (!Feature.EnableTimeScale)
             return true;
 
-        if (!Mathf.Approximately(_lastTimeScale, 1f)) return true;
+        if (!Mathf.Approximately(_lastTimeScale, 1f)) 
+            return true;
+        
         __result = Feature.TimeScale;
         return false;
     }
