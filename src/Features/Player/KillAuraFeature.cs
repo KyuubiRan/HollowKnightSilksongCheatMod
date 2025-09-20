@@ -53,7 +53,7 @@ public class KillAuraFeature : FeatureBase
                  select enemy
                 )
         {
-            if (enemy == null) continue;
+            if (!enemy) continue;
 
             enemy.Hit(
                 new HitInstance

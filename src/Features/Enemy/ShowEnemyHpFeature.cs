@@ -79,7 +79,7 @@ public class ShowEnemyHpFeature : FeatureBase
                 continue;
             }
 
-            if (hm == null)
+            if (!hm)
             {
                 ToRemove.Add(hm);
                 continue;
