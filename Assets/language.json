@@ -128,8 +128,8 @@
     "hotkey.player.enhancedAttack.attackBackward": "攻击后方",
     "hotkey.player.enhancedAttack.attackLeft": "攻击左方",
     "hotkey.player.enhancedAttack.attackRight": "攻击右方",
-    "hotkey.namespace.item": "物品栏 - 物品",
-    "hotkey.item.toggleLockMaxItemUse" : "锁定最大可使用数"
+    "hotkey.namespace.inventory.item": "物品栏 - 物品",
+    "hotkey.inventory.item.toggleLockMaxItemUse": "锁定最大可使用数"
   },
   "en_us": {
     "generic.language": "Language",
@@ -260,7 +260,7 @@
     "hotkey.player.enhancedAttack.attackBackward": "Attack Backward",
     "hotkey.player.enhancedAttack.attackLeft": "Attack Left",
     "hotkey.player.enhancedAttack.attackRight": "Attack Right",
-    "hotkey.namespace.item": "Inventory - Item",
-    "hotkey.item.toggleLockMaxItemUse" : "Toggle Lock Max Item Use"
+    "hotkey.namespace.inventory.item": "Inventory - Item",
+    "hotkey.inventory.item.toggleLockMaxItemUse": "Toggle Lock Max Item Use"
   }
 }

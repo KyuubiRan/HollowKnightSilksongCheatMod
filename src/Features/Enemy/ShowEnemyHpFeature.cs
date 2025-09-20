@@ -56,6 +56,8 @@ public class ShowEnemyHpFeature : FeatureBase
         return textComp;
     }
 
+    private static readonly List<HealthManager> ToRemove = [];
+
     private void UpdateHpText()
     {
         if (_mainCamera == null)
@@ -79,8 +81,7 @@ public class ShowEnemyHpFeature : FeatureBase
 
             if (hm == null)
             {
-                Object.Destroy(text.gameObject);
-                TextDict.Remove(hm);
+                ToRemove.Add(hm);
                 continue;
             }
 
@@ -90,6 +91,18 @@ public class ShowEnemyHpFeature : FeatureBase
                 _mainCamera.WorldToScreenPoint(hm.gameObject.transform.position - new Vector3(0, 1f, 0));
             text.transform.position = screenPos;
         }
+
+        foreach (var hm in ToRemove)
+        {
+            if (TextDict.TryGetValue(hm, out var text))
+            {
+                if (text != null)
+                    Object.Destroy(text.gameObject);
+                TextDict.Remove(hm);
+            }
+        }
+
+        ToRemove.Clear();
     }
 
     protected override void OnStart()

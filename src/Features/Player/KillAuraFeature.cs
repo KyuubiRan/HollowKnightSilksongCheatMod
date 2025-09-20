@@ -47,12 +47,14 @@ public class KillAuraFeature : FeatureBase
         var hcPos = Hc.transform.position;
         var attacked = false;
         foreach (var enemy in
-                 from enemy in HealthManager.EnumerateActiveEnemies()
+                 from enemy in HealthManager.EnumerateActiveEnemies().ToList()
                  let enemyPos = enemy.gameObject.transform.position
                  where !(Vector2.Distance(hcPos, enemyPos) > Range)
                  select enemy
                 )
         {
+            if (enemy == null) continue;
+
             enemy.Hit(
                 new HitInstance
                 {

@@ -7,7 +7,7 @@
         <Description>Hollow Knight: Silksong Cheat Mod</Description>
         <Version>1.0.0</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <LangVersion>latest</LangVersion>
+        <LangVersion>14.0</LangVersion>
         <RestoreAdditionalProjectSources>
             https://api.nuget.org/v3/index.json;
             https://nuget.bepinex.dev/v3/index.json;
@@ -61,11 +61,11 @@
         <Reference Include="System.Windows.Forms">
             <HintPath>$(ManagedPath)/System.Windows.Forms.dll</HintPath>
         </Reference>
-        <PackageReference Include="UnityEngine.Modules" Version="2020.2.2" IncludeAssets="compile"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2020.2.2" IncludeAssets="compile" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>
@@ -85,9 +85,9 @@
 
     <ItemGroup>
       <None Remove="Assets\language.json" />
-      <Resource Include="Assets\language.json">
+      <EmbeddedResource Include="Assets\language.json">
             <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </Resource>
+      </EmbeddedResource>
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -96,14 +96,14 @@
         </PropertyGroup>
 
         <!-- Create the mod directory if it doesn't exist -->
-        <MakeDir Directories="$(ModFolder)"/>
+        <MakeDir Directories="$(ModFolder)" />
 
         <!-- Copy the compiled DLL to the mod folder -->
-        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModFolder)" SkipUnchangedFiles="true"/>
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModFolder)" SkipUnchangedFiles="true" />
         <!--        <Copy SourceFiles="Assets\language.json" DestinationFolder="$(ModFolder)" SkipUnchangedFiles="true" />-->
 
         <!-- Optional: You can add a message to confirm the copy -->
-        <Message Text="Copied $(TargetFileName) to $(ModFolder)" Importance="high"/>
+        <Message Text="Copied $(TargetFileName) to $(ModFolder)" Importance="high" />
     </Target>
 
     <!-- Copying the important .dll file to build/, useful if you want to copy it yourself but don't want to dig through bin/...-->
