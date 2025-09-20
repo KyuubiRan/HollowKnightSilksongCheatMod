@@ -56,6 +56,10 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] Custom damage
 - [x] Custom trigger interval
 
+### Player - Crest
+
+- [x] Force reaper mode
+
 ### Inventory
 
 - [x] Equip anywhere
