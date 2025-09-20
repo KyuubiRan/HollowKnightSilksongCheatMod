@@ -36,6 +36,9 @@
         </Reference>
         <Reference Include="TeamCherry.TK2D">
             <HintPath>$(ManagedPath)/TeamCherry.TK2D.dll</HintPath>
+        </Reference>     
+        <Reference Include="TeamCherry.NestedFadeGroup">
+            <HintPath>$(ManagedPath)/TeamCherry.NestedFadeGroup.dll</HintPath>
         </Reference>
         <Reference Include="BepInEx.Core">
             <HintPath>$(BepInExPath)/core/BepInEx.dll</HintPath>

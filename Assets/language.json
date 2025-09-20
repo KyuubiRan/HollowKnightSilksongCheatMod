@@ -25,6 +25,9 @@
     "feature.player.health.godMode": "无敌模式",
     "feature.player.health.lockMaxHealth": "锁定最大生命值",
     "feature.player.health.heal": "恢复生命值",
+    // Feature - Crest
+    "feature.player.crest.title": "纹章",
+    "feature.player.crest.forceReaperMode": "强制启用收割者Buff",
     // Feature - Silk
     "feature.player.silk.title": "灵丝",
     "feature.player.silk.lockMaxSilk": "锁定最大灵丝",
@@ -99,6 +102,8 @@
     "hotkey.namespace.silk": "玩家 - 灵丝",
     "hotkey.silk.toggleLockMaxSilk": "开关锁定最大值",
     "hotkey.silk.refill": "填充到最大值",
+    "hotkey.namespace.crest": "玩家 - 纹章",
+    "hotkey.crest.toggleForceReaperMode": "开关强制收割者Buff",
     "hotkey.namespace.noclip": "玩家 - 无碰撞飞行",
     "hotkey.namespace.damage": "玩家 - 伤害",
     "hotkey.damage.toggleOneHitKill": "切换一击必杀",
@@ -159,6 +164,9 @@
     "feature.player.health.godMode": "God Mode",
     "feature.player.health.lockMaxHealth": "Lock Max HP",
     "feature.player.health.heal": "Heal",
+    // Feature - Crest
+    "feature.player.crest.title": "Crest",
+    "feature.player.crest.forceReaperMode": "Force Enable Reaper Buff",
     // Feature - Silk
     "feature.player.silk.title": "Silk",
     "feature.player.silk.lockMaxSilk": "Lock Max Silk",
@@ -233,6 +241,8 @@
     "hotkey.namespace.silk": "Player - Silk",
     "hotkey.silk.toggleLockMaxSilk": "Toggle Lock Max Silk",
     "hotkey.silk.refill": "Refill",
+    "hotkey.namespace.crest": "Player - Crest",
+    "hotkey.crest.toggleForceReaperMode": "Toggle Force Reaper Buff",
     "hotkey.namespace.noclip": "Player - Noclip",
     "hotkey.namespace.damage": "Player - Damage",
     "hotkey.damage.toggleOneHitKill": "Toggle One Hit Kill",

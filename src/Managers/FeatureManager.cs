@@ -35,6 +35,7 @@ public static class FeatureManager
         AddFeature<SilkFeature>();
         AddFeature<NoclipFeature>();
         AddFeature<DamageFeature>();
+        AddFeature<CrestFeature>();
         AddFeature<ActionFeature>();
         AddFeature<EnhancedAttack>();
         AddFeature<KillAuraFeature>();
