@@ -45,7 +45,7 @@ public class ModMainUi : MonoBehaviour
     private Vector2 _resizeStartSize;
     private Rect _windowRect = new(100, 100, 450, 500);
     private Rect _toastWindowRect = new(100, 100, 100, 50);
-    private const float ToastDuration = 2f;
+    private const float ToastDuration = 3f;
     private float _toastTimer;
     private string _toastMessage = "";
 
@@ -99,10 +99,9 @@ public class ModMainUi : MonoBehaviour
 
     private void OnGUI()
     {
-        if (!_isVisible)
-            return;
+        if (_isVisible)
+            _windowRect = GUI.Window(0, _windowRect, DrawWindow, "ui.menu.title".Translate());
 
-        _windowRect = GUI.Window(0, _windowRect, DrawWindow, "ui.menu.title".Translate());
         if (_toastTimer >= 0f)
             GUI.Window(1, _toastWindowRect, DrawToast, "ui.toast".Translate());
     }
