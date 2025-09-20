@@ -56,6 +56,11 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] Custom damage
 - [x] Custom trigger interval
 
+### Inventory
+
+- [x] Equip anywhere
+- [x] Auto replenish count item
+
 ### Enemy - Info
 
 - [x] Show enemy HP
@@ -72,13 +77,11 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] Change game speed
 - [x] FPS limiter(Should VSync off)
 
-### Menu - Inventory
-
-- [x] Equip Anywhere
 
 ### Menu - Map
 
 - [x] Always show player's position on the map
+- [ ] Unlock map
 - [ ] Update traveled areas on the map
 
 ### Teleport
