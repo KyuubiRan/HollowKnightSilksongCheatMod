@@ -49,7 +49,7 @@ public class KillAuraFeature : FeatureBase
         foreach (var enemy in
                  from enemy in HealthManager.EnumerateActiveEnemies().ToList()
                  let enemyPos = enemy.gameObject.transform.position
-                 where !(Vector2.Distance(hcPos, enemyPos) > Range)
+                 where Vector2.Distance(hcPos, enemyPos) <= Range
                  select enemy
                 )
         {
