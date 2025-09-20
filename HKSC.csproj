@@ -85,9 +85,9 @@
 
     <ItemGroup>
       <None Remove="Assets\language.json" />
-      <EmbeddedResource Include="Assets\language.json">
+      <Content Include="Assets\language.json">
             <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </EmbeddedResource>
+      </Content>
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">

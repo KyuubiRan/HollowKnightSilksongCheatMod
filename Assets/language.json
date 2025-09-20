@@ -68,6 +68,7 @@
     "feature.inventory.equipAnywhere": "随时调整装备",
     "feature.inventory.item.title": "物品",
     "feature.inventory.item.lockMaxItemUse": "无限物品使用次数",
+    "feature.inventory.item.autoReplenishCountItem": "自动补充物品数量",
     // Feature - Map
     "feature.menu.map.title": "地图",
     "feature.menu.map.alwaysShowPosition": "总是在地图上显示玩家位置",
@@ -129,7 +130,8 @@
     "hotkey.player.enhancedAttack.attackLeft": "攻击左方",
     "hotkey.player.enhancedAttack.attackRight": "攻击右方",
     "hotkey.namespace.inventory.item": "物品栏 - 物品",
-    "hotkey.inventory.item.toggleLockMaxItemUse": "锁定最大可使用数"
+    "hotkey.inventory.item.toggleLockMaxItemUse": "开关锁定最大物品可使用数量",
+    "hotkey.inventory.item.toggleAutoReplenishCountItem": "开关自动补充物品数量"
   },
   "en_us": {
     "generic.language": "Language",
@@ -200,6 +202,7 @@
     "feature.inventory.equipAnywhere": "Equip Anywhere",
     "feature.inventory.item.title": "Item",
     "feature.inventory.item..lockMaxItemUse": "Infinity Item Use",
+    "feature.inventory.item.autoReplenishCountItem": "Auto Replenish Item Use Count",
     // Feature - Map
     "feature.menu.map.title": "Map",
     "feature.menu.map.alwaysShowPosition": "Always Show Player's Position",
@@ -261,6 +264,7 @@
     "hotkey.player.enhancedAttack.attackLeft": "Attack Left",
     "hotkey.player.enhancedAttack.attackRight": "Attack Right",
     "hotkey.namespace.inventory.item": "Inventory - Item",
-    "hotkey.inventory.item.toggleLockMaxItemUse": "Toggle Lock Max Item Use"
+    "hotkey.inventory.item.toggleLockMaxItemUse": "Toggle Lock Max Item Use",
+    "hotkey.inventory.item.toggleAutoReplenishCountItem": "Toggle Auto Replenish Item Use Count"
   }
 }

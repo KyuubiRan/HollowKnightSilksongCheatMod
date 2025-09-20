@@ -33,6 +33,7 @@ public class ModMainUi : MonoBehaviour
     public event EventHandler? OnInitialize;
 
     public event EventHandler? OnUpdate;
+    public event EventHandler? OnFixedUpdate;
 
     public ModPage CurrentPage { get; private set; } = ModPage.Player;
     private static readonly ModPage[] ModPages = (ModPage[])Enum.GetValues(typeof(ModPage));
@@ -132,6 +133,11 @@ public class ModMainUi : MonoBehaviour
 
         DrawResizable(ResizableSize);
         GUI.DragWindow();
+    }
+
+    private void FixedUpdate()
+    {
+        OnFixedUpdate?.Invoke();
     }
 
     private void DrawResizable(float handleSize)
