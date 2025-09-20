@@ -14,7 +14,7 @@ public class NoclipFeature : FeatureBase
     private static InputHandler Ih => InputHandler.UnsafeInstance;
 
     private static Rigidbody2D _rigidbody2D;
-    private static Collider2D _collider2D;
+    // private static Collider2D _collider2D;
 
     public override ModPage Page => ModPage.Player;
 
@@ -41,19 +41,19 @@ public class NoclipFeature : FeatureBase
 
         if (!_rigidbody2D)
             _rigidbody2D = HeroControllerAccessor.Rb2dField(Hc);
-        if (!_collider2D)
-            _collider2D = HeroControllerAccessor.Col2dField(Hc);
+        // if (!_collider2D)
+        //     _collider2D = HeroControllerAccessor.Col2dField(Hc);
 
         if (IsEnabled)
         {
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.isKinematic = true;
-            _collider2D.enabled = false;
+            // _collider2D.enabled = false;
         }
         else
         {
             _rigidbody2D.isKinematic = false;
-            _collider2D.enabled = true;
+            // _collider2D.enabled = true;
         }
 
         if (!IsEnabled) return;
