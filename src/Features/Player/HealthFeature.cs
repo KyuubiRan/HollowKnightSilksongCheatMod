@@ -41,9 +41,6 @@ public class HealthFeature : FeatureBase
         if (!Hc)
             return;
 
-        if (!Hc.exitedQuake)
-            Hc.SetDamageMode(EnableGodMode ? DamageMode.NO_DAMAGE : DamageMode.FULL_DAMAGE);
-
         if (EnableLockMaxHealth || EnableGodMode)
             Hc.playerData.health = Hc.playerData.maxHealth;
     }
