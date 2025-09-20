@@ -27,7 +27,7 @@ public class CurrentSceneDetails : FeatureBase
 
     protected override void OnUpdate()
     {
-        if (Hc == null)
+        if (!Hc)
         {
             _playerPos = Vector2.zero;
             return;

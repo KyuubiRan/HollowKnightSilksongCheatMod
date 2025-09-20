@@ -23,9 +23,4 @@ public class TimeScaleFeature : FeatureBase
         if (EnableTimeScale) TimeScale.Value = UiUtils.Slider(TimeScale, 0f, 5f, 0.1f, "feature.game.speed.format".Translate());
         UiUtils.EndCategory();
     }
-
-    protected override void OnUpdate()
-    {
-        Time.timeScale = EnableTimeScale ? TimeScale : 1f;
-    }
 }

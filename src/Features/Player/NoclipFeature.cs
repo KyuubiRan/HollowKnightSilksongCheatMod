@@ -44,7 +44,7 @@ public class NoclipFeature : FeatureBase
 
     protected override void OnUpdate()
     {
-        if (Hc == null || Ih == null)
+        if (!Hc || !Ih)
             return;
 
         _rigidbody2D ??= HeroControllerAccessor.Rb2dField(Hc);

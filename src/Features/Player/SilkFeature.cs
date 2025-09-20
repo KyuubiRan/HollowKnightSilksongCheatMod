@@ -32,7 +32,7 @@ public class SilkFeature : FeatureBase
 
     protected override void OnUpdate()
     {
-        if (Hc == null)
+        if (!Hc)
             return;
 
         if (EnableLockMaxSilk && Hc.playerData.CurrentSilkMax != Hc.playerData.silk)

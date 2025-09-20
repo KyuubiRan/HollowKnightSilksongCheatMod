@@ -38,7 +38,7 @@ public class HealthFeature : FeatureBase
 
     protected override void OnUpdate()
     {
-        if (Hc == null)
+        if (!Hc)
             return;
 
         if (!Hc.exitedQuake)

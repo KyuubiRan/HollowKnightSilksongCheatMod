@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using HKSC.Managers;
 using HKSC.Ui;
 using UnityEngine;
@@ -52,9 +53,9 @@ public abstract class TeleportFeatureBase : FeatureBase
             return;
 
         var i = 1;
-        foreach (var point in Queue)
+        foreach (var point in Queue.Where(point => RenderTeleportItem(i++, point)))
         {
-            if (RenderTeleportItem(i++, point)) _deleted.Add(point);
+            _deleted.Add(point);
         }
 
         foreach (var point in _deleted)

@@ -21,7 +21,7 @@ public class EnhancedAttack : FeatureBase
                                                               "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackForward", KeyCode.None,
                                                               down =>
                                                               {
-                                                                  if (!down || Hc == null) return;
+                                                                  if (!down || !Hc) return;
                                                                   HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.normal]);
                                                               });
 
@@ -29,7 +29,7 @@ public class EnhancedAttack : FeatureBase
                                                                "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackDownward", KeyCode.None,
                                                                down =>
                                                                {
-                                                                   if (!down || Hc == null) return;
+                                                                   if (!down || !Hc) return;
                                                                    HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.downward]);
                                                                });
 
@@ -37,7 +37,7 @@ public class EnhancedAttack : FeatureBase
                                                              "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackUpward", KeyCode.None,
                                                              down =>
                                                              {
-                                                                 if (!down || Hc == null) return;
+                                                                 if (!down || !Hc) return;
                                                                  HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.upward]);
                                                              });
 
@@ -45,7 +45,7 @@ public class EnhancedAttack : FeatureBase
                                                                "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackBackward", KeyCode.None,
                                                                down =>
                                                                {
-                                                                   if (!down || Hc == null) return;
+                                                                   if (!down || !Hc) return;
                                                                    if (Hc.cState.facingRight)
                                                                    {
                                                                        Hc.FaceLeft();
@@ -62,7 +62,7 @@ public class EnhancedAttack : FeatureBase
                                                             "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackRight", KeyCode.None,
                                                             down =>
                                                             {
-                                                                if (!down || Hc == null) return;
+                                                                if (!down || !Hc) return;
                                                                 if (!Hc.cState.facingRight)
                                                                 {
                                                                     Hc.FaceRight();
@@ -74,7 +74,7 @@ public class EnhancedAttack : FeatureBase
     private readonly Hotkey _attackLeftKey = Hotkey.Create("EnhancedAttack::AttackLeftKey",
                                                            "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackLeft", KeyCode.None, down =>
                                                            {
-                                                               if (!down || Hc == null) return;
+                                                               if (!down || !Hc) return;
                                                                if (Hc.cState.facingRight)
                                                                {
                                                                    Hc.FaceLeft();

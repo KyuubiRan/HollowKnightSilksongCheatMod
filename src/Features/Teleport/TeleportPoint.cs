@@ -25,8 +25,8 @@ public class TeleportPoint
     public bool Teleport()
     {
         if (!Valid) return false;
-        if (Gm == null) return false;
-        if (Hc == null) return false;
+        if (!Gm) return false;
+        if (!Hc) return false;
         if (!Gm.IsGameplayScene()) return false;
         if (GameManager.IsWaitingForSceneReady) return false;
 

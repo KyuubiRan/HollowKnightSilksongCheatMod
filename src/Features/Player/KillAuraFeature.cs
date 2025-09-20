@@ -39,7 +39,7 @@ public class KillAuraFeature : FeatureBase
     protected override void OnUpdate()
     {
         if (!IsEnabled) return;
-        if (Hc == null) return;
+        if (!Hc) return;
 
         _lastAttackTime += Time.deltaTime;
         if (_lastAttackTime < AttackInterval) return;

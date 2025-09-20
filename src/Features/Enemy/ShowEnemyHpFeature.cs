@@ -34,7 +34,7 @@ public class ShowEnemyHpFeature : FeatureBase
 
     private Text AttachHealthTextComponent(HealthManager hm)
     {
-        if (_canvas == null)
+        if (!_canvas)
         {
             _hpCanvasGo = new GameObject("EnemyHpCanvas");
             _canvas = _hpCanvasGo.AddComponent<Canvas>();
@@ -60,10 +60,10 @@ public class ShowEnemyHpFeature : FeatureBase
 
     private void UpdateHpText()
     {
-        if (_mainCamera == null)
+        if (!_mainCamera)
             _mainCamera = Camera.main;
 
-        if (_mainCamera == null)
+        if (!_mainCamera)
             return;
 
         foreach (var hm in HealthManager.EnumerateActiveEnemies().Where(x => !TextDict.ContainsKey(x)))
@@ -96,8 +96,7 @@ public class ShowEnemyHpFeature : FeatureBase
         {
             if (TextDict.TryGetValue(hm, out var text))
             {
-                if (text != null)
-                    Object.Destroy(text.gameObject);
+                if (text) Object.Destroy(text.gameObject);
                 TextDict.Remove(hm);
             }
         }
