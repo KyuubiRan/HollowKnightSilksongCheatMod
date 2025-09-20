@@ -60,6 +60,7 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 
 - [x] Equip anywhere
 - [x] Auto replenish count item
+- [x] Infinity item use
 
 ### Enemy - Info
 
