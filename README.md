@@ -47,8 +47,8 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] Attack upward
 - [x] Attack downward
 - [x] Attack backward
-- [x] Attack Right
-- [x] Attack Left
+- [x] Attack right side
+- [x] Attack left side
 
 ### Player - Kill Aura
 
