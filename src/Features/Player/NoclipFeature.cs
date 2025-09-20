@@ -20,7 +20,8 @@ public class NoclipFeature : FeatureBase
 
     public readonly ConfigObject<bool> IsEnabled = CfgManager
         .Create("Noclip::Enable", false)
-        .CreateToggleHotkey("hotkey.namespace.noclip", "hotkey.generic.toggle");
+        .CreateToggleHotkey("hotkey.namespace.noclip", "hotkey.generic.toggle")
+        .AddToggleToast("feature.player.noclip.title");
 
     public readonly ConfigObject<float> Speed = CfgManager.Create("Noclip::Speed", 5f);
 

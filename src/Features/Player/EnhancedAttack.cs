@@ -14,74 +14,82 @@ public class EnhancedAttack : FeatureBase
     private static HeroController Hc => HeroController.UnsafeInstance;
     public override ModPage Page => ModPage.Player;
 
-    private readonly ConfigObject<bool> _enableEnhancedAttack = CfgManager.Create("EnhancedAttack::EnableEnhancedAttack", false)
-                                                                          .CreateToggleHotkey("hotkey.namespace.player.enhancedAttack", "hotkey.generic.toggle");
+    private readonly ConfigObject<bool> _enableEnhancedAttack = CfgManager
+        .Create("EnhancedAttack::EnableEnhancedAttack", false)
+        .CreateToggleHotkey("hotkey.namespace.player.enhancedAttack", "hotkey.generic.toggle")
+        .AddToggleToast("feat.player.enhancedAttack.title");
 
-    private readonly Hotkey _attackForwardKey = Hotkey.Create("EnhancedAttack::AttackForwardKey",
-                                                              "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackForward", KeyCode.None,
-                                                              down =>
-                                                              {
-                                                                  if (!down || !Hc) return;
-                                                                  HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.normal]);
-                                                              });
+    private readonly Hotkey _attackForwardKey = Hotkey
+        .Create("EnhancedAttack::AttackForwardKey",
+            "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackForward", KeyCode.None,
+            down =>
+            {
+                if (!down || !Hc) return;
+                HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.normal]);
+            });
 
-    private readonly Hotkey _attackDownwardKey = Hotkey.Create("EnhancedAttack::AttackDownwardKey",
-                                                               "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackDownward", KeyCode.None,
-                                                               down =>
-                                                               {
-                                                                   if (!down || !Hc) return;
-                                                                   HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.downward]);
-                                                               });
+    private readonly Hotkey _attackDownwardKey = Hotkey
+        .Create("EnhancedAttack::AttackDownwardKey",
+            "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackDownward", KeyCode.None,
+            down =>
+            {
+                if (!down || !Hc) return;
+                HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.downward]);
+            });
 
-    private readonly Hotkey _attackUpwardKey = Hotkey.Create("EnhancedAttack::AttackUpwardKey",
-                                                             "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackUpward", KeyCode.None,
-                                                             down =>
-                                                             {
-                                                                 if (!down || !Hc) return;
-                                                                 HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.upward]);
-                                                             });
+    private readonly Hotkey _attackUpwardKey = Hotkey
+        .Create("EnhancedAttack::AttackUpwardKey",
+            "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackUpward", KeyCode.None,
+            down =>
+            {
+                if (!down || !Hc) return;
+                HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.upward]);
+            });
 
-    private readonly Hotkey _attackBackwardKey = Hotkey.Create("EnhancedAttack::AttackBackwardKey",
-                                                               "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackBackward", KeyCode.None,
-                                                               down =>
-                                                               {
-                                                                   if (!down || !Hc) return;
-                                                                   if (Hc.cState.facingRight)
-                                                                   {
-                                                                       Hc.FaceLeft();
-                                                                   }
-                                                                   else
-                                                                   {
-                                                                       Hc.FaceRight();
-                                                                   }
+    private readonly Hotkey _attackBackwardKey = Hotkey
+        .Create("EnhancedAttack::AttackBackwardKey",
+            "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackBackward", KeyCode.None,
+            down =>
+            {
+                if (!down || !Hc) return;
+                if (Hc.cState.facingRight)
+                {
+                    Hc.FaceLeft();
+                }
+                else
+                {
+                    Hc.FaceRight();
+                }
 
-                                                                   HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.normal]);
-                                                               });
+                HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.normal]);
+            });
 
-    private readonly Hotkey _attackRightKey = Hotkey.Create("EnhancedAttack::AttackRightKey",
-                                                            "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackRight", KeyCode.None,
-                                                            down =>
-                                                            {
-                                                                if (!down || !Hc) return;
-                                                                if (!Hc.cState.facingRight)
-                                                                {
-                                                                    Hc.FaceRight();
-                                                                }
+    private readonly Hotkey _attackRightKey = Hotkey
+        .Create("EnhancedAttack::AttackRightKey",
+            "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackRight", KeyCode.None,
+            down =>
+            {
+                if (!down || !Hc) return;
+                if (!Hc.cState.facingRight)
+                {
+                    Hc.FaceRight();
+                }
 
-                                                                HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.normal]);
-                                                            });
+                HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.normal]);
+            });
 
-    private readonly Hotkey _attackLeftKey = Hotkey.Create("EnhancedAttack::AttackLeftKey",
-                                                           "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackLeft", KeyCode.None, down =>
-                                                           {
-                                                               if (!down || !Hc) return;
-                                                               if (Hc.cState.facingRight)
-                                                               {
-                                                                   Hc.FaceLeft();
-                                                               }
+    private readonly Hotkey _attackLeftKey = Hotkey
+        .Create("EnhancedAttack::AttackLeftKey",
+            "hotkey.namespace.player.enhancedAttack", "hotkey.player.enhancedAttack.attackLeft", KeyCode.None, down =>
+            {
+                if (!down || !Hc) return;
+                if (Hc.cState.facingRight)
+                {
+                    Hc.FaceLeft();
+                }
 
-                                                               HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.normal]);
-                                                           });
+                HeroControllerAccessor.AttackMethod.Invoke(Hc, [AttackDirection.normal]);
+            });
 
     protected override void OnGui()
     {

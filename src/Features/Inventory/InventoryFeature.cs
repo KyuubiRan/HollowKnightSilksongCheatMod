@@ -11,8 +11,10 @@ public class InventoryFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Inventory;
 
-    public readonly ConfigObject<bool> EnableEquipAnywhere =
-        CfgManager.Create("Inventory::EnableEquipAnywhere", false).CreateToggleHotkey("hotkey.namespace.inventory", "hotkey.inventory.toggleEquipAnywhere");
+    public readonly ConfigObject<bool> EnableEquipAnywhere = CfgManager
+        .Create("Inventory::EnableEquipAnywhere", false)
+        .CreateToggleHotkey("hotkey.namespace.inventory", "hotkey.inventory.toggleEquipAnywhere")
+        .AddToggleToast("feature.inventory.equipAnywhere");
 
     protected override void OnGui()
     {

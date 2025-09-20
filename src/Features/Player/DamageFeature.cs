@@ -11,13 +11,16 @@ public class DamageFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Player;
 
-    public readonly ConfigObject<bool> EnableMultiDamage =
-        CfgManager.Create("PlayerDamage::EnableMultiDamage", false).CreateToggleHotkey("hotkey.namespace.damage", "hotkey.damage.toggleDamageMultiplier");
+    public readonly ConfigObject<bool> EnableMultiDamage = CfgManager
+        .Create("PlayerDamage::EnableMultiDamage", false).CreateToggleHotkey("hotkey.namespace.damage", "hotkey.damage.toggleDamageMultiplier")
+        .AddToggleToast("feature.player.damage.multiplier");
 
     public readonly ConfigObject<float> MultiDamageValue = CfgManager.Create("PlayerDamage::MultiDamageValue", 2f);
 
-    public readonly ConfigObject<bool> EnableOneHitKill = CfgManager.Create("PlayerDamage::EnableOneHitKill", false)
-                                                                    .CreateToggleHotkey("hotkey.namespace.damage", "hotkey.damage.toggleOneHitKill");
+    public readonly ConfigObject<bool> EnableOneHitKill = CfgManager
+        .Create("PlayerDamage::EnableOneHitKill", false)
+        .CreateToggleHotkey("hotkey.namespace.damage", "hotkey.damage.toggleOneHitKill")
+        .AddToggleToast("feature.player.damage.oneHitKill");
 
     protected override void OnGui()
     {

@@ -4,6 +4,7 @@
     "generic.language.name": "简体中文",
     "generic.language.current": "当前语言：简体中文",
     "ui.menu.title": "丝之歌修改器",
+    "ui.toast": "提示",
     // Category Titles
     "feature.category.Player": "玩家",
     "feature.category.Inventory": "物品栏",
@@ -16,6 +17,7 @@
     "feature.category.About": "关于",
     // Feature - Generic
     "feature.generic.enable": "启用",
+    "feature.generic.disable": "禁用",
     "feature.generic.value": "数值",
     "feature.generic.add": "增加",
     "feature.generic.reduce": "减少",
@@ -143,6 +145,7 @@
     "generic.language.name": "English",
     "generic.language.current": "Current Language: English",
     "ui.menu.title": "HKSC",
+    "ui.toast": "Toast",
     // Category Titles
     "feature.category.Player": "Player",
     "feature.category.Inventory": "Inventory",
@@ -155,6 +158,7 @@
     "feature.category.About": "About",
     // Feature - Generic
     "feature.generic.enable": "Enable",
+    "feature.generic.disable": "Disable",
     "feature.generic.value": "Value",
     "feature.generic.add": "Add",
     "feature.generic.reduce": "Reduce",

@@ -11,11 +11,15 @@ public class ItemCountFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Inventory;
 
-    public readonly ConfigObject<bool> EnableLockMaxItemUse = CfgManager.Create("PlayerItem::EnableLockMaxItemUse", false)
-        .CreateToggleHotkey("hotkey.namespace.inventory.item", "hotkey.inventory.item.toggleLockMaxItemUse");
+    public readonly ConfigObject<bool> EnableLockMaxItemUse = CfgManager
+        .Create("PlayerItem::EnableLockMaxItemUse", false)
+        .CreateToggleHotkey("hotkey.namespace.inventory.item", "hotkey.inventory.item.toggleLockMaxItemUse")
+        .AddToggleToast("feature.inventory.item.lockMaxItemUse");
 
-    public readonly ConfigObject<bool> EnableAutoReplenishCountItem = CfgManager.Create("PlayerItem::EnableAutoReplenishCountItem", false)
-        .CreateToggleHotkey("hotkey.namespace.inventory.item", "hotkey.inventory.item.toggleAutoReplenishCountItem");
+    public readonly ConfigObject<bool> EnableAutoReplenishCountItem = CfgManager
+        .Create("PlayerItem::EnableAutoReplenishCountItem", false)
+        .CreateToggleHotkey("hotkey.namespace.inventory.item", "hotkey.inventory.item.toggleAutoReplenishCountItem")
+        .AddToggleToast("feature.inventory.item.autoReplenishCountItem");
 
     protected override void OnGui()
     {

@@ -15,8 +15,10 @@ public class GeoFeature : FeatureBase
     private int _geoValue = 100;
     private string _geoValueStr = "100";
 
-    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("Rosaries::EnableAutoCollect", false)
-                                                                     .CreateToggleHotkey("hotkey.namespace.currency", "hotkey.currency.toggleAutoCollectGeo");
+    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager
+        .Create("Rosaries::EnableAutoCollect", false)
+        .CreateToggleHotkey("hotkey.namespace.currency", "hotkey.currency.toggleAutoCollectGeo")
+        .AddToggleToast("feature.currency.rosaries.title");
 
     protected override void OnGui()
     {

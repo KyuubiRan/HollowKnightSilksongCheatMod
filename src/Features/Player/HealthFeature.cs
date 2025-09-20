@@ -12,11 +12,15 @@ public class HealthFeature : FeatureBase
 {
     private static HeroController Hc => HeroController.UnsafeInstance;
 
-    public readonly ConfigObject<bool> EnableGodMode =
-        CfgManager.Create("PlayerHealth::EnableGodMode", false).CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleGodMode");
+    public readonly ConfigObject<bool> EnableGodMode = CfgManager
+        .Create("PlayerHealth::EnableGodMode", false)
+        .CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleGodMode")
+        .AddToggleToast("feature.player.health.godMode");
 
-    public readonly ConfigObject<bool> EnableLockMaxHealth =
-        CfgManager.Create("PlayerHealth::EnableLockMaxHealth", false).CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleLockMaxHealth");
+    public readonly ConfigObject<bool> EnableLockMaxHealth = CfgManager
+        .Create("PlayerHealth::EnableLockMaxHealth", false)
+        .CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleLockMaxHealth")
+        .AddToggleToast("feature.player.health.lockMaxHealth");
 
     private readonly Hotkey _healHotkey =
         Hotkey.Create("PlayerHealth::Heal", "hotkey.namespace.health", "hotkey.health.heal", KeyCode.None, down =>

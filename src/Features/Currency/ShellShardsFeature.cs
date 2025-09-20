@@ -15,8 +15,10 @@ public class ShellShardFeature : FeatureBase
     private int _shellShardsValue = 100;
     private string _shellShardsValueStr = "100";
 
-    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager.Create("ShellShard::EnableAutoCollect", false)
-                                                                     .CreateToggleHotkey("hotkey.namespace.currency", "hotkey.currency.toggleAutoCollectShards");
+    public readonly ConfigObject<bool> EnableAutoCollect = CfgManager
+        .Create("ShellShard::EnableAutoCollect", false)
+        .CreateToggleHotkey("hotkey.namespace.currency", "hotkey.currency.toggleAutoCollectShards")
+        .AddToggleToast("feature.currency.shards.title");
 
     protected override void OnGui()
     {

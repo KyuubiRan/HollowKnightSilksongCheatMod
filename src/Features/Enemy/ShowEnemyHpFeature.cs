@@ -16,8 +16,10 @@ public class ShowEnemyHpFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Enemy;
 
-    public readonly ConfigObject<bool> ShowHp = CfgManager.Create("EnemyInfo::Enable", false)
-                                                          .CreateToggleHotkey("hotkey.namespace.enemy", "hotkey.enemy.info.toggleShowEnemyHp");
+    public readonly ConfigObject<bool> ShowHp = CfgManager
+        .Create("EnemyInfo::Enable", false)
+        .CreateToggleHotkey("hotkey.namespace.enemy", "hotkey.enemy.info.toggleShowEnemyHp")
+        .AddToggleToast("feature.enemy.info.showHp");
 
     private static readonly Dictionary<HealthManager, Text> TextDict = new();
 

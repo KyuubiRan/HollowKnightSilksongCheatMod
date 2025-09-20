@@ -15,8 +15,10 @@ public class CrestFeature : FeatureBase
 
     public override ModPage Page => ModPage.Player;
 
-    public readonly ConfigObject<bool> EnableForceReaperMode = CfgManager.Create("PlayerCrest::ForceReaperMode", false)
-        .CreateToggleHotkey("hotkey.namespace.crest", "hotkey.crest.toggleForceReaperMode");
+    public readonly ConfigObject<bool> EnableForceReaperMode = CfgManager
+        .Create("PlayerCrest::ForceReaperMode", false)
+        .CreateToggleHotkey("hotkey.namespace.crest", "hotkey.crest.toggleForceReaperMode")
+        .AddToggleToast("feature.player.crest.forceReaperMode");
 
     protected override void OnGui()
     {
