@@ -129,7 +129,9 @@
     "feature.player.health.enterBlueHealthState": "进入蓝血状态",
     "hotkey.health.enterBlueHealthState": "进入蓝血状态",
     "feature.player.health.lockBlueHealthState": "锁定蓝血状态",
-    "hotkey.health.toggleLockBlueHealthState": "开关锁定蓝血状态"
+    "hotkey.health.toggleLockBlueHealthState": "开关锁定蓝血状态",
+    "feature.player.killAura.ignoreInvincibility": "无视无敌状态",
+    "feature.player.killAura.instantKill": "秒杀"
   },
   "en_us": {
     "generic.language": "Language",
@@ -261,6 +263,8 @@
     "feature.player.health.enterBlueHealthState": "Enter Blue Health State",
     "hotkey.health.enterBlueHealthState": "Enter Blue Health State",
     "feature.player.health.lockBlueHealthState": "Lock Blue Health State",
-    "hotkey.health.toggleLockBlueHealthState": "Toggle Lock Blue Health State"
+    "hotkey.health.toggleLockBlueHealthState": "Toggle Lock Blue Health State",
+    "feature.player.killAura.ignoreInvincibility": "Ignore Invincibility",
+    "feature.player.killAura.instantKill": "Instant Kill"
   }
 }

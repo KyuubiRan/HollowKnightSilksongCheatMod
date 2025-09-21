@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using HKSC.Accessor;
 using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
@@ -19,6 +20,9 @@ public class KillAuraFeature : FeatureBase
         .CreateToggleHotkey("hotkey.namespace.killAura", "hotkey.generic.toggle")
         .AddToggleToast("feature.player.killAura.title");
 
+    public readonly ConfigObject<bool> IgnoreInvincibility = CfgManager.Create("KillAura::IgnoreInvincibility", false);
+    public readonly ConfigObject<bool> InstantKill = CfgManager.Create("KillAura::InstantKill", false);
+
     public readonly ConfigObject<int> Damage = CfgManager.Create("KillAura::Damage", 10);
     public readonly ConfigObject<float> Range = CfgManager.Create("KillAura::Range", 10f);
     public readonly ConfigObject<float> AttackInterval = CfgManager.Create("KillAura::AttackInterval", 1f);
@@ -29,7 +33,10 @@ public class KillAuraFeature : FeatureBase
         IsEnabled.Value = GUILayout.Toggle(IsEnabled, "feature.generic.enable".Translate());
         if (IsEnabled)
         {
-            Damage.Value = UiUtils.SliderInt(Damage, 0, 500, 5, valueFormat: "feature.player.killAura.damage.format".Translate());
+            IgnoreInvincibility.Value = GUILayout.Toggle(IgnoreInvincibility, "feature.player.killAura.ignoreInvincibility".Translate());
+            InstantKill.Value = GUILayout.Toggle(InstantKill, "feature.player.killAura.instantKill".Translate());
+            if (!InstantKill)
+                Damage.Value = UiUtils.SliderInt(Damage, 0, 500, 5, valueFormat: "feature.player.killAura.damage.format".Translate());
             Range.Value = UiUtils.Slider(Range, 5f, 30f, .5f, valueFormat: "feature.player.killAura.range.format".Translate());
             AttackInterval.Value = UiUtils.Slider(AttackInterval, 0.1f, 5f, 0.1f, valueFormat: "feature.player.killAura.interval.format".Translate());
         }
@@ -60,15 +67,20 @@ public class KillAuraFeature : FeatureBase
             select enemy
         )
         {
-            enemy.Hit(
-                new HitInstance
-                {
-                    Source = Hc.gameObject,
-                    DamageDealt = Damage,
-                    IsHeroDamage = true,
-                    AttackType = AttackTypes.Generic,
-                    Multiplier = 1f
-                });
+            var hi = new HitInstance
+            {
+                Source = Hc.gameObject,
+                DamageDealt = InstantKill ? enemy.hp : Damage,
+                IsHeroDamage = true,
+                AttackType = AttackTypes.Generic,
+                Multiplier = 1f,
+            };
+
+            if (IgnoreInvincibility)
+                HealthManagerAccessor.TakeDamageMethod.Invoke(enemy, [hi]);
+            else
+                enemy.Hit(hi);
+
             attacked = true;
         }
 
