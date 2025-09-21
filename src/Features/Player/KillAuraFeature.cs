@@ -4,6 +4,7 @@ using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
 using HKSC.Utils;
+using HutongGames.PlayMaker.Actions;
 using UnityEngine;
 
 namespace HKSC.Features.Player;
@@ -48,22 +49,24 @@ public class KillAuraFeature : FeatureBase
 
         var hcPos = Hc.transform.position;
         var attacked = false;
-        foreach (var enemy in
-                 from enemy in HealthManager.EnumerateActiveEnemies().ToList()
-                 let enemyPos = enemy.gameObject.transform.position
-                 where Vector2.Distance(hcPos, enemyPos) <= Range
-                 select enemy
-                )
+        foreach (
+            var enemy in
+            from enemy in HealthManager.EnumerateActiveEnemies().ToList()
+            where enemy
+            where !enemy.isDead
+            let transform = enemy.gameObject.transform
+            where transform
+            where Vector2.Distance(hcPos, transform.position) <= Range
+            select enemy
+        )
         {
-            if (!enemy) continue;
-
             enemy.Hit(
                 new HitInstance
                 {
                     Source = Hc.gameObject,
                     DamageDealt = Damage,
                     IsHeroDamage = true,
-                    AttackType = AttackTypes.Spell,
+                    AttackType = AttackTypes.Generic,
                     Multiplier = 1f
                 });
             attacked = true;
