@@ -57,6 +57,7 @@ public static class FeatureManager
         // Game
         AddFeature<TimeScaleFeature>();
         AddFeature<FpsLimiterFeature>();
+        AddFeature<WorldFeature>();
 
         // Teleport
         AddFeature<CurrentSceneDetails>();

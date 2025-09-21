@@ -18,7 +18,7 @@ public class GeoFeature : FeatureBase
     public readonly ConfigObject<bool> EnableAutoCollect = CfgManager
         .Create("Rosaries::EnableAutoCollect", false)
         .CreateToggleHotkey("hotkey.namespace.currency", "hotkey.currency.toggleAutoCollectGeo")
-        .AddToggleToast("feature.currency.rosaries.title");
+        .AddToggleToast("feature.currency.autoCollectRosaries");
 
     protected override void OnGui()
     {

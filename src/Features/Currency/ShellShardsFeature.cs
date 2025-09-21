@@ -18,7 +18,7 @@ public class ShellShardFeature : FeatureBase
     public readonly ConfigObject<bool> EnableAutoCollect = CfgManager
         .Create("ShellShard::EnableAutoCollect", false)
         .CreateToggleHotkey("hotkey.namespace.currency", "hotkey.currency.toggleAutoCollectShards")
-        .AddToggleToast("feature.currency.shards.title");
+        .AddToggleToast("feature.currency.autoCollectShellShards");
 
     protected override void OnGui()
     {

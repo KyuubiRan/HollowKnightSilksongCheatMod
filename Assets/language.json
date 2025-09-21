@@ -5,7 +5,6 @@
     "generic.language.current": "当前语言：简体中文",
     "ui.menu.title": "丝之歌修改器",
     "ui.toast": "提示",
-    // Category Titles
     "feature.category.Player": "玩家",
     "feature.category.Inventory": "物品栏",
     "feature.category.Enemy": "敌人",
@@ -15,70 +14,56 @@
     "feature.category.Teleport": "传送",
     "feature.category.Hotkey": "快捷键",
     "feature.category.About": "关于",
-    // Feature - Generic
     "feature.generic.enable": "启用",
     "feature.generic.disable": "禁用",
     "feature.generic.value": "数值",
     "feature.generic.add": "增加",
     "feature.generic.reduce": "减少",
     "feature.generic.delete": "删除",
-    // Feature - Health
     "feature.player.health.title": "生命值",
     "feature.player.health.godMode": "无敌模式",
     "feature.player.health.lockMaxHealth": "锁定最大生命值",
     "feature.player.health.heal": "恢复生命值",
-    // Feature - Crest
     "feature.player.crest.title": "纹章",
     "feature.player.crest.forceReaperMode": "强制启用收割者Buff",
-    // Feature - Silk
     "feature.player.silk.title": "灵丝",
     "feature.player.silk.lockMaxSilk": "锁定最大灵丝",
     "feature.player.silk.refill": "填充到最大",
-    // Feature - Action
     "feature.player.action.title": "行动能力",
     "feature.player.action.infinityAirJump": "无限段跳",
     "feature.player.action.noAttackCd": "无攻击冷却",
     "feature.player.action.infinityAirDash": "无限空中冲刺",
     "feature.player.action.noDashCd": "无冲刺冷却",
-    // Feature - Enhanced Attack
     "feat.player.enhancedAttack.title": "增强攻击",
     "feat.player.enhancedAttack.desc": "请在快捷键页面为不同攻击方向设置快捷键。",
-    // Feature - Noclip
     "feature.player.noclip.title": "无碰撞飞行",
     "feature.player.noclip.speed.format": "速度：{0:0.0}",
-    // Feature - Damage
     "feature.player.damage.title": "伤害",
     "feature.player.damage.oneHitKill": "一击必杀",
     "feature.player.damage.multiplier": "伤害倍率",
-    // Feature - Kill Aura
     "feature.player.killAura.title": "杀戮光环",
     "feature.player.killAura.damage.format": "伤害值：{0:0}",
     "feature.player.killAura.range.format": "范围：{0:0.0}",
     "feature.player.killAura.interval.format": "间隔：{0:0.0}s",
-    // Feature - Currency
     "feature.currency.rosaries.title": "念珠",
+    "feature.currency.autoCollectRosaries": "自动收集念珠",
     "feature.currency.shards.title": "甲壳碎片",
     "feature.currency.autoCollect": "自动收集",
-    // Feature - Enemy Info
+    "feature.currency.autoCollectShellShards": "自动收集甲壳碎片",
     "feature.enemy.info.title": "信息",
     "feature.enemy.info.showHp": "显示血量",
-    // Feature - Game FPS
     "feature.game.fpsLimiter.title": "帧率限制器",
     "feature.game.fpsLimiter.unlimited": "无限制",
-    // Feature - Game Speed
     "feature.game.speed.title": "游戏速度",
     "feature.game.speed.format": "速度：{0:0.0}x",
-    // Feature - Inventory
     "feature.inventory.title": "物品栏",
     "feature.inventory.equipAnywhere": "随时调整装备",
     "feature.inventory.item.title": "物品",
     "feature.inventory.item.lockMaxItemUse": "无限物品使用次数",
     "feature.inventory.item.autoReplenishCountItem": "自动补充物品数量",
-    // Feature - Map
     "feature.menu.map.title": "地图",
     "feature.menu.map.alwaysShowPosition": "总是在地图上显示玩家位置",
     "feature.menu.map.unlockMap": "解锁地图",
-    // Feature - Teleport
     "feature.teleport.sceneInfo.title": "地图信息",
     "feature.teleport.sceneInfo.sceneName": "地图名字：{0}",
     "feature.teleport.sceneInfo.playerPos": "玩家位置： {0}",
@@ -88,12 +73,10 @@
     "feature.teleport.death.enable": "记录死亡坐标点",
     "feature.teleport.toScene": "前往地图",
     "feature.teleport.teleport": "传送",
-    // Feature - About
     "feature.about.title": "关于",
     "feature.about.modVersion": "模组版本：{0}",
     "feature.about.author": "模组作者：{0}",
     "feature.about.viewOnGithub": "在 GitHub 上查看",
-    // Hotkey
     "hotkey.generic.toggle": "切换开启",
     "hotkey.namespace.generic": "通用",
     "hotkey.generic.toggleMainUi": "切换主菜单显示",
@@ -138,7 +121,11 @@
     "hotkey.player.enhancedAttack.attackRight": "攻击右方",
     "hotkey.namespace.inventory.item": "物品栏 - 物品",
     "hotkey.inventory.item.toggleLockMaxItemUse": "开关锁定最大物品可使用数量",
-    "hotkey.inventory.item.toggleAutoReplenishCountItem": "开关自动补充物品数量"
+    "hotkey.inventory.item.toggleAutoReplenishCountItem": "开关自动补充物品数量",
+    "feature.game.world.title": "世界",
+    "hotkey.namespace.game.world": "游戏 - 世界",
+    "hotkey.game.world.toggleFullBrightInDarknessRegion": "开关黑暗区域全亮",
+    "feature.game.world.fullBrightInDarknessRegion": "黑暗区域全亮"
   },
   "en_us": {
     "generic.language": "Language",
@@ -146,7 +133,6 @@
     "generic.language.current": "Current Language: English",
     "ui.menu.title": "HKSC",
     "ui.toast": "Toast",
-    // Category Titles
     "feature.category.Player": "Player",
     "feature.category.Inventory": "Inventory",
     "feature.category.Enemy": "Enemy",
@@ -156,70 +142,56 @@
     "feature.category.Teleport": "Teleport",
     "feature.category.Hotkey": "Hotkey",
     "feature.category.About": "About",
-    // Feature - Generic
     "feature.generic.enable": "Enable",
     "feature.generic.disable": "Disable",
     "feature.generic.value": "Value",
     "feature.generic.add": "Add",
     "feature.generic.reduce": "Reduce",
     "feature.generic.delete": "Delete",
-    // Feature - Health
     "feature.player.health.title": "Health",
     "feature.player.health.godMode": "God Mode",
     "feature.player.health.lockMaxHealth": "Lock Max HP",
     "feature.player.health.heal": "Heal",
-    // Feature - Crest
     "feature.player.crest.title": "Crest",
     "feature.player.crest.forceReaperMode": "Force Enable Reaper Buff",
-    // Feature - Silk
     "feature.player.silk.title": "Silk",
     "feature.player.silk.lockMaxSilk": "Lock Max Silk",
     "feature.player.silk.refill": "Refill",
-    // Feature - Noclip
     "feature.player.noclip.title": "Noclip",
     "feature.player.noclip.speed.format": "Speed: {0:0.0}",
-    // Feature - Damage
     "feature.player.damage.title": "Damage",
     "feature.player.damage.oneHitKill": "One Hit Kill",
     "feature.player.damage.multiplier": "Damage Multiplier",
-    // Feature - Kill Aura
     "feature.player.killAura.title": "Kill Aura",
     "feature.player.killAura.damage.format": "Damage: {0:0}",
     "feature.player.killAura.range.format": "Range: {0:0.0}",
     "feature.player.killAura.interval.format": "Interval: {0:0.0}s",
-    // Feature - Action
     "feature.player.action.title": "Actions",
     "feature.player.action.infinityAirJump": "Infinity Air Jump",
     "feature.player.action.noAttackCd": "No Attack Cooldown",
     "feature.player.action.infinityAirDash": "Infinity Air Dash",
     "feature.player.action.noDashCd": "No Dash Cooldown",
-    // Feature - Enhanced Attack
     "feat.player.enhancedAttack.title": "Enhanced Attack",
     "feat.player.enhancedAttack.desc": "Please set hotkeys for different attack directions in the Hotkey settings page.",
-    // Feature - Currency
     "feature.currency.rosaries.title": "Rosaries",
+    "feature.currency.autoCollectRosaries": "Auto Collect Rosaries",
     "feature.currency.shards.title": "Shell Shards",
     "feature.currency.autoCollect": "Auto Collect",
-    // Feature - Enemy Info
+    "feature.currency.autoCollectShellShards": "Auto Collect Shell Shards",
     "feature.enemy.info.title": "Info",
     "feature.enemy.info.showHp": "Show HP",
-    // Feature - Game FPS
     "feature.game.fpsLimiter.title": "FPS Limiter",
     "feature.game.fpsLimiter.unlimited": "Unlimited FPS",
-    // Feature - Game Speed
     "feature.game.speed.title": "Game Speed",
     "feature.game.speed.format": "Speed: {0:0.0}x",
-    // Feature - Inventory
     "feature.inventory.title": "Inventory",
     "feature.inventory.equipAnywhere": "Equip Anywhere",
     "feature.inventory.item.title": "Item",
     "feature.inventory.item.lockMaxItemUse": "Infinity Item Use",
     "feature.inventory.item.autoReplenishCountItem": "Auto Replenish Item Use Count",
-    // Feature - Map
     "feature.menu.map.title": "Map",
     "feature.menu.map.alwaysShowPosition": "Always Show Player's Position",
     "feature.menu.map.unlockMap": "Unlock Map",
-    // Feature - Teleport
     "feature.teleport.sceneInfo.title": "Scene Info",
     "feature.teleport.sceneInfo.sceneName": "Scene Name: {0}",
     "feature.teleport.sceneInfo.playerPos": "Player Pos: {0}",
@@ -229,12 +201,10 @@
     "feature.teleport.death.enable": "Log Death Location",
     "feature.teleport.toScene": "To Scene",
     "feature.teleport.teleport": "Teleport",
-    // Feature - About
     "feature.about.title": "About",
     "feature.about.modVersion": "Mod version: {0}",
     "feature.about.author": "Mod author: {0}",
     "feature.about.viewOnGithub": "View on GitHub",
-    // Hotkey
     "hotkey.generic.toggle": "Toggle Enable",
     "hotkey.namespace.generic": "Generic",
     "hotkey.generic.toggleMainUi": "Toggle Main UI",
@@ -279,6 +249,10 @@
     "hotkey.player.enhancedAttack.attackRight": "Attack Right",
     "hotkey.namespace.inventory.item": "Inventory - Item",
     "hotkey.inventory.item.toggleLockMaxItemUse": "Toggle Lock Max Item Use",
-    "hotkey.inventory.item.toggleAutoReplenishCountItem": "Toggle Auto Replenish Item Use Count"
+    "hotkey.inventory.item.toggleAutoReplenishCountItem": "Toggle Auto Replenish Item Use Count",
+    "feature.game.world.title": "World",
+    "hotkey.namespace.game.world": "Game - World", 
+    "hotkey.game.world.toggleFullBrightInDarknessRegion": "Toggle Full Bright in Darkness Region",
+    "feature.game.world.fullBrightInDarknessRegion": "Full Bright in Darkness Region"
   }
 }

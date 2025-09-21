@@ -82,6 +82,9 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] Change game speed
 - [x] FPS limiter(Should VSync off)
 
+### World
+
+- [x] Full bright in darkness region
 
 ### Menu - Map
 
