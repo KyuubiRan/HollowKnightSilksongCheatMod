@@ -53,13 +53,18 @@ public abstract class TeleportFeatureBase : FeatureBase
             return;
 
         var i = 1;
+        var changed = false;
         foreach (var point in Queue.Where(point => RenderTeleportItem(i++, point)))
         {
             _deleted.Add(point);
+            changed = true;
         }
 
         foreach (var point in _deleted)
             Queue.Remove(point);
         _deleted.Clear();
+        
+        if (changed)
+            OnLogTeleport(null);
     }
 }
