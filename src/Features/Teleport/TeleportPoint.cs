@@ -80,12 +80,6 @@ public class TeleportPoint
         GameManagerAccessor.SetPausedStateMethod.Invoke(Gm, [false]);
         Hc.ResetState();
 
-        Log.LogInfo($"Hc.IsInputBlocked: {Hc.IsInputBlocked()}, " +
-                    $"InteractManager.BlockingInteractable is not null: {InteractManager.BlockingInteractable != null}, " +
-                    $"Hc.IsPaused: {Hc.IsPaused()}, " +
-                    $"!Hc.isGameplayScene: {!Gm.IsGameplayScene()}"
-        );
-
         HeroControllerAccessor.StartInvulnerableMethod.Invoke(Hc, [TeleportInvulnerableTime]);
         return true;
     }
