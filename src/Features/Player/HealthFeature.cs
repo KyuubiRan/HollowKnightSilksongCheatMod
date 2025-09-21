@@ -1,5 +1,4 @@
-﻿using GlobalEnums;
-using HKSC.Extensions;
+﻿using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
@@ -22,21 +21,46 @@ public class HealthFeature : FeatureBase
         .CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleLockMaxHealth")
         .AddToggleToast("feature.player.health.lockMaxHealth");
 
+    public readonly ConfigObject<bool> EnableLockBlueHealthMode = CfgManager
+        .Create("PlayerHealth::EnableLockBlueHealthState", false)
+        .CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleLockBlueHealthState")
+        .AddToggleToast("feature.player.health.lockBlueHealthState");
+
     private readonly Hotkey _healHotkey =
         Hotkey.Create("PlayerHealth::Heal", "hotkey.namespace.health", "hotkey.health.heal", KeyCode.None, down =>
         {
             if (down) Hc?.MaxHealth();
         });
 
+    private readonly Hotkey _enterBlueHealthStateHotkey =
+        Hotkey.Create("PlayerHealth::EnterBlueHealthState", "hotkey.namespace.health", "hotkey.health.enterBlueHealthState", KeyCode.None, down =>
+        {
+            if (down) Hc?.HitMaxBlueHealth();
+        });
+
     public override ModPage Page => ModPage.Player;
+
+    private static void EnterBlueHealthState()
+    {
+        if (!Hc) return;
+
+        Hc.HitMaxBlueHealth();
+        Hc.HitMaxBlueHealthBurst();
+    }
 
     protected override void OnGui()
     {
         UiUtils.BeginCategory("feature.player.health.title".Translate());
         EnableGodMode.Value = GUILayout.Toggle(EnableGodMode, "feature.player.health.godMode".Translate());
+        
         EnableLockMaxHealth.Value = GUILayout.Toggle(EnableLockMaxHealth, "feature.player.health.lockMaxHealth".Translate());
         if (GUILayout.Button("feature.player.health.heal".Translate()))
             Hc?.MaxHealth();
+    
+        EnableLockBlueHealthMode.Value = GUILayout.Toggle(EnableLockBlueHealthMode, "feature.player.health.lockBlueHealthState".Translate());
+        if (GUILayout.Button("feature.player.health.enterBlueHealthState".Translate()))
+            EnterBlueHealthState();
+        
         UiUtils.EndCategory();
     }
 
@@ -47,5 +71,8 @@ public class HealthFeature : FeatureBase
 
         if (EnableLockMaxHealth || EnableGodMode)
             Hc.playerData.health = Hc.playerData.maxHealth;
+
+        if (EnableLockBlueHealthMode && !Hc.IsInLifebloodState && !Hc.playerData.atBench)
+            EnterBlueHealthState();
     }
 }

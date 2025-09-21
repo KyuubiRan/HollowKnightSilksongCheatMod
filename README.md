@@ -18,6 +18,8 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 - [x] God mode
 - [x] Lock max HP
 - [x] Heal
+- [x] Lock blue health state
+- [x] Enter blue health state
 
 ### Player - Silk
 
