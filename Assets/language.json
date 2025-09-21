@@ -128,7 +128,8 @@
     "feature.game.world.fullBrightInDarknessRegion": "黑暗区域全亮",
     "feature.player.health.enterBlueHealthState": "进入蓝血状态",
     "hotkey.health.enterBlueHealthState": "进入蓝血状态",
-    "feature.player.health.lockBlueHealthState": "锁定蓝血状态"
+    "feature.player.health.lockBlueHealthState": "锁定蓝血状态",
+    "hotkey.health.toggleLockBlueHealthState": "开关锁定蓝血状态"
   },
   "en_us": {
     "generic.language": "Language",
@@ -258,7 +259,8 @@
     "hotkey.game.world.toggleFullBrightInDarknessRegion": "Toggle Full Bright in Darkness Region",
     "feature.game.world.fullBrightInDarknessRegion": "Full Bright in Darkness Region",
     "feature.player.health.enterBlueHealthState": "Enter Blue Health State",
-    "hotkey.health.enterBlueHealthMode": "Enter Blue Health State",
-    "feature.player.health.lockBlueHealthState": "Lock Blue Health State"
+    "hotkey.health.enterBlueHealthState": "Enter Blue Health State",
+    "feature.player.health.lockBlueHealthState": "Lock Blue Health State",
+    "hotkey.health.toggleLockBlueHealthState": "Toggle Lock Blue Health State"
   }
 }
