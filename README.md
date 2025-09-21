@@ -91,7 +91,7 @@ Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the
 ### Menu - Map
 
 - [x] Always show player's position on the map
-- [ ] Unlock map
+- [x] Unlock map
 - [ ] Update traveled areas on the map
 
 ### Teleport
