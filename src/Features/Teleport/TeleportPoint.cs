@@ -1,3 +1,7 @@
+using System.Collections;
+using GlobalEnums;
+using HKSC.Accessor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Vector2 = UnityEngine.Vector2;
 
@@ -5,7 +9,7 @@ namespace HKSC.Features.Teleport;
 
 public class TeleportPoint
 {
-    private const float TeleportInvulnerableTime = 3.0f;
+    private const float TeleportInvulnerableTime = 5.0f;
     private static HeroController Hc => HeroController.UnsafeInstance;
     private static GameManager Gm => GameManager.UnsafeInstance;
 
@@ -22,6 +26,28 @@ public class TeleportPoint
     public bool Valid { get; set; }
     public string GateName { get; set; }
 
+
+    private static Coroutine _unpauseCoroutine;
+
+    private static IEnumerator UnpauseOnSceneLoaded()
+    {
+        if (GameManager.IsWaitingForSceneReady)
+            yield return null;
+
+        yield return new WaitForSecondsRealtime(0.3f);
+        Gm.isPaused = false;
+        Gm.inputHandler.PreventPause();
+        Gm.ui.SetState(UIState.PLAYING);
+        GameManagerAccessor.SetPausedStateMethod.Invoke(Gm, [false]);
+        Gm.SetState(GameState.PLAYING);
+        Hc.UnPause();
+        MenuButtonList.ClearAllLastSelected();
+        yield return new WaitForSecondsRealtime(0.3f);
+        Gm.inputHandler.AllowPause();
+
+        _unpauseCoroutine = null;
+    }
+
     public bool Teleport()
     {
         if (!Valid) return false;
@@ -34,6 +60,9 @@ public class TeleportPoint
         var curScene = SceneManager.GetActiveScene();
         if (curScene.name != SceneName)
         {
+            if (_unpauseCoroutine != null)
+                Gm.StopCoroutine(_unpauseCoroutine);
+
             Gm.BeginSceneTransition(new GameManager.SceneLoadInfo
             {
                 SceneName = SceneName,
@@ -43,15 +72,21 @@ public class TeleportPoint
                 AlwaysUnloadUnusedAssets = true,
                 Visualization = GameManager.SceneLoadVisualizations.Default,
             });
+
+            _unpauseCoroutine = Gm.StartCoroutine(UnpauseOnSceneLoaded());
         }
 
         Hc.transform.position = Position;
-        Hc.UnPause();
+        GameManagerAccessor.SetPausedStateMethod.Invoke(Gm, [false]);
         Hc.ResetState();
-        Hc.AcceptInput();
 
-        // After teleport
-        Hc.CrossStitchInvuln();
+        Log.LogInfo($"Hc.IsInputBlocked: {Hc.IsInputBlocked()}, " +
+                    $"InteractManager.BlockingInteractable is not null: {InteractManager.BlockingInteractable != null}, " +
+                    $"Hc.IsPaused: {Hc.IsPaused()}, " +
+                    $"!Hc.isGameplayScene: {!Gm.IsGameplayScene()}"
+        );
+
+        HeroControllerAccessor.StartInvulnerableMethod.Invoke(Hc, [TeleportInvulnerableTime]);
         return true;
     }
 }
