@@ -12,6 +12,20 @@ public class DeathTeleport : TeleportFeatureBase
     private readonly ConfigObject<bool> _enableLog = CfgManager.Create("DeathTeleport::EnableLog", false);
     private readonly ConfigObject<List<TeleportPoint>> _queue = CfgManager.Create("DeathTeleport::TeleportPoints", new List<TeleportPoint>());
 
+    private readonly Hotkey _tpToLastDeath = Hotkey.Create(
+        "DeathTeleport::TeleportToLastDeath",
+        "hotkey.namespace.teleport",
+        "hotkey.teleport.teleportToLastDeath",
+        KeyCode.None,
+        down =>
+        {
+            if (!down) return;
+            
+            var inst = FeatureManager.GetFeature<DeathTeleport>();
+            if (inst is { Queue.Count: > 0 })
+                inst.Queue[0].Teleport();
+        });
+
     public override bool EnableLog => _enableLog;
     protected override List<TeleportPoint> Queue => _queue.Value;
 
