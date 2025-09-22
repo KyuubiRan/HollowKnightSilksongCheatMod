@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using HKSC.Accessor;
+using HKSC.Features.Inventory;
 using HKSC.Features.Player;
 using HKSC.Features.Teleport;
 using HKSC.Managers;
@@ -11,6 +12,7 @@ public class HeroControllerPatcher
 {
     private static readonly ActionFeature ActionFeature = FeatureManager.GetFeature<ActionFeature>();
     private static readonly DeathTeleport DeathTeleport = FeatureManager.GetFeature<DeathTeleport>();
+    private static readonly ItemCountFeature ItemCountFeature = FeatureManager.GetFeature<ItemCountFeature>();
 
     [HarmonyPatch("CanInfiniteAirJump")]
     [HarmonyPrefix]
@@ -57,5 +59,15 @@ public class HeroControllerPatcher
     static void Awake_Postfix(HeroController __instance)
     {
         __instance.OnDeath += () => { DeathTeleport.LogTeleport(TeleportPoint.Current); };
+    }    
+    
+    [HarmonyPatch("ThrowTool")]
+    [HarmonyPostfix]
+    static void ThrowTool_Postfix(HeroController __instance)
+    {
+        if (!ItemCountFeature.EnableAutoReplenishCountItem)
+            return;
+        
+        ToolItemManager.TryReplenishTools(true, ToolItemManager.ReplenishMethod.QuickCraft);
     }
 }
