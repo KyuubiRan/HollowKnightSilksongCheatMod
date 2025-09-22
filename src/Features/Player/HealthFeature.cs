@@ -1,5 +1,4 @@
-﻿using GlobalEnums;
-using HKSC.Extensions;
+﻿using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
 using HKSC.Ui;
@@ -15,8 +14,7 @@ public class HealthFeature : FeatureBase
     public readonly ConfigObject<bool> EnableGodMode = CfgManager
         .Create("PlayerHealth::EnableGodMode", false)
         .CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleGodMode")
-        .AddToggleToast("feature.player.health.godMode")
-        .AddOnChangedListener(x => Hc?.SetDamageMode(x ? DamageMode.NO_DAMAGE : DamageMode.FULL_DAMAGE));
+        .AddToggleToast("feature.player.health.godMode");
 
     public readonly ConfigObject<bool> EnableLockMaxHealth = CfgManager
         .Create("PlayerHealth::EnableLockMaxHealth", false)
