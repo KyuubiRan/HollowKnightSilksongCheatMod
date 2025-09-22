@@ -11,10 +11,17 @@ public class TimeScaleFeature : FeatureBase
 {
     public override ModPage Page => ModPage.Game;
 
+    private static GameManager Gm => GameManager.UnsafeInstance;
+
     public readonly ConfigObject<bool> EnableTimeScale = CfgManager
         .Create("TimeScale::Enable", false)
         .CreateToggleHotkey("hotkey.namespace.game", "hotkey.game.toggleTimeScale")
-        .AddToggleToast("feature.game.speed.title");
+        .AddToggleToast("feature.game.speed.title")
+        .AddOnChangedListener(x =>
+        {
+            if (!Gm) return;
+            Gm.SetTimeScale(Gm.isPaused ? 0.0f : 1.0f);
+        });
 
     public readonly ConfigObject<float> TimeScale = CfgManager.Create("TimeScale::TimeScale", 1f);
 

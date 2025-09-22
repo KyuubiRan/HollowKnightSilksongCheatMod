@@ -9,26 +9,17 @@ namespace HKSC.Patches;
 public class TimeManagerPatcher
 {
     private static readonly TimeScaleFeature Feature = FeatureManager.GetFeature<TimeScaleFeature>();
-    private static float _lastTimeScale = 1f;
-
-    [HarmonyPatch("set_TimeScale")]
-    [HarmonyPrefix]
-    static void SetTimeScale_Prefix(ref float value)
-    {
-        _lastTimeScale = value;
-    }
 
     [HarmonyPatch("get_TimeScale")]
-    [HarmonyPrefix]
-    static bool GetTimeScale_Prefix(ref float __result)
+    [HarmonyPostfix]
+    static void GetTimeScale_Prefix(ref float __result)
     {
         if (!Feature.EnableTimeScale)
-            return true;
+            return;
 
-        if (!Mathf.Approximately(_lastTimeScale, 1f)) 
-            return true;
-        
+        if (Mathf.Approximately(__result, 0f))
+            return;
+
         __result = Feature.TimeScale;
-        return false;
     }
 }
