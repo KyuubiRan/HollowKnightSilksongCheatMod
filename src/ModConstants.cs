@@ -4,7 +4,7 @@ internal static class ModConstants
 {
     internal const string Namespace = "io.github.kyuubiran.hksc.mod";
     internal const string ModName = "Hollow Knight Silksong Cheat";
-    internal const string Version = "1.0.9";
+    internal const string Version = "1.1.0";
     internal const string Author = "KyuubiRan";
     internal const string ProjectSource = "https://github.com/KyuubiRan/HollowKnightSilksongCheatMod";
 }
