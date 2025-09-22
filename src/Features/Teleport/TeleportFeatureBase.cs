@@ -16,16 +16,48 @@ public abstract class TeleportFeatureBase : FeatureBase
 
     protected abstract List<TeleportPoint> Queue { get; }
 
-    public void LogTeleport(TeleportPoint teleport)
+    public bool LogTeleport(TeleportPoint teleport)
     {
-        if (!EnableLog) return;
-        if (!teleport.Valid) return;
+        if (!EnableLog) return false;
+        if (!teleport.Valid) return false;
 
         while (Queue.Count >= MaxLogCount)
             Queue.RemoveAt(Queue.Count - 1);
 
         Queue.Insert(0, teleport);
         OnLogTeleport(teleport);
+
+        return true;
+    }
+
+    protected void ClearAll()
+    {
+        Queue.Clear();
+        OnLogTeleport(null);
+    }
+
+    protected void ClearNearly(float distance)
+    {
+        if (Queue.Count <= 1) return;
+
+        var set = new HashSet<TeleportPoint>();
+
+        for (var i = 0; i < Queue.Count; i++)
+        {
+            for (var j = i + 1; j < Queue.Count; j++)
+            {
+                if (Queue[i].SceneName != Queue[j].SceneName) continue;
+                if (Vector2.Distance(Queue[i].Position, Queue[j].Position) > distance) continue;
+
+                set.Add(Queue[j]);
+            }
+        }
+
+        foreach (var tp in set)
+            Queue.Remove(tp);
+
+        if (set.Count > 0)
+            OnLogTeleport(null);
     }
 
     protected virtual void OnLogTeleport(TeleportPoint point)
@@ -36,8 +68,9 @@ public abstract class TeleportFeatureBase : FeatureBase
     {
         GUILayout.BeginHorizontal();
         GUILayout.Label($"#{index} {point.SceneName} {point.Position}");
-        if (GUILayout.Button(
-                SceneManager.GetActiveScene().name == point.SceneName ? "feature.teleport.teleport".Translate() : "feature.teleport.toScene".Translate()))
+        if (GUILayout.Button(SceneManager.GetActiveScene().name == point.SceneName
+                ? "feature.teleport.teleport".Translate()
+                : "feature.teleport.toScene".Translate()))
             point.Teleport();
 
         var delete = GUILayout.Button("feature.generic.delete".Translate());
@@ -63,7 +96,7 @@ public abstract class TeleportFeatureBase : FeatureBase
         foreach (var point in _deleted)
             Queue.Remove(point);
         _deleted.Clear();
-        
+
         if (changed)
             OnLogTeleport(null);
     }

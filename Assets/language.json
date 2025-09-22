@@ -20,6 +20,7 @@
     "feature.generic.add": "增加",
     "feature.generic.reduce": "减少",
     "feature.generic.delete": "删除",
+    "feature.generic.execute": "执行",
     "feature.player.health.title": "生命值",
     "feature.player.health.godMode": "无敌模式",
     "feature.player.health.lockMaxHealth": "锁定最大生命值",
@@ -132,7 +133,11 @@
     "feature.player.health.lockBlueHealthState": "锁定蓝血状态",
     "hotkey.health.toggleLockBlueHealthState": "开关锁定蓝血状态",
     "feature.player.killAura.ignoreInvincibility": "无视无敌状态",
-    "feature.player.killAura.instantKill": "秒杀"
+    "feature.player.killAura.instantKill": "秒杀",
+    "hotkey.teleport.logCurrentPosition": "记录当前位置",
+    "ui.toast.logCurrentTeleportPointInfo": "已记录当前位置：{0}",
+    "feature.teleport.clearAll": "清除所有传送点({0})",
+    "feature.teleport.clearNearly": "清除过近的传送点"
   },
   "en_us": {
     "generic.language": "Language",
@@ -155,6 +160,7 @@
     "feature.generic.add": "Add",
     "feature.generic.reduce": "Reduce",
     "feature.generic.delete": "Delete",
+    "feature.generic.execute": "Execute",
     "feature.player.health.title": "Health",
     "feature.player.health.godMode": "God Mode",
     "feature.player.health.lockMaxHealth": "Lock Max HP",
@@ -267,6 +273,10 @@
     "feature.player.health.lockBlueHealthState": "Lock Blue Health State",
     "hotkey.health.toggleLockBlueHealthState": "Toggle Lock Blue Health State",
     "feature.player.killAura.ignoreInvincibility": "Ignore Invincibility",
-    "feature.player.killAura.instantKill": "Instant Kill"
+    "feature.player.killAura.instantKill": "Instant Kill",
+    "hotkey.teleport.logCurrentPosition": "Log Current Position",
+    "ui.toast.logCurrentTeleportPointInfo": "Logged current position: {0}",
+    "feature.teleport.clearAll": "Clear All Teleport Points({0})",
+    "feature.teleport.clearNearly": "Clear Nearly Teleport Points"
   }
 }

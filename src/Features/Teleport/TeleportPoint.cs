@@ -35,6 +35,8 @@ public class TeleportPoint
             yield return null;
 
         yield return new WaitForSecondsRealtime(0.3f);
+        if (Gm.ui.menuState == MainMenuState.PAUSE_MENU)
+            Gm.ui.HideMenuInstant(Gm.ui.pauseMenuScreen);
         Gm.isPaused = false;
         Gm.inputHandler.PreventPause();
         Gm.ui.SetState(UIState.PLAYING);
@@ -47,6 +49,8 @@ public class TeleportPoint
 
         _unpauseCoroutine = null;
     }
+
+    public override string ToString() => $"{SceneName} | X={Position.x:F2},Y={Position.y:F2}";
 
     public bool Teleport()
     {

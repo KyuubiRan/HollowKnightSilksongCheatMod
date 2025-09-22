@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Text.RegularExpressions;
+using UnityEngine;
 
 namespace HKSC.Utils;
 
@@ -20,7 +21,13 @@ public static class UiUtils
     private static readonly GUIStyle InputIntLabelStyle = new(GUI.skin.label)
     {
         fontSize = 16,
-        fixedWidth = 100,
+        fixedWidth = 150,
+    };   
+    
+    private static readonly GUIStyle InputFloatLabelStyle = new(GUI.skin.label)
+    {
+        fontSize = 16,
+        fixedWidth = 150,
     };
 
     private static readonly GUIStyle SliderButtonArrowStyle = new(GUI.skin.button)
@@ -39,7 +46,9 @@ public static class UiUtils
         GUILayout.Space(10);
     }
 
-    public static string InputInt(ref int value, string text = "0", string label = "")
+    private static readonly Regex IntRegex = new(@"^-?\d*");
+
+    public static string InputInt(ref int value, string text = "0", string label = "", float fixedWidth = 100)
     {
         var labeled = !string.IsNullOrEmpty(label);
 
@@ -49,7 +58,12 @@ public static class UiUtils
             GUILayout.Label(label, InputIntLabelStyle);
         }
 
-        var after = GUILayout.TextField(text);
+        var after = GUILayout.TextField(text, new GUIStyle(GUI.skin.textField)
+        {
+            fontSize = 16,
+            fixedWidth = fixedWidth,
+        });
+        after = IntRegex.Match(after).Value;
 
         if (labeled)
         {
@@ -63,6 +77,35 @@ public static class UiUtils
         }
 
         return int.TryParse(after, out value) ? after : text;
+    }
+
+    private static readonly Regex FloatRegex = new(@"^-?\d*\.?\d*");
+
+    public static string InputFloat(ref float value, string text = "0.0", string label = "")
+    {
+        var labeled = !string.IsNullOrEmpty(label);
+
+        if (labeled)
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(label, InputFloatLabelStyle);
+        }
+
+        var after = GUILayout.TextField(text);
+        after = FloatRegex.Match(after).Value;
+
+        if (labeled)
+        {
+            GUILayout.EndHorizontal();
+        }
+
+        if (string.IsNullOrEmpty(after))
+        {
+            value = 0f;
+            return "";
+        }
+
+        return float.TryParse(after.TrimEnd('.'), out value) ? after : text;
     }
 
     public static float Slider(float value, float min, float max, float step = 1f, string valueFormat = "{0:0.00}")

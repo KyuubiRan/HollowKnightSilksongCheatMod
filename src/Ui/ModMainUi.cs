@@ -44,8 +44,8 @@ public class ModMainUi : MonoBehaviour
     private Vector2 _resizeStartMouse;
     private Vector2 _resizeStartSize;
     private Rect _windowRect = new(100, 100, 450, 500);
-    private Rect _toastWindowRect = new(100, 100, 100, 50);
-    private const float ToastDuration = 3f;
+    private Rect _toastWindowRect = new(100, 100, 200, 50);
+    private const float ToastDuration = 5f;
     private float _toastTimer;
     private string _toastMessage = "";
 
@@ -117,9 +117,10 @@ public class ModMainUi : MonoBehaviour
 
     private void DrawToast(int windowID)
     {
-        _toastTimer -= Time.deltaTime;
+        _toastTimer -= Time.unscaledDeltaTime;
         _toastSize ??= GUI.skin.label.CalcSize(new GUIContent(_toastMessage));
-        _toastWindowRect.width = Mathf.Clamp(_toastSize.Value.x + 20, 100, 400);
+        _toastWindowRect.width = Mathf.Clamp(_toastSize.Value.x + 20, 100, 800);
+        _toastWindowRect.height = Mathf.Clamp(_toastSize.Value.y + 20, 50, 200);
         _toastWindowRect.x = Screen.width - _toastWindowRect.width - 20;
         _toastWindowRect.y = Screen.height - _toastWindowRect.height - 20;
         GUILayout.Label(_toastMessage);

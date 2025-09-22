@@ -10,7 +10,7 @@ public static class CfgManager
 {
     private static bool _changed;
     private static float _delta;
-    private const float SaveInterval = 2.0f;
+    private const float SaveInterval = 5.0f;
     private static JObject _configData = new();
     private static string _configDataPath;
 
@@ -81,7 +81,7 @@ public static class CfgManager
             return;
         }
 
-        _delta += Time.deltaTime;
+        _delta += Time.unscaledDeltaTime;
         if (_delta >= SaveInterval)
         {
             Save();
