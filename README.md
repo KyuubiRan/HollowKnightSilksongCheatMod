@@ -11,6 +11,8 @@ Add this to your Steam launch options:
 
 Copy the `Directory.Build.props.template` to `Directory.Build.props` and set the `GamePath` to your game path.
 
+If you modified the language.json file, please **REBUILD** the project to include the changes.
+
 ## Features
 
 ### Player - Health
