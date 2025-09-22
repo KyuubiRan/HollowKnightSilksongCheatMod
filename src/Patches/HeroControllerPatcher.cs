@@ -3,7 +3,6 @@ using HKSC.Accessor;
 using HKSC.Features.Player;
 using HKSC.Features.Teleport;
 using HKSC.Managers;
-using JetBrains.Annotations;
 
 namespace HKSC.Patches;
 
@@ -12,8 +11,6 @@ public class HeroControllerPatcher
 {
     private static readonly ActionFeature ActionFeature = FeatureManager.GetFeature<ActionFeature>();
     private static readonly DeathTeleport DeathTeleport = FeatureManager.GetFeature<DeathTeleport>();
-
-    [CanBeNull] public static TeleportPoint CurrentTeleportPoint { get; set; }
 
     [HarmonyPatch("CanInfiniteAirJump")]
     [HarmonyPrefix]

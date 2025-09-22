@@ -1,4 +1,5 @@
-﻿using HKSC.Accessor;
+﻿using GlobalEnums;
+using HKSC.Accessor;
 using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
@@ -21,7 +22,8 @@ public class NoclipFeature : FeatureBase
     public readonly ConfigObject<bool> IsEnabled = CfgManager
         .Create("Noclip::Enable", false)
         .CreateToggleHotkey("hotkey.namespace.noclip", "hotkey.generic.toggle")
-        .AddToggleToast("feature.player.noclip.title");
+        .AddToggleToast("feature.player.noclip.title")
+        .AddOnChangedListener(x => Hc?.SetDamageMode(x ? DamageMode.NO_DAMAGE : DamageMode.FULL_DAMAGE));
 
     public readonly ConfigObject<float> Speed = CfgManager.Create("Noclip::Speed", 5f);
 

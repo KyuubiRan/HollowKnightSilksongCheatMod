@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using HKSC.Features;
 using HKSC.Features.Currency;
 using HKSC.Features.Enemy;
@@ -16,17 +15,17 @@ namespace HKSC.Managers;
 
 public static class FeatureManager
 {
-    private static readonly HashSet<FeatureBase> Features = [];
+    private static readonly Dictionary<Type, FeatureBase> Features = [];
 
     private static void AddFeature<T>() where T : FeatureBase, new()
     {
-        Features.Add(new T());
+        Features.Add(typeof(T), new T());
     }
 
     [CanBeNull]
-    public static T GetFeature<T>() where T : FeatureBase => Features.FirstOrDefault(x => x is T) as T;
+    public static T GetFeature<T>() where T : FeatureBase => Features.TryGetValue(typeof(T), out var feature) ? feature as T : null;
 
-    public static Lazy<T> LazyFeature<T>() where T : FeatureBase => new(() => Features.FirstOrDefault(x => x is T) as T);
+    public static Lazy<T> LazyFeature<T>() where T : FeatureBase => new(() => Features.TryGetValue(typeof(T), out var feature) ? feature as T : null);
 
     public static void Init()
     {
@@ -69,5 +68,8 @@ public static class FeatureManager
 
         // Hotkey
         AddFeature<HotkeySettingPage>();
+
+        // Low priority
+        AddFeature<GodModeControl>();
     }
 }
