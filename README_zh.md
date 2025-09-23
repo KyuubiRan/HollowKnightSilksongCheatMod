@@ -1,5 +1,7 @@
 # 空洞骑士：丝之歌 修改器
 
+[English README](README.md)
+
 使用 [BepInEx](https://github.com/BepInEx/BepInEx) 来加载此模组。
 
 ### 针对 OSX Apple Silicon

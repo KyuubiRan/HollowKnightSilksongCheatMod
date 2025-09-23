@@ -1,5 +1,7 @@
 ﻿# Hollow Knight: Silksong Cheat Mod
 
+[中文说明](README_zh.md)
+
 Use [BepInEx](https://github.com/BepInEx/BepInEx) to load this mod.
 
 ### For OSX Apple Silicon
