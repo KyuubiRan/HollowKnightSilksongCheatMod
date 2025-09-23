@@ -8,6 +8,7 @@ Use [BepInEx](https://github.com/BepInEx/BepInEx) to load this mod.
 
 Add this to your Steam launch options:  
 `/usr/bin/arch -x86_64 /bin/bash "/full/path/to/run_bepinex.sh" %command%`
+And modify `/full/path/to/run_bepinex.sh` to your script full path.
 
 ## Build
 
@@ -86,7 +87,7 @@ If you modified the language.json file, please **REBUILD** the project to includ
 ### Game
 
 - [x] Change game speed
-- [x] FPS limiter(Should VSync off)
+- [x] FPS limiter(Should tun off VSync)
 
 ### World
 

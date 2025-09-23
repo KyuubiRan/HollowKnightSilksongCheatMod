@@ -8,6 +8,7 @@
 
 在 Steam 启动选项中添加：  
 `/usr/bin/arch -x86_64 /bin/bash "/full/path/to/run_bepinex.sh" %command%`
+并修改 `/full/path/to/run_bepinex.sh` 为您的脚本完整路径。
 
 ## 构建
 
@@ -86,7 +87,7 @@
 ### 游戏
 
 - [x] 改变游戏速度
-- [x] 帧率限制器（应关闭垂直同步）
+- [x] 帧率限制器（需要关闭垂直同步）
 
 ### 世界
 
