@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using HKSC.Accessor;
 using HKSC.Extensions;
 using HKSC.Managers;
 using HKSC.Misc;
@@ -17,9 +18,19 @@ public class ShowEnemyHpFeature : FeatureBase
     public override ModPage Page => ModPage.Enemy;
 
     public readonly ConfigObject<bool> ShowHp = CfgManager
-        .Create("EnemyInfo::Enable", false)
-        .CreateToggleHotkey("hotkey.namespace.enemy", "hotkey.enemy.info.toggleShowEnemyHp")
-        .AddToggleToast("feature.enemy.info.showHp");
+                                                .Create("EnemyInfo::EnableShowHp", false)
+                                                .CreateToggleHotkey("hotkey.namespace.enemy", "hotkey.enemy.info.toggleShowEnemyHp")
+                                                .AddToggleToast("feature.enemy.info.showHp");
+
+    public readonly ConfigObject<bool> ShowMaxHp = CfgManager
+        .Create("EnemyInfo::EnableShowMaxHp", false);
+
+    public readonly ConfigObject<bool> ShowPercent = CfgManager
+        .Create("EnemyInfo::EnableShowHpPercent", false);
+
+    public readonly ConfigObject<bool> TextColored = CfgManager
+        .Create("EnemyInfo::EnableHpTextColored", false);
+
 
     private static readonly Dictionary<HealthManager, Text> TextDict = new();
 
@@ -31,6 +42,13 @@ public class ShowEnemyHpFeature : FeatureBase
     {
         UiUtils.BeginCategory("feature.enemy.info.title".Translate());
         ShowHp.Value = GUILayout.Toggle(ShowHp, "feature.enemy.info.showHp".Translate());
+        if (ShowHp)
+        {
+            ShowMaxHp.Value = GUILayout.Toggle(ShowMaxHp, "feature.enemy.info.showMaxHp".Translate());
+            ShowPercent.Value = GUILayout.Toggle(ShowPercent, "feature.enemy.info.showHpPercent".Translate());
+            TextColored.Value = GUILayout.Toggle(TextColored, "feature.enemy.info.hpTextColored".Translate());
+        }
+
         UiUtils.EndCategory();
     }
 
@@ -50,6 +68,7 @@ public class ShowEnemyHpFeature : FeatureBase
         var textComp = hpGo.AddComponent<Text>();
         textComp.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
         textComp.fontSize = 20;
+        textComp.horizontalOverflow = HorizontalWrapMode.Overflow;
         textComp.fontStyle = FontStyle.Bold;
         textComp.color = Color.white;
         textComp.alignment = TextAnchor.MiddleCenter;
@@ -88,9 +107,13 @@ public class ShowEnemyHpFeature : FeatureBase
             }
 
             text.enabled = !hm.isDead;
-            text.text = $"HP: {hm.hp}";
-            var screenPos =
-                _mainCamera.WorldToScreenPoint(hm.gameObject.transform.position - new Vector3(0, 1f, 0));
+            var max = HealthManagerAccessor.InitHpField(hm);
+            max = hm.hp > max ? hm.hp : max;
+            var percent = (float)(hm.hp / (double)max);
+            percent = Mathf.Clamp(percent, 0f, 1f);
+            text.text = $"HP: {hm.hp}{(ShowMaxHp ? $"/{max}" : "")}{(ShowPercent ? $"({percent:P1})" : "")}";
+            text.color = TextColored ? Color.Lerp(Color.red, Color.green, percent) : Color.white;
+            var screenPos = _mainCamera.WorldToScreenPoint(hm.gameObject.transform.position - new Vector3(0, 1f, 0));
             text.transform.position = screenPos;
         }
 

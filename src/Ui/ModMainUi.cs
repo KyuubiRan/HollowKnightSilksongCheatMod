@@ -45,7 +45,7 @@ public class ModMainUi : MonoBehaviour
     private Vector2 _resizeStartSize;
     private Rect _windowRect = new(100, 100, 450, 500);
     private Rect _toastWindowRect = new(100, 100, 200, 50);
-    private const float ToastDuration = 5f;
+    private const float ToastDuration = 3f;
     private float _toastTimer;
     private string _toastMessage = "";
 
@@ -70,6 +70,7 @@ public class ModMainUi : MonoBehaviour
 
     private void Update()
     {
+        _toastTimer = _toastTimer >= 0f ? _toastTimer - Time.unscaledDeltaTime : -1f;
         OnUpdate?.Invoke();
     }
 
@@ -102,7 +103,7 @@ public class ModMainUi : MonoBehaviour
         if (_isVisible)
             _windowRect = GUI.Window(0, _windowRect, DrawWindow, "ui.menu.title".Translate());
 
-        if (_toastTimer >= 0f)
+        if (_toastTimer > 0f)
             GUI.Window(1, _toastWindowRect, DrawToast, "ui.toast".Translate());
     }
 
@@ -117,7 +118,6 @@ public class ModMainUi : MonoBehaviour
 
     private void DrawToast(int windowID)
     {
-        _toastTimer -= Time.unscaledDeltaTime;
         _toastSize ??= GUI.skin.label.CalcSize(new GUIContent(_toastMessage));
         _toastWindowRect.width = Mathf.Clamp(_toastSize.Value.x + 20, 100, 800);
         _toastWindowRect.height = Mathf.Clamp(_toastSize.Value.y + 20, 50, 200);
@@ -168,7 +168,7 @@ public class ModMainUi : MonoBehaviour
     private void DrawResizable(float handleSize)
     {
         var resizeRect = new Rect(_windowRect.width - handleSize, _windowRect.height - handleSize, handleSize,
-            handleSize);
+                                  handleSize);
 
         var e = Event.current;
         if (e.type == EventType.MouseDown && resizeRect.Contains(e.mousePosition))

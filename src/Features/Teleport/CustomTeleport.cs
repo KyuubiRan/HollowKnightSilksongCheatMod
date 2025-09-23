@@ -23,7 +23,7 @@ public class CustomTeleport : TeleportFeatureBase
             if (inst == null) return;
             var current = TeleportPoint.Current;
             if (inst.LogTeleport(current))
-                ModMainUi.Instance.ShowToast("ui.toast.logCurrentTeleportPointInfo".Translate(current), 8f);
+                ModMainUi.Instance.ShowToast("ui.toast.logCurrentTeleportPointInfo".Translate(current), 5f);
         });
 
     private string _clearNearlyText = "10.0";
@@ -36,6 +36,12 @@ public class CustomTeleport : TeleportFeatureBase
     {
         _queue.FireChanged();
     }
+    
+    protected override void OnUpdate()
+    {
+        _clickDeleteTimer = _deleteCount == 3 ? 3f : _clickDeleteTimer - Time.unscaledDeltaTime;
+    }
+
 
     protected override void OnGui()
     {
@@ -44,8 +50,7 @@ public class CustomTeleport : TeleportFeatureBase
             LogTeleport(TeleportPoint.Current);
 
         RenderItems();
-
-        _clickDeleteTimer = _deleteCount == 3 ? 5f : _clickDeleteTimer - Time.unscaledDeltaTime;
+        
         if (_clickDeleteTimer < 0) _deleteCount = 3;
         if (GUILayout.Button("feature.teleport.clearAll".Translate(_deleteCount)))
         {

@@ -13,6 +13,11 @@ public static class LanguageManager
 
     public static IReadOnlyCollection<string> AvailableLanguages => LangMap.Keys;
 
+    public static string GetLanguageName(string langCode)
+    {
+        return LangMap[langCode].ContainsKey("generic.language.name") ? LangMap[langCode]["generic.language.name"] : "";
+    }
+
     public static string Get(string key)
     {
         if (LangMap.TryGetValue(CurrentLang, out var langDict))

@@ -34,7 +34,7 @@ public class AboutPage : FeatureBase
         foreach (var lang in langs)
         {
             i++;
-            if (GUILayout.Button(lang))
+            if (GUILayout.Button(lang + " | " + LanguageManager.GetLanguageName(lang)))
                 LanguageManager.CurrentLang.Value = lang;
 
             if (i % langPerRow != 0 || i == total) continue;

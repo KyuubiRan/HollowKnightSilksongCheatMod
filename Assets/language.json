@@ -137,7 +137,10 @@
     "hotkey.teleport.logCurrentPosition": "记录当前位置",
     "ui.toast.logCurrentTeleportPointInfo": "已记录当前位置：{0}",
     "feature.teleport.clearAll": "清除所有传送点({0})",
-    "feature.teleport.clearNearly": "清除过近的传送点"
+    "feature.teleport.clearNearly": "清除过近的传送点",
+    "feature.enemy.info.showMaxHp": "显示最大血量",
+    "feature.enemy.info.showHpPercent": "显示血量百分比",
+    "feature.enemy.info.hpTextColored": "血量文字着色"
   },
   "en_us": {
     "generic.language": "Language",
@@ -265,7 +268,7 @@
     "hotkey.inventory.item.toggleLockMaxItemUse": "Toggle Lock Max Item Use",
     "hotkey.inventory.item.toggleAutoReplenishCountItem": "Toggle Auto Replenish Item Use Count",
     "feature.game.world.title": "World",
-    "hotkey.namespace.game.world": "Game - World", 
+    "hotkey.namespace.game.world": "Game - World",
     "hotkey.game.world.toggleFullBrightInDarknessRegion": "Toggle Full Bright in Darkness Region",
     "feature.game.world.fullBrightInDarknessRegion": "Full Bright in Darkness Region",
     "feature.player.health.enterBlueHealthState": "Enter Blue Health State",
@@ -277,6 +280,9 @@
     "hotkey.teleport.logCurrentPosition": "Log Current Position",
     "ui.toast.logCurrentTeleportPointInfo": "Logged current position: {0}",
     "feature.teleport.clearAll": "Clear All Teleport Points({0})",
-    "feature.teleport.clearNearly": "Clear Nearly Teleport Points"
+    "feature.teleport.clearNearly": "Clear Nearly Teleport Points",
+    "feature.enemy.info.showMaxHp": "Show Max HP",
+    "feature.enemy.info.showHpPercent": "Show HP Percent",
+    "feature.enemy.info.hpTextColored": "HP Text Colored"
   }
 }

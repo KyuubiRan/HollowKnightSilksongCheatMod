@@ -37,6 +37,11 @@ public class DeathTeleport : TeleportFeatureBase
     private int _deleteCount = 3;
     private float _clickDeleteTimer = 10;
 
+    protected override void OnUpdate()
+    {
+        _clickDeleteTimer = _deleteCount == 3 ? 3f : _clickDeleteTimer - Time.unscaledDeltaTime;
+    }
+
     protected override void OnGui()
     {
         UiUtils.BeginCategory("feature.teleport.death.title".Translate());
@@ -45,7 +50,6 @@ public class DeathTeleport : TeleportFeatureBase
 
         RenderItems();
 
-        _clickDeleteTimer = _deleteCount == 3 ? 5f : _clickDeleteTimer - Time.unscaledDeltaTime;
         if (_clickDeleteTimer < 0) _deleteCount = 3;
         if (GUILayout.Button("feature.teleport.clearAll".Translate(_deleteCount)))
         {
