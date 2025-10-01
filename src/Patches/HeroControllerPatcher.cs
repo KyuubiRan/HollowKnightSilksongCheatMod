@@ -14,6 +14,7 @@ public class HeroControllerPatcher
     private static readonly DeathTeleport DeathTeleport = FeatureManager.GetFeature<DeathTeleport>();
     private static readonly ItemCountFeature ItemCountFeature = FeatureManager.GetFeature<ItemCountFeature>();
     private static readonly HealthFeature HealthFeature = FeatureManager.GetFeature<HealthFeature>();
+    private static readonly ToolItemFeature ToolItemFeature = FeatureManager.GetFeature<ToolItemFeature>();
 
     [HarmonyPatch("CanInfiniteAirJump")]
     [HarmonyPrefix]
@@ -80,5 +81,16 @@ public class HeroControllerPatcher
             return;
 
         ToolItemManager.TryReplenishTools(true, ToolItemManager.ReplenishMethod.QuickCraft);
+    }
+
+    [HarmonyPatch("GetLuckyDiceShieldThreshold")]
+    [HarmonyPrefix]
+    static bool GetLuckyDiceShieldThreshold_Prefix(ref int __result)
+    {
+        if (!ToolItemFeature.EnableCustomLuckyDiceTriggerRate)
+            return true;
+
+        __result = ToolItemFeature.LuckyDiceTriggerRate;
+        return false;
     }
 }

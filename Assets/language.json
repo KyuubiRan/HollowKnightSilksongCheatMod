@@ -142,7 +142,11 @@
     "feature.enemy.info.showHpPercent": "显示血量百分比",
     "feature.enemy.info.hpTextColored": "血量文字着色",
     "feature.player.health.godModeOnDash": "冲刺时无敌",
-    "hotkey.health.toggleGodModeOnDash": "开关冲刺时无敌"
+    "hotkey.health.toggleGodModeOnDash": "开关冲刺时无敌",
+    "feature.inventory.tool.title": "工具",
+    "hotkey.namespace.inventory.tool": "物品栏 - 工具",
+    "feature.inventory.tool.customLuckyDiceTriggerRate": "自定义磁石骰触发率",
+    "hotkey.inventory.tool.toggleCustomLuckyDiceTriggerRate": "开关自定义磁石骰触发率"
   },
   "en_us": {
     "generic.language": "Language",
@@ -287,6 +291,10 @@
     "feature.enemy.info.showHpPercent": "Show HP Percent",
     "feature.enemy.info.hpTextColored": "HP Text Colored",
     "feature.player.health.godModeOnDash": "God Mode On Dash",
-    "hotkey.health.toggleGodModeOnDash": "Toggle God Mode On Dash"
+    "hotkey.health.toggleGodModeOnDash": "Toggle God Mode On Dash",
+    "feature.inventory.tool.title": "Tool",
+    "hotkey.namespace.inventory.tool": "Inventory - Tool",
+    "feature.inventory.tool.customLuckyDiceTriggerRate": "Custom Magnetite Dice Trigger Rate",
+    "hotkey.inventory.tool.toggleCustomLuckyDiceTriggerRate": "Toggle Custom Magnetite Dice Trigger Rate"
   }
 }

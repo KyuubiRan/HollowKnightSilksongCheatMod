@@ -42,6 +42,7 @@ public static class FeatureManager
         // Inventory
         AddFeature<InventoryFeature>();
         AddFeature<ItemCountFeature>();
+        AddFeature<ToolItemFeature>();
 
         // Currency
         AddFeature<ShellShardFeature>();
