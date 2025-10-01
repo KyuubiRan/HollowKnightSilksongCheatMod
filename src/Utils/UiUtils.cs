@@ -22,8 +22,8 @@ public static class UiUtils
     {
         fontSize = 16,
         fixedWidth = 150,
-    };   
-    
+    };
+
     private static readonly GUIStyle InputFloatLabelStyle = new(GUI.skin.label)
     {
         fontSize = 16,
@@ -34,6 +34,17 @@ public static class UiUtils
     {
         fontSize = 16,
         fixedWidth = 30,
+        fixedHeight = 15
+    };
+
+    private static readonly GUIStyle SliderStyle = new(GUI.skin.horizontalSlider)
+    {
+        fixedHeight = 16
+    };   
+    
+    private static readonly GUIStyle SliderThumbStyle = new(GUI.skin.horizontalSliderThumb)
+    {
+        fixedHeight = 16
     };
 
     public static void BeginCategory(string title)
@@ -117,7 +128,7 @@ public static class UiUtils
             if (value < min) value = min;
         }
 
-        var after = GUILayout.HorizontalSlider(value, min, max);
+        var after = GUILayout.HorizontalSlider(value, min, max, slider: SliderStyle, thumb: SliderThumbStyle);
         value = after;
 
         if (GUILayout.Button(">", SliderButtonArrowStyle))
@@ -140,7 +151,7 @@ public static class UiUtils
             if (value < min) value = min;
         }
 
-        var after = GUILayout.HorizontalSlider(value, min, max);
+        var after = GUILayout.HorizontalSlider(value, min, max, slider: SliderStyle, thumb: SliderThumbStyle);
         value = (int)after;
 
         if (GUILayout.Button(">", SliderButtonArrowStyle))
