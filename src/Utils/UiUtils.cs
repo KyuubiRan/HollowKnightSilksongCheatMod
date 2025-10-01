@@ -40,8 +40,8 @@ public static class UiUtils
     private static readonly GUIStyle SliderStyle = new(GUI.skin.horizontalSlider)
     {
         fixedHeight = 16
-    };   
-    
+    };
+
     private static readonly GUIStyle SliderThumbStyle = new(GUI.skin.horizontalSliderThumb)
     {
         fixedHeight = 16
@@ -86,6 +86,12 @@ public static class UiUtils
             value = 0;
             return "";
         }
+        
+        if (after == "-")
+        {
+            value = 0;
+            return after;
+        }
 
         return int.TryParse(after, out value) ? after : text;
     }
@@ -114,6 +120,12 @@ public static class UiUtils
         {
             value = 0f;
             return "";
+        }
+
+        if (after == "-")
+        {
+            value = 0f;
+            return after;
         }
 
         return float.TryParse(after.TrimEnd('.'), out value) ? after : text;
