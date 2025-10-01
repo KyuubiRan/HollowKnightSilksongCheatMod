@@ -21,6 +21,7 @@ If you modified the language.json file, please **REBUILD** the project to includ
 ### Player - Health
 
 - [x] God mode
+- [x] God mode on dash
 - [x] Lock max HP
 - [x] Heal
 - [x] Lock blue health state
@@ -72,6 +73,7 @@ If you modified the language.json file, please **REBUILD** the project to includ
 - [x] Equip anywhere
 - [x] Auto replenish count item
 - [x] Infinity item use
+- [x] Item count modify(or add/remove item)
 
 ### Enemy - Info
 

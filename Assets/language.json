@@ -18,6 +18,7 @@
     "feature.generic.disable": "禁用",
     "feature.generic.value": "数值",
     "feature.generic.add": "增加",
+    "feature.generic.set": "设置",
     "feature.generic.reduce": "减少",
     "feature.generic.delete": "删除",
     "feature.generic.execute": "执行",
@@ -146,7 +147,10 @@
     "feature.inventory.tool.title": "工具",
     "hotkey.namespace.inventory.tool": "物品栏 - 工具",
     "feature.inventory.tool.customLuckyDiceTriggerRate": "自定义磁石骰触发率",
-    "hotkey.inventory.tool.toggleCustomLuckyDiceTriggerRate": "开关自定义磁石骰触发率"
+    "hotkey.inventory.tool.toggleCustomLuckyDiceTriggerRate": "开关自定义磁石骰触发率",
+    "feature.inventory.item.count.title": "物品数量",
+    "ui.generic.filter": "过滤",
+    "feature.inventory.item.count.onlyShowHas": "仅显示已拥有的物品"
   },
   "en_us": {
     "generic.language": "Language",
@@ -167,6 +171,7 @@
     "feature.generic.disable": "Disable",
     "feature.generic.value": "Value",
     "feature.generic.add": "Add",
+    "feature.generic.set": "Set",
     "feature.generic.reduce": "Reduce",
     "feature.generic.delete": "Delete",
     "feature.generic.execute": "Execute",
@@ -295,6 +300,9 @@
     "feature.inventory.tool.title": "Tool",
     "hotkey.namespace.inventory.tool": "Inventory - Tool",
     "feature.inventory.tool.customLuckyDiceTriggerRate": "Custom Magnetite Dice Trigger Rate",
-    "hotkey.inventory.tool.toggleCustomLuckyDiceTriggerRate": "Toggle Custom Magnetite Dice Trigger Rate"
+    "hotkey.inventory.tool.toggleCustomLuckyDiceTriggerRate": "Toggle Custom Magnetite Dice Trigger Rate",
+    "feature.inventory.item.count.title": "Item Count",
+    "ui.generic.filter": "Filter",
+    "feature.inventory.item.count.onlyShowHas": "Only Show Owned Items"
   }
 }
