@@ -21,7 +21,10 @@ public static class HeroControllerAccessor
         AccessTools.FieldRefAccess<HeroController, Rigidbody2D>("rb2d");
 
     public static readonly AccessTools.FieldRef<HeroController, Collider2D> Col2dField =
-        AccessTools.FieldRefAccess<HeroController, Collider2D>("col2d");   
+        AccessTools.FieldRefAccess<HeroController, Collider2D>("col2d");      
+    
+    public static readonly AccessTools.FieldRef<HeroController, float> DashTimerField =
+        AccessTools.FieldRefAccess<HeroController, float>("dash_timer");   
     
     public static readonly AccessTools.FieldRef<HeroController, HeroController.ReaperCrestStateInfo> ReaperStateField =
         AccessTools.FieldRefAccess<HeroController, HeroController.ReaperCrestStateInfo>("reaperState");   

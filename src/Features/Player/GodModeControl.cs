@@ -1,5 +1,6 @@
 using System;
 using GlobalEnums;
+using HKSC.Accessor;
 using HKSC.Managers;
 using HKSC.Ui;
 
@@ -25,7 +26,7 @@ public class GodModeControl : FeatureBase
             _lastFrameState = true;
             return;
         }
-        
+
         if (_lastFrameState)
         {
             Hc.SetDamageMode(DamageMode.FULL_DAMAGE);

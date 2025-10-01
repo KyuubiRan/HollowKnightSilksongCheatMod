@@ -16,6 +16,11 @@ public class HealthFeature : FeatureBase
         .CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleGodMode")
         .AddToggleToast("feature.player.health.godMode");
 
+    public readonly ConfigObject<bool> EnableGodModeOnDash = CfgManager
+        .Create("PlayerHealth::EnableGodModeOnDash", false)
+        .CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleGodModeOnDash")
+        .AddToggleToast("feature.player.health.godModeOnDash");
+
     public readonly ConfigObject<bool> EnableLockMaxHealth = CfgManager
         .Create("PlayerHealth::EnableLockMaxHealth", false)
         .CreateToggleHotkey("hotkey.namespace.health", "hotkey.health.toggleLockMaxHealth")
@@ -52,15 +57,16 @@ public class HealthFeature : FeatureBase
     {
         UiUtils.BeginCategory("feature.player.health.title".Translate());
         EnableGodMode.Value = GUILayout.Toggle(EnableGodMode, "feature.player.health.godMode".Translate());
-        
+        EnableGodModeOnDash.Value = GUILayout.Toggle(EnableGodModeOnDash, "feature.player.health.godModeOnDash".Translate());
+
         EnableLockMaxHealth.Value = GUILayout.Toggle(EnableLockMaxHealth, "feature.player.health.lockMaxHealth".Translate());
         if (GUILayout.Button("feature.player.health.heal".Translate()))
             Hc?.MaxHealth();
-    
+
         EnableLockBlueHealthMode.Value = GUILayout.Toggle(EnableLockBlueHealthMode, "feature.player.health.lockBlueHealthState".Translate());
         if (GUILayout.Button("feature.player.health.enterBlueHealthState".Translate()))
             EnterBlueHealthState();
-        
+
         UiUtils.EndCategory();
     }
 

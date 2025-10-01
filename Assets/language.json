@@ -140,7 +140,9 @@
     "feature.teleport.clearNearly": "清除过近的传送点",
     "feature.enemy.info.showMaxHp": "显示最大血量",
     "feature.enemy.info.showHpPercent": "显示血量百分比",
-    "feature.enemy.info.hpTextColored": "血量文字着色"
+    "feature.enemy.info.hpTextColored": "血量文字着色",
+    "feature.player.health.godModeOnDash": "冲刺时无敌",
+    "hotkey.health.toggleGodModeOnDash": "开关冲刺时无敌"
   },
   "en_us": {
     "generic.language": "Language",
@@ -283,6 +285,8 @@
     "feature.teleport.clearNearly": "Clear Nearly Teleport Points",
     "feature.enemy.info.showMaxHp": "Show Max HP",
     "feature.enemy.info.showHpPercent": "Show HP Percent",
-    "feature.enemy.info.hpTextColored": "HP Text Colored"
+    "feature.enemy.info.hpTextColored": "HP Text Colored",
+    "feature.player.health.godModeOnDash": "God Mode On Dash",
+    "hotkey.health.toggleGodModeOnDash": "Toggle God Mode On Dash"
   }
 }

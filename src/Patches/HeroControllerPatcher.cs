@@ -13,6 +13,7 @@ public class HeroControllerPatcher
     private static readonly ActionFeature ActionFeature = FeatureManager.GetFeature<ActionFeature>();
     private static readonly DeathTeleport DeathTeleport = FeatureManager.GetFeature<DeathTeleport>();
     private static readonly ItemCountFeature ItemCountFeature = FeatureManager.GetFeature<ItemCountFeature>();
+    private static readonly HealthFeature HealthFeature = FeatureManager.GetFeature<HealthFeature>();
 
     [HarmonyPatch("CanInfiniteAirJump")]
     [HarmonyPrefix]
@@ -46,6 +47,16 @@ public class HeroControllerPatcher
             HeroControllerAccessor.AirDashedField(__instance) = false;
     }
 
+    [HarmonyPatch("HeroDash")]
+    [HarmonyPostfix]
+    static void HeroDash_Postfix(HeroController __instance)
+    {
+        if (!HealthFeature.EnableGodModeOnDash)
+            return;
+
+        HeroControllerAccessor.StartInvulnerableMethod.Invoke(__instance, [HeroControllerAccessor.DashTimerField(__instance) + 0.25f]);
+    }
+
     [HarmonyPatch("CanHarpoonDash")]
     [HarmonyPrefix]
     static void CanHarpoonDash_Prefix(HeroController __instance)
@@ -59,15 +70,15 @@ public class HeroControllerPatcher
     static void Awake_Postfix(HeroController __instance)
     {
         __instance.OnDeath += () => { DeathTeleport.LogTeleport(TeleportPoint.Current); };
-    }    
-    
+    }
+
     [HarmonyPatch("ThrowTool")]
     [HarmonyPostfix]
     static void ThrowTool_Postfix(HeroController __instance)
     {
         if (!ItemCountFeature.EnableAutoReplenishCountItem)
             return;
-        
+
         ToolItemManager.TryReplenishTools(true, ToolItemManager.ReplenishMethod.QuickCraft);
     }
 }
